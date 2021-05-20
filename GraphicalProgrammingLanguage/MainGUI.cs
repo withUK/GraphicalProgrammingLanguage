@@ -10,12 +10,11 @@ using System.Windows.Forms;
 
 namespace GraphicalProgrammingLanguage
 {
-    public partial class Form1 : Form
+    public partial class MainGUI : Form
     {
-        public Form1()
+        public MainGUI()
         {
             InitializeComponent();
         }
-
     }
 }
