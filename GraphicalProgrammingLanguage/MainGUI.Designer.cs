@@ -37,16 +37,20 @@ namespace GraphicalProgrammingLanguage
             this.lblScript = new System.Windows.Forms.Label();
             this.pnlOutput = new System.Windows.Forms.Panel();
             this.lblOutput = new System.Windows.Forms.Label();
-            this.pnlLog = new System.Windows.Forms.Panel();
             this.btnCommandLineRun = new System.Windows.Forms.Button();
             this.btnLoad = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnScriptRun = new System.Windows.Forms.Button();
             this.gbxCommands = new System.Windows.Forms.GroupBox();
-            this.pnlCommands = new System.Windows.Forms.Panel();
+            this.txtCommands = new System.Windows.Forms.RichTextBox();
             this.logo = new System.Windows.Forms.PictureBox();
+            this.dialogueLoad = new System.Windows.Forms.OpenFileDialog();
+            this.lblFileName = new System.Windows.Forms.Label();
+            this.gbxLog = new System.Windows.Forms.GroupBox();
+            this.txtLog = new System.Windows.Forms.RichTextBox();
             this.gbxCommands.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
+            this.gbxLog.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtScript
@@ -109,14 +113,6 @@ namespace GraphicalProgrammingLanguage
             this.lblOutput.TabIndex = 6;
             this.lblOutput.Text = "Output";
             // 
-            // pnlLog
-            // 
-            this.pnlLog.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.pnlLog.Location = new System.Drawing.Point(34, 548);
-            this.pnlLog.Name = "pnlLog";
-            this.pnlLog.Size = new System.Drawing.Size(550, 151);
-            this.pnlLog.TabIndex = 7;
-            // 
             // btnCommandLineRun
             // 
             this.btnCommandLineRun.Location = new System.Drawing.Point(490, 514);
@@ -134,6 +130,7 @@ namespace GraphicalProgrammingLanguage
             this.btnLoad.TabIndex = 11;
             this.btnLoad.Text = "Load";
             this.btnLoad.UseVisualStyleBackColor = true;
+            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
             // btnSave
             // 
@@ -155,7 +152,7 @@ namespace GraphicalProgrammingLanguage
             // 
             // gbxCommands
             // 
-            this.gbxCommands.Controls.Add(this.pnlCommands);
+            this.gbxCommands.Controls.Add(this.txtCommands);
             this.gbxCommands.Location = new System.Drawing.Point(625, 449);
             this.gbxCommands.Name = "gbxCommands";
             this.gbxCommands.Size = new System.Drawing.Size(550, 250);
@@ -163,13 +160,16 @@ namespace GraphicalProgrammingLanguage
             this.gbxCommands.TabStop = false;
             this.gbxCommands.Text = "Popular commands";
             // 
-            // pnlCommands
+            // txtCommands
             // 
-            this.pnlCommands.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlCommands.Location = new System.Drawing.Point(3, 23);
-            this.pnlCommands.Name = "pnlCommands";
-            this.pnlCommands.Size = new System.Drawing.Size(544, 224);
-            this.pnlCommands.TabIndex = 0;
+            this.txtCommands.BackColor = System.Drawing.SystemColors.Menu;
+            this.txtCommands.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtCommands.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtCommands.Location = new System.Drawing.Point(3, 23);
+            this.txtCommands.Name = "txtCommands";
+            this.txtCommands.Size = new System.Drawing.Size(544, 224);
+            this.txtCommands.TabIndex = 0;
+            this.txtCommands.Text = "";
             // 
             // logo
             // 
@@ -180,19 +180,52 @@ namespace GraphicalProgrammingLanguage
             this.logo.TabIndex = 15;
             this.logo.TabStop = false;
             // 
+            // lblFileName
+            // 
+            this.lblFileName.AutoSize = true;
+            this.lblFileName.Location = new System.Drawing.Point(87, 16);
+            this.lblFileName.Name = "lblFileName";
+            this.lblFileName.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblFileName.Size = new System.Drawing.Size(0, 20);
+            this.lblFileName.TabIndex = 16;
+            this.lblFileName.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // gbxLog
+            // 
+            this.gbxLog.Controls.Add(this.txtLog);
+            this.gbxLog.Location = new System.Drawing.Point(34, 549);
+            this.gbxLog.Name = "gbxLog";
+            this.gbxLog.Size = new System.Drawing.Size(550, 147);
+            this.gbxLog.TabIndex = 17;
+            this.gbxLog.TabStop = false;
+            this.gbxLog.Text = "Log";
+            // 
+            // txtLog
+            // 
+            this.txtLog.BackColor = System.Drawing.SystemColors.Menu;
+            this.txtLog.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtLog.Location = new System.Drawing.Point(3, 23);
+            this.txtLog.Name = "txtLog";
+            this.txtLog.ReadOnly = true;
+            this.txtLog.Size = new System.Drawing.Size(544, 121);
+            this.txtLog.TabIndex = 0;
+            this.txtLog.Text = "";
+            // 
             // MainGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Menu;
             this.ClientSize = new System.Drawing.Size(1212, 804);
+            this.Controls.Add(this.gbxLog);
+            this.Controls.Add(this.lblFileName);
             this.Controls.Add(this.logo);
             this.Controls.Add(this.gbxCommands);
             this.Controls.Add(this.btnScriptRun);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.btnCommandLineRun);
-            this.Controls.Add(this.pnlLog);
             this.Controls.Add(this.lblOutput);
             this.Controls.Add(this.pnlOutput);
             this.Controls.Add(this.lblScript);
@@ -202,9 +235,11 @@ namespace GraphicalProgrammingLanguage
             this.Controls.Add(this.txtScript);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainGUI";
+            this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Text = "Graphical Programming Language";
             this.gbxCommands.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
+            this.gbxLog.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,14 +254,17 @@ namespace GraphicalProgrammingLanguage
         private System.Windows.Forms.Label lblScript;
         private System.Windows.Forms.Panel pnlOutput;
         private System.Windows.Forms.Label lblOutput;
-        private System.Windows.Forms.Panel pnlLog;
         private System.Windows.Forms.Button btnCommandLineRun;
         private System.Windows.Forms.Button btnLoad;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnScriptRun;
         private System.Windows.Forms.GroupBox gbxCommands;
         private System.Windows.Forms.PictureBox logo;
-        private System.Windows.Forms.Panel pnlCommands;
+        private System.Windows.Forms.OpenFileDialog dialogueLoad;
+        private System.Windows.Forms.Label lblFileName;
+        private System.Windows.Forms.GroupBox gbxLog;
+        private System.Windows.Forms.RichTextBox txtLog;
+        private System.Windows.Forms.RichTextBox txtCommands;
     }
 }
 
