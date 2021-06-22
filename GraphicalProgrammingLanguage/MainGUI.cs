@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
+using System.IO;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GraphicalProgrammingLanguage
@@ -14,7 +9,26 @@ namespace GraphicalProgrammingLanguage
     {
         public MainGUI()
         {
-            InitializeComponent();
+            using (StreamWriter w = File.AppendText("log.txt"))
+            {
+                InitializeComponent();
+                txtLog.AppendText(Logger.Log("Application started", w));
+            }
+        }
+
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            using (StreamWriter w = File.AppendText("log.txt"))
+            {
+                dialogueLoad.Filter = "Text Files|*.txt;*.text";
+                if (dialogueLoad.ShowDialog() == DialogResult.OK)
+                {
+                    lblFileName.Text = String.Concat(" : ", dialogueLoad.SafeFileName);
+                    var fileContent = new StreamReader(dialogueLoad.FileName);
+                    txtScript.Text = fileContent.ReadToEnd();
+                    txtLog.Text = Logger.Log($"{dialogueLoad.FileName} loaded.", w) + "\n" + txtLog.Text;
+                }
+            }
         }
     }
 }
