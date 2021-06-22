@@ -30,144 +30,155 @@ namespace GraphicalProgrammingLanguage
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainGUI));
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.txtScript = new System.Windows.Forms.RichTextBox();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.txtCommandLine = new System.Windows.Forms.TextBox();
+            this.lblCommandLine = new System.Windows.Forms.Label();
+            this.lblScript = new System.Windows.Forms.Label();
+            this.pnlOutput = new System.Windows.Forms.Panel();
+            this.lblOutput = new System.Windows.Forms.Label();
+            this.pnlLog = new System.Windows.Forms.Panel();
+            this.btnCommandLineRun = new System.Windows.Forms.Button();
+            this.btnLoad = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnScriptRun = new System.Windows.Forms.Button();
+            this.gbxCommands = new System.Windows.Forms.GroupBox();
+            this.pnlCommands = new System.Windows.Forms.Panel();
+            this.logo = new System.Windows.Forms.PictureBox();
+            this.gbxCommands.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
             this.SuspendLayout();
             // 
-            // richTextBox1
+            // txtScript
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(34, 39);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(550, 400);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
+            this.txtScript.Location = new System.Drawing.Point(34, 39);
+            this.txtScript.Name = "txtScript";
+            this.txtScript.Size = new System.Drawing.Size(550, 400);
+            this.txtScript.TabIndex = 0;
+            this.txtScript.Text = "";
             // 
-            // label1
+            // lblTitle
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Bahnschrift Light", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(383, 718);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(792, 60);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Graphical Programming Language";
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Bahnschrift Light", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblTitle.Location = new System.Drawing.Point(383, 718);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(792, 60);
+            this.lblTitle.TabIndex = 1;
+            this.lblTitle.Text = "Graphical Programming Language";
             // 
-            // textBox1
+            // txtCommandLine
             // 
-            this.textBox1.Location = new System.Drawing.Point(34, 515);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(450, 27);
-            this.textBox1.TabIndex = 2;
+            this.txtCommandLine.Location = new System.Drawing.Point(34, 515);
+            this.txtCommandLine.Name = "txtCommandLine";
+            this.txtCommandLine.Size = new System.Drawing.Size(450, 27);
+            this.txtCommandLine.TabIndex = 2;
             // 
-            // label2
+            // lblCommandLine
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(34, 492);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(106, 20);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Command line";
+            this.lblCommandLine.AutoSize = true;
+            this.lblCommandLine.Location = new System.Drawing.Point(34, 492);
+            this.lblCommandLine.Name = "lblCommandLine";
+            this.lblCommandLine.Size = new System.Drawing.Size(106, 20);
+            this.lblCommandLine.TabIndex = 3;
+            this.lblCommandLine.Text = "Command line";
             // 
-            // label3
+            // lblScript
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(34, 16);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 20);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Script";
+            this.lblScript.AutoSize = true;
+            this.lblScript.Location = new System.Drawing.Point(34, 16);
+            this.lblScript.Name = "lblScript";
+            this.lblScript.Size = new System.Drawing.Size(47, 20);
+            this.lblScript.TabIndex = 4;
+            this.lblScript.Text = "Script";
             // 
-            // panel1
+            // pnlOutput
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.panel1.Location = new System.Drawing.Point(625, 39);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(550, 400);
-            this.panel1.TabIndex = 5;
+            this.pnlOutput.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.pnlOutput.Location = new System.Drawing.Point(625, 39);
+            this.pnlOutput.Name = "pnlOutput";
+            this.pnlOutput.Size = new System.Drawing.Size(550, 400);
+            this.pnlOutput.TabIndex = 5;
             // 
-            // label4
+            // lblOutput
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(625, 16);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(55, 20);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Output";
+            this.lblOutput.AutoSize = true;
+            this.lblOutput.Location = new System.Drawing.Point(625, 16);
+            this.lblOutput.Name = "lblOutput";
+            this.lblOutput.Size = new System.Drawing.Size(55, 20);
+            this.lblOutput.TabIndex = 6;
+            this.lblOutput.Text = "Output";
             // 
-            // panel2
+            // pnlLog
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.panel2.Location = new System.Drawing.Point(34, 548);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(550, 151);
-            this.panel2.TabIndex = 7;
+            this.pnlLog.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.pnlLog.Location = new System.Drawing.Point(34, 548);
+            this.pnlLog.Name = "pnlLog";
+            this.pnlLog.Size = new System.Drawing.Size(550, 151);
+            this.pnlLog.TabIndex = 7;
             // 
-            // button1
+            // btnCommandLineRun
             // 
-            this.button1.Location = new System.Drawing.Point(490, 514);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 29);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Run";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnCommandLineRun.Location = new System.Drawing.Point(490, 514);
+            this.btnCommandLineRun.Name = "btnCommandLineRun";
+            this.btnCommandLineRun.Size = new System.Drawing.Size(94, 29);
+            this.btnCommandLineRun.TabIndex = 8;
+            this.btnCommandLineRun.Text = "Run";
+            this.btnCommandLineRun.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnLoad
             // 
-            this.button3.Location = new System.Drawing.Point(34, 445);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(94, 29);
-            this.button3.TabIndex = 11;
-            this.button3.Text = "Load";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnLoad.Location = new System.Drawing.Point(34, 445);
+            this.btnLoad.Name = "btnLoad";
+            this.btnLoad.Size = new System.Drawing.Size(94, 29);
+            this.btnLoad.TabIndex = 11;
+            this.btnLoad.Text = "Load";
+            this.btnLoad.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // btnSave
             // 
-            this.button4.Location = new System.Drawing.Point(134, 445);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(94, 29);
-            this.button4.TabIndex = 12;
-            this.button4.Text = "Save";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnSave.Location = new System.Drawing.Point(134, 445);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(94, 29);
+            this.btnSave.TabIndex = 12;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnScriptRun
             // 
-            this.button2.Location = new System.Drawing.Point(490, 445);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(94, 29);
-            this.button2.TabIndex = 13;
-            this.button2.Text = "Run";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnScriptRun.Location = new System.Drawing.Point(490, 445);
+            this.btnScriptRun.Name = "btnScriptRun";
+            this.btnScriptRun.Size = new System.Drawing.Size(94, 29);
+            this.btnScriptRun.TabIndex = 13;
+            this.btnScriptRun.Text = "Run";
+            this.btnScriptRun.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
+            // gbxCommands
             // 
-            this.groupBox1.Location = new System.Drawing.Point(625, 449);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(550, 250);
-            this.groupBox1.TabIndex = 14;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Popular commands";
+            this.gbxCommands.Controls.Add(this.pnlCommands);
+            this.gbxCommands.Location = new System.Drawing.Point(625, 449);
+            this.gbxCommands.Name = "gbxCommands";
+            this.gbxCommands.Size = new System.Drawing.Size(550, 250);
+            this.gbxCommands.TabIndex = 14;
+            this.gbxCommands.TabStop = false;
+            this.gbxCommands.Text = "Popular commands";
             // 
-            // pictureBox1
+            // pnlCommands
             // 
-            this.pictureBox1.Image = global::GraphicalProgrammingLanguage.Properties.Resources.gpl_logo_vsml1;
-            this.pictureBox1.Location = new System.Drawing.Point(300, 707);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(88, 85);
-            this.pictureBox1.TabIndex = 15;
-            this.pictureBox1.TabStop = false;
+            this.pnlCommands.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlCommands.Location = new System.Drawing.Point(3, 23);
+            this.pnlCommands.Name = "pnlCommands";
+            this.pnlCommands.Size = new System.Drawing.Size(544, 224);
+            this.pnlCommands.TabIndex = 0;
+            // 
+            // logo
+            // 
+            this.logo.Image = global::GraphicalProgrammingLanguage.Properties.Resources.gpl_logo_vsml1;
+            this.logo.Location = new System.Drawing.Point(300, 707);
+            this.logo.Name = "logo";
+            this.logo.Size = new System.Drawing.Size(88, 85);
+            this.logo.TabIndex = 15;
+            this.logo.TabStop = false;
             // 
             // MainGUI
             // 
@@ -175,24 +186,25 @@ namespace GraphicalProgrammingLanguage
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Menu;
             this.ClientSize = new System.Drawing.Size(1212, 804);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.logo);
+            this.Controls.Add(this.gbxCommands);
+            this.Controls.Add(this.btnScriptRun);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.btnLoad);
+            this.Controls.Add(this.btnCommandLineRun);
+            this.Controls.Add(this.pnlLog);
+            this.Controls.Add(this.lblOutput);
+            this.Controls.Add(this.pnlOutput);
+            this.Controls.Add(this.lblScript);
+            this.Controls.Add(this.lblCommandLine);
+            this.Controls.Add(this.txtCommandLine);
+            this.Controls.Add(this.lblTitle);
+            this.Controls.Add(this.txtScript);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainGUI";
             this.Text = "Graphical Programming Language";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.gbxCommands.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -200,20 +212,21 @@ namespace GraphicalProgrammingLanguage
 
         #endregion
 
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.RichTextBox txtScript;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.TextBox txtCommandLine;
+        private System.Windows.Forms.Label lblCommandLine;
+        private System.Windows.Forms.Label lblScript;
+        private System.Windows.Forms.Panel pnlOutput;
+        private System.Windows.Forms.Label lblOutput;
+        private System.Windows.Forms.Panel pnlLog;
+        private System.Windows.Forms.Button btnCommandLineRun;
+        private System.Windows.Forms.Button btnLoad;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnScriptRun;
+        private System.Windows.Forms.GroupBox gbxCommands;
+        private System.Windows.Forms.PictureBox logo;
+        private System.Windows.Forms.Panel pnlCommands;
     }
 }
 
