@@ -121,6 +121,7 @@ namespace GraphicalProgrammingLanguage
             this.btnCommandLineRun.TabIndex = 8;
             this.btnCommandLineRun.Text = "Run";
             this.btnCommandLineRun.UseVisualStyleBackColor = true;
+            this.btnCommandLineRun.Click += new System.EventHandler(this.btnCommandLineRun_Click);
             // 
             // btnLoad
             // 
