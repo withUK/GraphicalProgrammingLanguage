@@ -15,7 +15,7 @@ namespace GraphicalProgrammingLanguage.Shapes
 
         }
 
-        public Rectangle(int x, int y, Color lineColor, Color fillColor, int lineWeight) : base(x, y, lineColor, fillColor, lineWeight)
+        public Rectangle(int x, int y, int length, int width, Color lineColor, Color fillColor, int lineWeight) : base(x, y, lineColor, fillColor, lineWeight)
         {
             this.length = length;
             this.width = width;

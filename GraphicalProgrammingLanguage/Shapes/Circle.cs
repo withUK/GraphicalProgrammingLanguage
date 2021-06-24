@@ -14,7 +14,7 @@ namespace GraphicalProgrammingLanguage.Shapes
 
         }
 
-        public Circle(int x, int y, Color lineColor, Color fillColor, int lineWeight) : base(x, y, lineColor, fillColor, lineWeight)
+        public Circle(int x, int y, int radius, Color lineColor, Color fillColor, int lineWeight) : base(x, y, lineColor, fillColor, lineWeight)
         {   
             this.radius = radius;
         }
@@ -42,6 +42,24 @@ namespace GraphicalProgrammingLanguage.Shapes
         }
 
         // Overrides
+        public override void set(Color lineColor, Color fillColor, params int[] list)
+        {
+            this.lineColor = lineColor;
+            this.fillColor = fillColor;
+
+            if (list.Length > 1)
+                this.x = list[0];
+
+            if (list.Length > 2)
+                this.y = list[1];
+
+            if (list.Length > 3)
+                this.lineWeight = list[2];
+
+            if (list.Length == 4)
+                this.radius = list[3];
+        }
+
         // This overrides the base implemention of ToString() in this case this is now the Shape class.
         // Example output: 'StringRef 1, 2 : 3'
         public override string ToString()

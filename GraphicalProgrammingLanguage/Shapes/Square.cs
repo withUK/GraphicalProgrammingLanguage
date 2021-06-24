@@ -16,7 +16,7 @@ namespace GraphicalProgrammingLanguage.Shapes
 
         }
 
-        public Square(int x, int y, Color lineColor, Color fillColor, int lineWeight) : base(x, y, lineColor, fillColor, lineWeight)
+        public Square(int x, int y, int length, Color lineColor, Color fillColor, int lineWeight) : base(x, y, lineColor, fillColor, lineWeight)
         {
             this.length = length;
         }

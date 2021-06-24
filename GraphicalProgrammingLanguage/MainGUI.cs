@@ -52,11 +52,16 @@ namespace GraphicalProgrammingLanguage
                     string commandVariables = String.Concat("(", commandComponents[1]);
 
                     object[] variables = commandVariables.Substring(1, commandVariables.Length - 2).Split(",");
+                    
 
                     if (commandName.Equals("draw"))
                     {
-                        var shape = shapeFactory.getShape(variables[1].ToString());
+                        var shape = shapeFactory.getShape(variables[0].ToString());
+                        shape.set(Color.Red, Color.White,new int[] { int.Parse(variables[1].ToString()), int.Parse(variables[2].ToString()), int.Parse(variables[3].ToString()), int.Parse(variables[4].ToString()) });
+                        shape.draw(dc);
                     }
+
+                    dc.DrawRectangle(new Pen(Color.Red, 4), 5, 5, 30, 40);
                 }
             }
         }
