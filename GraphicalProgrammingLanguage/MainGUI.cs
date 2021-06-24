@@ -1,5 +1,6 @@
 ﻿using GraphicalProgrammingLanguage.Factories;
 using System;
+using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
@@ -8,6 +9,7 @@ namespace GraphicalProgrammingLanguage
 {
     public partial class MainGUI : Form
     {
+        private Graphics dc;
         private ShapeFactory shapeFactory;
 
         public MainGUI()
@@ -15,6 +17,7 @@ namespace GraphicalProgrammingLanguage
             using (StreamWriter w = File.AppendText("log.txt"))
             {
                 InitializeComponent();
+                dc = pnlOutput.CreateGraphics();
                 shapeFactory = new ShapeFactory();
                 txtLog.AppendText(Logger.Log("Application started", w));
             }
