@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
@@ -7,11 +8,14 @@ namespace GraphicalProgrammingLanguage
 {
     public partial class MainGUI : Form
     {
+        private Graphics dc;
+
         public MainGUI()
         {
             using (StreamWriter w = File.AppendText("log.txt"))
             {
                 InitializeComponent();
+                dc = pnlOutput.CreateGraphics();
                 txtLog.AppendText(Logger.Log("Application started", w));
             }
         }

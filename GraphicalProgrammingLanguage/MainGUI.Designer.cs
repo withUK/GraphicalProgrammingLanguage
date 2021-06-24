@@ -98,7 +98,8 @@ namespace GraphicalProgrammingLanguage
             // 
             // pnlOutput
             // 
-            this.pnlOutput.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.pnlOutput.BackColor = System.Drawing.Color.Gainsboro;
+            this.pnlOutput.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pnlOutput.Location = new System.Drawing.Point(625, 39);
             this.pnlOutput.Name = "pnlOutput";
             this.pnlOutput.Size = new System.Drawing.Size(550, 400);
