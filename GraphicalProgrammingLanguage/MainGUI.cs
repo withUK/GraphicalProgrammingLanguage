@@ -9,9 +9,16 @@ namespace GraphicalProgrammingLanguage
 {
     public partial class MainGUI : Form
     {
+        // Objects
         private Graphics dc;
         private ShapeFactory shapeFactory;
+        private Pen pen = new Pen(Color.Black, 1);
+        private Brush brush;
 
+        // Properties
+        private int x = 0, y = 0;
+        
+        // Constructor
         public MainGUI()
         {
             using (StreamWriter w = File.AppendText("log.txt"))
@@ -23,6 +30,7 @@ namespace GraphicalProgrammingLanguage
             }
         }
 
+        // Methods
         private void btnLoad_Click(object sender, EventArgs e)
         {
             using (StreamWriter w = File.AppendText("log.txt"))
@@ -60,8 +68,6 @@ namespace GraphicalProgrammingLanguage
                         shape.set(Color.Red, Color.White,new int[] { int.Parse(variables[1].ToString()), int.Parse(variables[2].ToString()), int.Parse(variables[3].ToString()), int.Parse(variables[4].ToString()) });
                         shape.draw(dc);
                     }
-
-                    dc.DrawRectangle(new Pen(Color.Red, 4), 5, 5, 30, 40);
                 }
             }
         }
