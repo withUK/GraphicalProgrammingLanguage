@@ -28,8 +28,13 @@ namespace GraphicalProgrammingLanguage.Commands
             this.variables = variables;
         }
 
+        public void log()
+        {
+            Logger.Log($"Command {name} called.");
+        }
+
         // Abstracts
-        public abstract bool isValid(string command);
-        public abstract void execute(string command);
+        public abstract void execute();
+        public abstract bool validate();
     }
 }

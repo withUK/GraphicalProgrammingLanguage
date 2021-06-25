@@ -1,5 +1,6 @@
 ﻿using GraphicalProgrammingLanguage.Factories;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Text;
@@ -11,7 +12,7 @@ namespace GraphicalProgrammingLanguage
     {
         // Objects
         private Graphics dc;
-        private ShapeFactory shapeFactory;
+        private ShapeFactory shapeFactory = new ShapeFactory();
         private Pen pen = new Pen(Color.Black, 1);
         private Brush brush;
 
@@ -21,15 +22,10 @@ namespace GraphicalProgrammingLanguage
         // Constructor
         public MainGUI()
         {
-            using (StreamWriter w = File.AppendText("log.txt"))
-            {
-                InitializeComponent();
-                dc = pnlOutput.CreateGraphics();
-                shapeFactory = new ShapeFactory();
-                txtLog.AppendText(Logger.Log("Application started", w));
-            }
+            InitializeComponent();
+            dc = pnlOutput.CreateGraphics();
+            txtLog.AppendText(Logger.Log("Application started"));
         }
-
         // Methods
         private void btnLoad_Click(object sender, EventArgs e)
         {
@@ -41,35 +37,31 @@ namespace GraphicalProgrammingLanguage
                     lblFileName.Text = String.Concat(" : ", dialogueLoad.SafeFileName);
                     var fileContent = new StreamReader(dialogueLoad.FileName);
                     txtScript.Text = fileContent.ReadToEnd();
-                    txtLog.Text = Logger.Log($"{dialogueLoad.FileName} loaded.", w) + "\n" + txtLog.Text;
+                    txtLog.Text = Logger.Log($"{dialogueLoad.FileName} loaded.") + "\n" + txtLog.Text;
                 }
             }
         }
 
         private void btnCommandLineRun_Click(object sender, EventArgs e)
         {
-            using (StreamWriter w = File.AppendText("log.txt"))
+            string input = txtCommandLine.Text;
+            int startIndex = input.IndexOf("(");
+            int endIndex = input.LastIndexOf(")");
+            Dictionary<string, string> variableDict = new Dictionary<string, string>();
+
+            string variableString = input.Substring(startIndex + 1, endIndex - startIndex - 1);
+            string[] variables = variableString.Split(",");
+
+            foreach (var item in variables)
             {
-                if (!String.IsNullOrEmpty(txtCommandLine.Text))
-                {
-                    string command = txtCommandLine.Text.Trim();
-
-                    string[] commandComponents = command.Split("(");
-
-                    string commandName = commandComponents[0].ToLower();
-                    string commandVariables = String.Concat("(", commandComponents[1]);
-
-                    object[] variables = commandVariables.Substring(1, commandVariables.Length - 2).Split(",");
-                    
-
-                    if (commandName.Equals("draw"))
-                    {
-                        var shape = shapeFactory.getShape(variables[0].ToString());
-                        shape.set(Color.Red, Color.White,new int[] { int.Parse(variables[1].ToString()), int.Parse(variables[2].ToString()), int.Parse(variables[3].ToString()), int.Parse(variables[4].ToString()) });
-                        shape.draw(dc);
-                    }
-                }
+                string[] split = item.Split("=");
+                variableDict.Add(split[0], split[1]);
             }
+
+            int x = int.Parse(variableDict.GetValueOrDefault("x"));
+            int y = int.Parse(variableDict.GetValueOrDefault("y"));
+
+            dc.DrawRectangle(pen, x, y, 58, 46);
         }
     }
 }
