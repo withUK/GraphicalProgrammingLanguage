@@ -1,4 +1,5 @@
 ﻿using GraphicalProgrammingLanguage.Factories;
+using GraphicalProgrammingLanguage.Shapes;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -58,10 +59,9 @@ namespace GraphicalProgrammingLanguage
                 variableDict.Add(split[0], split[1]);
             }
 
-            int x = int.Parse(variableDict.GetValueOrDefault("x"));
-            int y = int.Parse(variableDict.GetValueOrDefault("y"));
-
-            dc.DrawRectangle(pen, x, y, 58, 46);
+            Shape shape = shapeFactory.getShape(variableDict.GetValueOrDefault("name"));
+            shape.set(variableDict);
+            shape.draw(dc);
         }
     }
 }

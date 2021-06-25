@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 
 namespace GraphicalProgrammingLanguage.Shapes
@@ -42,22 +43,14 @@ namespace GraphicalProgrammingLanguage.Shapes
         }
 
         // Overrides
-        public override void set(Color lineColor, Color fillColor, params int[] list)
+        public override void set(Dictionary<string, string> variables)
         {
-            this.lineColor = lineColor;
-            this.fillColor = fillColor;
-
-            if (list.Length > 1)
-                this.x = list[0];
-
-            if (list.Length > 2)
-                this.y = list[1];
-
-            if (list.Length > 3)
-                this.lineWeight = list[2];
-
-            if (list.Length == 4)
-                this.radius = list[3];
+            this.x = int.Parse(variables.GetValueOrDefault("x"));
+            this.y = int.Parse(variables.GetValueOrDefault("y"));
+            this.radius = int.Parse(variables.GetValueOrDefault("radius"));
+            this.lineWeight = int.Parse(variables.GetValueOrDefault("lineWeight"));
+            this.lineColor = Color.FromName(variables.GetValueOrDefault("lineColor"));
+            this.fillColor = Color.FromName(variables.GetValueOrDefault("fillColor"));
         }
 
         // This overrides the base implemention of ToString() in this case this is now the Shape class.

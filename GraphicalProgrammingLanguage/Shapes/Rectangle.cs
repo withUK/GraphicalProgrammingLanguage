@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Drawing;
 
 namespace GraphicalProgrammingLanguage.Shapes
@@ -22,7 +22,16 @@ namespace GraphicalProgrammingLanguage.Shapes
         }
 
         // Methods
-
+        public override void set(Dictionary<string, string> variables)
+        {
+            this.x = int.Parse(variables.GetValueOrDefault("x"));
+            this.y = int.Parse(variables.GetValueOrDefault("y"));
+            this.length = int.Parse(variables.GetValueOrDefault("length"));
+            this.width = int.Parse(variables.GetValueOrDefault("width"));
+            this.lineWeight = int.Parse(variables.GetValueOrDefault("lineWeight"));
+            this.lineColor = Color.FromName(variables.GetValueOrDefault("lineColor"));
+            this.fillColor = Color.FromName(variables.GetValueOrDefault("fillColor"));
+        }
 
         // Abstracts
         public override double calculateArea()

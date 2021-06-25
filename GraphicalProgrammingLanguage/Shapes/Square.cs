@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Text;
 
 namespace GraphicalProgrammingLanguage.Shapes
 {
@@ -19,6 +17,17 @@ namespace GraphicalProgrammingLanguage.Shapes
         public Square(int x, int y, int length, Color lineColor, Color fillColor, int lineWeight) : base(x, y, lineColor, fillColor, lineWeight)
         {
             this.length = length;
+        }
+
+        // Methods
+        public override void set(Dictionary<string, string> variables)
+        {
+            this.x = int.Parse(variables.GetValueOrDefault("x"));
+            this.y = int.Parse(variables.GetValueOrDefault("y"));
+            this.length = int.Parse(variables.GetValueOrDefault("length"));
+            this.lineWeight = int.Parse(variables.GetValueOrDefault("lineWeight"));
+            this.lineColor = Color.FromName(variables.GetValueOrDefault("lineColor"));
+            this.fillColor = Color.FromName(variables.GetValueOrDefault("fillColor"));
         }
 
         // Abstracts
