@@ -35,14 +35,14 @@ namespace GraphicalProgrammingLanguage
             getVariablesFromInput(input);
 
             var type = Enum.Parse(typeof(CommandTypes), commandName);
-
+            command = cf.getCommand(main, type.ToString());
+                    
             switch (type)
             {
                 case CommandTypes.clear:
-
+                    (command as Clear).set(main, variableDict);
                     break;
                 case CommandTypes.drawShape:
-                    command = cf.getCommand(main, type.ToString());
                     (command as DrawShape).set(main,variableDict);
                     break;
                 default:

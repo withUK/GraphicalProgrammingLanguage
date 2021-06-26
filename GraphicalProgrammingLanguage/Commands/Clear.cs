@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
+using System.Windows.Forms;
 
 namespace GraphicalProgrammingLanguage.Commands
 {
@@ -14,7 +16,7 @@ namespace GraphicalProgrammingLanguage.Commands
 
         public override void execute()
         {
-            throw new NotImplementedException();
+            main.dc.Clear(Color.Gainsboro);
         }
 
         public override bool validate()
