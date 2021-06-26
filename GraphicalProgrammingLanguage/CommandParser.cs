@@ -48,6 +48,9 @@ namespace GraphicalProgrammingLanguage
                 case CommandTypes.drawTo:
                     (command as DrawTo).set(main, variableDict);
                     break;
+                case CommandTypes.moveTo:
+                    (command as MoveTo).set(main, variableDict);
+                    break;
                 default:
                     break;
             }
