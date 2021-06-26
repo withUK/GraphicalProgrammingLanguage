@@ -51,6 +51,9 @@ namespace GraphicalProgrammingLanguage
                 case CommandTypes.moveTo:
                     (command as MoveTo).set(main, variableDict);
                     break;
+                case CommandTypes.reset:
+                    (command as Reset).set(main, variableDict);
+                    break;
                 default:
                     break;
             }
