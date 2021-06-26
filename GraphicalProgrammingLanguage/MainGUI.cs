@@ -12,10 +12,10 @@ namespace GraphicalProgrammingLanguage
     public partial class MainGUI : Form
     {
         // Objects
-        private Graphics dc;
-        private ShapeFactory shapeFactory = new ShapeFactory();
-        private Pen pen = new Pen(Color.Black, 1);
-        private Brush brush;
+        internal CommandParser cp = new CommandParser();
+        internal Graphics dc;
+        internal Pen pen = new Pen(Color.Black, 1);
+        internal Brush brush = new SolidBrush(Color.Black);
 
         // Properties
         private int x = 0, y = 0;
@@ -45,23 +45,7 @@ namespace GraphicalProgrammingLanguage
 
         private void btnCommandLineRun_Click(object sender, EventArgs e)
         {
-            string input = txtCommandLine.Text;
-            int startIndex = input.IndexOf("(");
-            int endIndex = input.LastIndexOf(")");
-            Dictionary<string, string> variableDict = new Dictionary<string, string>();
-
-            string variableString = input.Substring(startIndex + 1, endIndex - startIndex - 1);
-            string[] variables = variableString.Split(",");
-
-            foreach (var item in variables)
-            {
-                string[] split = item.Split("=");
-                variableDict.Add(split[0], split[1]);
-            }
-
-            Shape shape = shapeFactory.getShape(variableDict.GetValueOrDefault("name"));
-            shape.set(variableDict);
-            shape.draw(dc);
+            cp.executeCommand(txtCommandLine.Text, this);
         }
     }
 }

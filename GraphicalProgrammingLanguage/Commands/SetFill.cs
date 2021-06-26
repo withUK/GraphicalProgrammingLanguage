@@ -6,6 +6,12 @@ namespace GraphicalProgrammingLanguage.Commands
 {
     class SetFill : Command
     {
+        // Constructors
+        public SetFill(MainGUI main) : base(main)
+        {
+            this.main = main;
+        }
+
         public override void execute()
         {
             throw new NotImplementedException();

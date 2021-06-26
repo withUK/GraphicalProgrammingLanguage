@@ -1,4 +1,5 @@
-﻿using GraphicalProgrammingLanguage.Factories;
+﻿using GraphicalProgrammingLanguage.Enums;
+using GraphicalProgrammingLanguage.Factories;
 using GraphicalProgrammingLanguage.Shapes;
 using System;
 using System.Collections.Generic;
@@ -9,33 +10,37 @@ namespace GraphicalProgrammingLanguage.Commands
     class DrawShape : Command
     {
         // Properties
-        Graphics g { get; set; }
-        ShapeFactory factory = new ShapeFactory();
-        Shape shape { get; set; }
+        protected ShapeFactory factory = new ShapeFactory();
+        protected Shape shape { get; set; }
 
         // Constructors
-        public DrawShape() : base()
+        public DrawShape(MainGUI main) : base(main)
         {
-
+            this.main = main;
+            this.name = CommandTypes.drawShape.ToString();
         }
 
-        public DrawShape(string name, Dictionary<string, object> variables, Graphics g) : base(name, variables)
+        public DrawShape(MainGUI main, Dictionary<string, string> variables) : base(main, variables)
         {
-            this.g = g;
-            this.shape = factory.getShape(name);
+            this.main = main;
+            this.name = CommandTypes.drawShape.ToString();
+            this.variables = variables;
+            this.shape = factory.getShape(variables.GetValueOrDefault("type").ToString());
         }
 
         // Methods
-        public void set(string name, Dictionary<string, object> variables, Graphics g)
+        public void set(MainGUI main, Dictionary<string, string> variables)
         {
-            this.g = g;
-            this.shape = factory.getShape(name);
+            this.main = main;
+            this.variables = variables;
+            this.shape = factory.getShape(variables.GetValueOrDefault("type").ToString());
+            this.shape.set(variables);
         }
 
         // Abstracts
         public override void execute()
         {
-            shape.draw(g);
+            shape.draw(main.dc);
         }
 
         public override bool validate()

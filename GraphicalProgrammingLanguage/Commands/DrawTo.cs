@@ -6,6 +6,12 @@ namespace GraphicalProgrammingLanguage.Commands
 {
     class DrawTo : Command
     {
+        // Constructors
+        public DrawTo(MainGUI main) : base(main)
+        {
+            this.main = main;
+        }
+
         public override void execute()
         {
             throw new NotImplementedException();

@@ -6,25 +6,26 @@ namespace GraphicalProgrammingLanguage.Commands
     abstract class Command : ICommand
     {
         // Properties
+        protected MainGUI main { get; set; }
         protected string name { get; set; }
-        protected Dictionary<string,object> variables { get; set; }
+        protected Dictionary<string,string> variables { get; set; }
 
         // Constructors
-        public Command()
+        public Command(MainGUI main)
         {
-
+            this.main = main;
         }
 
-        public Command(string name, Dictionary<string, object> variables)
+        public Command(MainGUI main, Dictionary<string, string> variables)
         {
-            this.name = name;
+            this.main = main;
             this.variables = variables;
         }
 
         // Methods
-        public void set(string name, Dictionary<string, object> variables)
+        public void set(MainGUI main, Dictionary<string, string> variables)
         {
-            this.name = name;
+            this.main = main;
             this.variables = variables;
         }
 

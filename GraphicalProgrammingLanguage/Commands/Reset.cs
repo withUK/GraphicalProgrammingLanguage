@@ -6,6 +6,12 @@ namespace GraphicalProgrammingLanguage.Commands
 {
     class Reset : Command
     {
+        // Constructors
+        public Reset(MainGUI main) : base(main)
+        {
+            this.main = main;
+        }
+
         public override void execute()
         {
             throw new NotImplementedException();

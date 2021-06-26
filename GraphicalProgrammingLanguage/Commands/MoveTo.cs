@@ -6,6 +6,12 @@ namespace GraphicalProgrammingLanguage.Commands
 {
     class MoveTo : Command
     {
+        // Constructors
+        public MoveTo(MainGUI main) : base(main)
+        {
+            this.main = main;
+        }
+
         public override void execute()
         {
             throw new NotImplementedException();

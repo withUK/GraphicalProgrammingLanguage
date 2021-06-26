@@ -5,7 +5,7 @@ namespace GraphicalProgrammingLanguage.Interfaces
     interface ICommand
     {
         // Methods
-        void set(string name, Dictionary<string, object> variables);
+        void set(MainGUI main, Dictionary<string, string> variables);
 
         void execute();
 

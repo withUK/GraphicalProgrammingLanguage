@@ -6,6 +6,12 @@ namespace GraphicalProgrammingLanguage.Commands
 {
     class SetPen : Command
     {
+        // Constructors
+        public SetPen(MainGUI main) : base(main)
+        {
+            this.main = main;
+        }
+
         public override void execute()
         {
             throw new NotImplementedException();
