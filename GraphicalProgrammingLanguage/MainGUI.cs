@@ -18,14 +18,14 @@ namespace GraphicalProgrammingLanguage
         internal Brush brush = new SolidBrush(Color.Black);
 
         // Properties
-        private int x = 0, y = 0;
+        internal int x = 0, y = 0;
         
         // Constructor
         public MainGUI()
         {
             InitializeComponent();
             dc = pnlOutput.CreateGraphics();
-            txtLog.AppendText(Logger.Log("Application started"));
+            txtLog.AppendText(Logger.LogLaunch());
         }
         // Methods
         private void btnLoad_Click(object sender, EventArgs e)

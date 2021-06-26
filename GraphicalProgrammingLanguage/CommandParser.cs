@@ -43,13 +43,18 @@ namespace GraphicalProgrammingLanguage
                     (command as Clear).set(main, variableDict);
                     break;
                 case CommandTypes.drawShape:
-                    (command as DrawShape).set(main,variableDict);
+                    (command as DrawShape).set(main, variableDict);
+                    break;
+                case CommandTypes.drawTo:
+                    (command as DrawTo).set(main, variableDict);
                     break;
                 default:
                     break;
             }
 
+            command.log();
             command.execute();
+            main.txtCommandLine.Clear();
         }
 
         private void getCommandNameFromInput(string input)

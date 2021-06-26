@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GraphicalProgrammingLanguage.Enums;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
@@ -12,10 +13,13 @@ namespace GraphicalProgrammingLanguage.Commands
         public Clear(MainGUI main) : base(main)
         {
             this.main = main;
+            this.name = CommandTypes.clear.ToString();
         }
 
+        // Overrides
         public override void execute()
         {
+            log(main);
             main.dc.Clear(Color.Gainsboro);
         }
 

@@ -40,6 +40,7 @@ namespace GraphicalProgrammingLanguage.Commands
         // Abstracts
         public override void execute()
         {
+            log(main);
             shape.draw(main.dc);
         }
 

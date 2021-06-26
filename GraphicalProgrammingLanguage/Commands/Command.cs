@@ -33,6 +33,10 @@ namespace GraphicalProgrammingLanguage.Commands
         {
             Logger.Log($"Command {name} called.");
         }
+        public void log(MainGUI main)
+        {
+            main.txtLog.AppendText(Logger.Log($"Command {name} called."));
+        }
 
         // Abstracts
         public abstract void execute();
