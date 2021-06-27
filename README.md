@@ -77,8 +77,8 @@ myMethod(<parameter list>)
 ⋅⋅* working with parameters (+5 marks)  
 
 ### Design and Implementation Standard (20 marks total) 
-- Use of design patterns - factory class (5 marks)  
-- All user created objects from classes that you have designed should use appropriate  inheritance but should also use the factory design pattern. It should be fairly straightforward  to add additional classes to the factory. 
+- Use of design patterns - factory class (5 marks) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
+- All user created objects from classes that you have designed should use appropriate  inheritance but should also use the factory design pattern. It should be fairly straightforward  to add additional classes to the factory. ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
 - Use of additional design pattern/s (5 marks) 
 
 ### Additional functionality  
