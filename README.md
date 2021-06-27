@@ -36,8 +36,8 @@ Your implementation must have a proper interface with a window/area for typing a
 ⋅⋅* Checks for valid commands (2 marks)  
 ⋅⋅* Checks for valid parameters (2 marks)  
 #### Basic drawing commands (all commands should be case insensitive)  
-- Position pen (moveTo) (2 marks)  
-- pen draw (drawTo) (2 marks)  
+- Position pen (moveTo) (2 marks) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png) 
+- pen draw (drawTo) (2 marks) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
 - clear command to clear the drawing area (1 mark) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
 - reset command to move pen to initial position at top left of the screen (1 mark) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
 - Draw basic shapes:  
