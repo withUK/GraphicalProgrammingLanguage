@@ -9,11 +9,11 @@ Produce a fairly complex  program. The idea of the program is to produce a simpl
 
 ### Management (20 marks total)
 #### Version Control  
-- Set up version control  
-- Early commit . 
-- At least five commits of software (no marks if less)  
-- Description with each commit about what has been done/changed and what is to be  done next.  
-- For high marks I expect a professional standard with many and regular commits each  time something significant has been added with comprehensive descriptions. I also expect  Unit tests to be included.  
+- Set up version control ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
+- Early commit ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
+- At least five commits of software (no marks if less) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
+- Description with each commit about what has been done/changed and what is to be  done next. ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
+- For high marks I expect a professional standard with many and regular commits each  time something significant has been added with comprehensive descriptions. I also expect  Unit tests to be included. 
 
 #### Code Documentation and Standards 
 - Code documented with XML tags, XML documentation produced (I want to see the  documentation and not just the comments in the code). For high marks I expect  documentation to a professional standard. (5 marks)  
