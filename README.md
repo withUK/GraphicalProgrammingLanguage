@@ -27,9 +27,9 @@ Produce a fairly complex  program. The idea of the program is to produce a simpl
 
 ### Basic Implementation (30 marks total)
 Your implementation must have a proper interface with a window/area for typing a  “program” into and a window/area for displaying the output of the “program”. You should  also have a command line where commands are executed immediately. The actual layout is  up to you.  
-#### Appropriate UI conforming to above specification (1 mark) ![tick](https://user-images.githubusercontent.com/22601795/123541009-f0eb6b00-d739-11eb-86f1-de1fff2ec07e.png)
+#### Appropriate UI conforming to above specification (1 mark) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
 #### Command parser class  
-- Reads and executes commands on command line one at a time (2 marks)  ![tick](https://user-images.githubusercontent.com/22601795/123541009-f0eb6b00-d739-11eb-86f1-de1fff2ec07e.png)
+- Reads and executes commands on command line one at a time (2 marks)  ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
 - Reads a program (in the program window) and executes it with a “run”  command (typed into the command line). (5 marks) 
 - Saves and loads a program (2 marks) 
 - Syntax checking 
@@ -38,11 +38,11 @@ Your implementation must have a proper interface with a window/area for typing a
 #### Basic drawing commands (all commands should be case insensitive)  
 - Position pen (moveTo) (2 marks)  
 - pen draw (drawTo) (2 marks)  
-- clear command to clear the drawing area (1 mark) ![tick](https://user-images.githubusercontent.com/22601795/123541009-f0eb6b00-d739-11eb-86f1-de1fff2ec07e.png)
-- reset command to move pen to initial position at top left of the screen (1 mark) ![tick](https://user-images.githubusercontent.com/22601795/123541009-f0eb6b00-d739-11eb-86f1-de1fff2ec07e.png)
+- clear command to clear the drawing area (1 mark) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
+- reset command to move pen to initial position at top left of the screen (1 mark) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
 - Draw basic shapes:  
-⋅⋅* rectangle <width>, <height> (2 marks) ![tick](https://user-images.githubusercontent.com/22601795/123541009-f0eb6b00-d739-11eb-86f1-de1fff2ec07e.png)
-⋅⋅* circle <radius> (2 marks) ![tick](https://user-images.githubusercontent.com/22601795/123541009-f0eb6b00-d739-11eb-86f1-de1fff2ec07e.png)
+⋅⋅* rectangle <width>, <height> (2 marks) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
+⋅⋅* circle <radius> (2 marks) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
 ⋅⋅* triangle (you can do this any way you like) (2 marks)  
 - Colours and fills  
 ⋅⋅* pen <colour> e.g pen red, or pen green (three or four colours).  (2 marks)  
