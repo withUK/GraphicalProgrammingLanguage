@@ -41,9 +41,9 @@ Your implementation must have a proper interface with a window/area for typing a
 - clear command to clear the drawing area (1 mark) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
 - reset command to move pen to initial position at top left of the screen (1 mark) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
 - Draw basic shapes:  
-⋅⋅* rectangle <width>, <height> (2 marks) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
-⋅⋅* circle <radius> (2 marks) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
-⋅⋅* triangle (you can do this any way you like) (2 marks)  
+-- rectangle <width>, <height> (2 marks) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
+-- circle <radius> (2 marks) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
+-- triangle (you can do this any way you like) (2 marks)  
 - Colours and fills  
 ⋅⋅* pen <colour> e.g pen red, or pen green (three or four colours).  (2 marks)  
 ⋅⋅* fill <on/off> e.g. fill on, makes subsequent shape operations  filled and not outline. (2 marks)  
