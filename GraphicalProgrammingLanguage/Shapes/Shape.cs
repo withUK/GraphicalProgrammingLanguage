@@ -1,4 +1,5 @@
 ﻿using GraphicalProgrammingLanguage.Interfaces;
+using System.Collections.Generic;
 using System.Drawing;
 
 namespace GraphicalProgrammingLanguage.Shapes
@@ -31,19 +32,13 @@ namespace GraphicalProgrammingLanguage.Shapes
         // Methods
         // The 'set' method uses the params in position [0] as x, [1] as y and [2] as the line weight.
         // This virtual method can be overwritten by children of this class that can be more specfic to the shape.
-        public virtual void set(Color lineColor, Color fillColor, params int[] list)
+        public virtual void set(Dictionary<string, string> variables)
         {
-            this.lineColor = lineColor;
-            this.fillColor = fillColor;
-
-            if (list.Length > 1)
-                this.x = list[0];
-
-            if (list.Length > 2)
-                this.y = list[1]; 
-            
-            if (list.Length > 3)
-                this.lineWeight = list[2];
+            this.x = int.Parse(variables.GetValueOrDefault("x"));
+            this.y = int.Parse(variables.GetValueOrDefault("y"));
+            this.lineWeight = int.Parse(variables.GetValueOrDefault("lineWeight"));
+            this.lineColor = Color.FromName(variables.GetValueOrDefault("lineColor"));
+            this.fillColor = Color.FromName(variables.GetValueOrDefault("fillColor"));
         }
 
         // Abstracts

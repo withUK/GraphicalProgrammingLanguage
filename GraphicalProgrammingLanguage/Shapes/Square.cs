@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Text;
 
 namespace GraphicalProgrammingLanguage.Shapes
 {
@@ -16,10 +14,13 @@ namespace GraphicalProgrammingLanguage.Shapes
 
         }
 
-        public Square(int x, int y, Color lineColor, Color fillColor, int lineWeight) : base(x, y, lineColor, fillColor, lineWeight)
+        public Square(int x, int y, int length, Color lineColor, Color fillColor, int lineWeight) : base(x, y, lineColor, fillColor, lineWeight)
         {
             this.length = length;
         }
+
+        // Methods
+
 
         // Abstracts
         public override double calculateArea()
@@ -37,9 +38,20 @@ namespace GraphicalProgrammingLanguage.Shapes
             Pen p = new Pen(lineColor, lineWeight);
             SolidBrush b = new SolidBrush(fillColor);
             g.FillRectangle(b, x, y, length, length);
+            g.DrawRectangle(p, x, y, length, length);
         }
 
         // Overrides
+        public override void set(Dictionary<string, string> variables)
+        {
+            this.x = int.Parse(variables.GetValueOrDefault("x"));
+            this.y = int.Parse(variables.GetValueOrDefault("y"));
+            this.length = int.Parse(variables.GetValueOrDefault("length"));
+            this.lineWeight = int.Parse(variables.GetValueOrDefault("lineWeight"));
+            this.lineColor = Color.FromName(variables.GetValueOrDefault("lineColor"));
+            this.fillColor = Color.FromName(variables.GetValueOrDefault("fillColor"));
+        }
+
         // This overrides the base implemention of ToString() in this case this is now the Shape class.
         // Example output: 'StringRef 1, 2 : 3'
         public override string ToString()

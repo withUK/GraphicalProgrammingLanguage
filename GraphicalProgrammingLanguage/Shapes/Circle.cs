@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 
 namespace GraphicalProgrammingLanguage.Shapes
@@ -14,7 +15,7 @@ namespace GraphicalProgrammingLanguage.Shapes
 
         }
 
-        public Circle(int x, int y, Color lineColor, Color fillColor, int lineWeight) : base(x, y, lineColor, fillColor, lineWeight)
+        public Circle(int x, int y, int radius, Color lineColor, Color fillColor, int lineWeight) : base(x, y, lineColor, fillColor, lineWeight)
         {   
             this.radius = radius;
         }
@@ -42,6 +43,16 @@ namespace GraphicalProgrammingLanguage.Shapes
         }
 
         // Overrides
+        public override void set(Dictionary<string, string> variables)
+        {
+            this.x = int.Parse(variables.GetValueOrDefault("x"));
+            this.y = int.Parse(variables.GetValueOrDefault("y"));
+            this.radius = int.Parse(variables.GetValueOrDefault("radius"));
+            this.lineWeight = int.Parse(variables.GetValueOrDefault("lineWeight"));
+            this.lineColor = Color.FromName(variables.GetValueOrDefault("lineColor"));
+            this.fillColor = Color.FromName(variables.GetValueOrDefault("fillColor"));
+        }
+
         // This overrides the base implemention of ToString() in this case this is now the Shape class.
         // Example output: 'StringRef 1, 2 : 3'
         public override string ToString()

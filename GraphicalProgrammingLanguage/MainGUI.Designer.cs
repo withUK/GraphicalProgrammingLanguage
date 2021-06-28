@@ -122,6 +122,7 @@ namespace GraphicalProgrammingLanguage
             this.btnCommandLineRun.TabIndex = 8;
             this.btnCommandLineRun.Text = "Run";
             this.btnCommandLineRun.UseVisualStyleBackColor = true;
+            this.btnCommandLineRun.Click += new System.EventHandler(this.btnCommandLineRun_Click);
             // 
             // btnLoad
             // 
@@ -250,7 +251,6 @@ namespace GraphicalProgrammingLanguage
 
         private System.Windows.Forms.RichTextBox txtScript;
         private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.TextBox txtCommandLine;
         private System.Windows.Forms.Label lblCommandLine;
         private System.Windows.Forms.Label lblScript;
         private System.Windows.Forms.Panel pnlOutput;
@@ -264,8 +264,9 @@ namespace GraphicalProgrammingLanguage
         private System.Windows.Forms.OpenFileDialog dialogueLoad;
         private System.Windows.Forms.Label lblFileName;
         private System.Windows.Forms.GroupBox gbxLog;
-        private System.Windows.Forms.RichTextBox txtLog;
         private System.Windows.Forms.RichTextBox txtCommands;
+        internal System.Windows.Forms.TextBox txtCommandLine;
+        internal System.Windows.Forms.RichTextBox txtLog;
     }
 }
 

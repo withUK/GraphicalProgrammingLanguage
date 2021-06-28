@@ -8,7 +8,7 @@ namespace GraphicalProgrammingLanguage.Factories
     {
         public Shape getShape(String shapeType)
         {
-            var type = Enum.Parse(typeof(ShapeTypes), shapeType);
+            var type = Enum.Parse(typeof(ShapeTypes), shapeType.ToLower());
 
             switch (type)
             {
