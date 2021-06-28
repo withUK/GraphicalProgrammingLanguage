@@ -54,6 +54,9 @@ namespace GraphicalProgrammingLanguage
                 case CommandTypes.reset:
                     (command as Reset).set(main, variableDict);
                     break;
+                case CommandTypes.setPen:
+                    (command as SetPen).set(main, variableDict);
+                    break;
                 default:
                     break;
             }
