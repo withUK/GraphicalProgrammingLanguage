@@ -18,6 +18,8 @@ namespace GraphicalProgrammingLanguage.Factories
                     return new Rectangle();
                 case ShapeTypes.square:
                     return new Square();
+                case ShapeTypes.triangle:
+                    return new Triangle();
                 default:
                     ArgumentException argEx = new ArgumentException("ShapeFactory error: " + shapeType + " does not exist");
                     throw argEx;
