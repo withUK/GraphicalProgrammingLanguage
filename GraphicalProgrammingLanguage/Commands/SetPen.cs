@@ -15,7 +15,7 @@ namespace GraphicalProgrammingLanguage.Commands
         public SetPen(MainGUI main) : base(main)
         {
             this.main = main;
-            this.name = CommandTypes.setPen.ToString();
+            this.name = CommandTypes.setpen.ToString();
             pen = main.pen;
         }
 

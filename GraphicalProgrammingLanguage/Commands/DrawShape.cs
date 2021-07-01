@@ -17,13 +17,13 @@ namespace GraphicalProgrammingLanguage.Commands
         public DrawShape(MainGUI main) : base(main)
         {
             this.main = main;
-            this.name = CommandTypes.drawShape.ToString();
+            this.name = CommandTypes.drawshape.ToString();
         }
 
         public DrawShape(MainGUI main, Dictionary<string, string> variables) : base(main, variables)
         {
             this.main = main;
-            this.name = CommandTypes.drawShape.ToString();
+            this.name = CommandTypes.drawshape.ToString();
             this.variables = variables;
             this.shape = factory.getShape(variables.GetValueOrDefault("type").ToString());
         }

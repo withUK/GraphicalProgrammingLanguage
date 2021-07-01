@@ -15,13 +15,13 @@ namespace GraphicalProgrammingLanguage.Commands
         public DrawTo(MainGUI main) : base(main)
         {
             this.main = main;
-            this.name = CommandTypes.drawTo.ToString();
+            this.name = CommandTypes.drawto.ToString();
         }
 
         public DrawTo(MainGUI main, Dictionary<string,string>variables) : base(main, variables)
         {
             this.main = main;
-            this.name = CommandTypes.drawTo.ToString();
+            this.name = CommandTypes.drawto.ToString();
             this.variables = variables;
         }
 

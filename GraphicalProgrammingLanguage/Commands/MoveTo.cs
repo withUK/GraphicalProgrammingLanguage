@@ -15,13 +15,13 @@ namespace GraphicalProgrammingLanguage.Commands
         public MoveTo(MainGUI main) : base(main)
         {
             this.main = main;
-            this.name = CommandTypes.moveTo.ToString();
+            this.name = CommandTypes.moveto.ToString();
         }
 
         public MoveTo(MainGUI main, Dictionary<string, string> variables) : base(main, variables)
         {
             this.main = main;
-            this.name = CommandTypes.moveTo.ToString();
+            this.name = CommandTypes.moveto.ToString();
             this.variables = variables;
         }
 
