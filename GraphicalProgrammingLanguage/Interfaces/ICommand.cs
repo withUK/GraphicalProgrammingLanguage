@@ -9,7 +9,7 @@ namespace GraphicalProgrammingLanguage.Interfaces
 
         void execute();
 
-        bool validate();
+        bool isValid(Dictionary<string, string> variables);
 
         void log(MainGUI main);
     }

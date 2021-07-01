@@ -31,7 +31,7 @@ namespace GraphicalProgrammingLanguage.Commands
             main.dc.Clear(Color.Gainsboro);
         }
 
-        public override bool validate()
+        public override bool isValid()
         {
             throw new NotImplementedException();
         }

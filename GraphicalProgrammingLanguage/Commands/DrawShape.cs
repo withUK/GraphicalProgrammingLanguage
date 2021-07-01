@@ -44,7 +44,7 @@ namespace GraphicalProgrammingLanguage.Commands
             shape.draw(main.dc);
         }
 
-        public override bool validate()
+        public override bool isValid()
         {
             throw new NotImplementedException();
         }

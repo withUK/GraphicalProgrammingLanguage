@@ -36,6 +36,6 @@ namespace GraphicalProgrammingLanguage.Commands
 
         // Abstracts
         public abstract void execute();
-        public abstract bool validate();
+        public abstract bool isValid(Dictionary<string, string> variables);
     }
 }

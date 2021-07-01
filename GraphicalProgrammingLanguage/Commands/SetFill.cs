@@ -17,7 +17,7 @@ namespace GraphicalProgrammingLanguage.Commands
             throw new NotImplementedException();
         }
 
-        public override bool validate()
+        public override bool isValid()
         {
             throw new NotImplementedException();
         }

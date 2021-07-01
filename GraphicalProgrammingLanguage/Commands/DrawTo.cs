@@ -14,15 +14,12 @@ namespace GraphicalProgrammingLanguage.Commands
         // Constructors
         public DrawTo(MainGUI main) : base(main)
         {
-            this.main = main;
             this.name = CommandTypes.drawto.ToString();
         }
 
         public DrawTo(MainGUI main, Dictionary<string,string>variables) : base(main, variables)
         {
-            this.main = main;
             this.name = CommandTypes.drawto.ToString();
-            this.variables = variables;
         }
 
         // Methods
@@ -37,15 +34,22 @@ namespace GraphicalProgrammingLanguage.Commands
         // Overrides
         public override void execute()
         {
-            log(main);
-            main.dc.DrawLine(main.pen, main.x, main.y, x, y);
-            main.x = x;
-            main.y = y;
+            if (isValid(variables))
+            {
+                log(main);
+                main.dc.DrawLine(main.pen, main.x, main.y, x, y);
+                main.x = x;
+                main.y = y;
+            }
         }
 
-        public override bool validate()
+        public override bool isValid(Dictionary<string, string> variables)
         {
-            throw new NotImplementedException();
+            if (variables.ContainsKey("x") && variables.ContainsKey("y"))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

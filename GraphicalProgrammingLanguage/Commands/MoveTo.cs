@@ -42,7 +42,7 @@ namespace GraphicalProgrammingLanguage.Commands
             main.y = y;
         }
 
-        public override bool validate()
+        public override bool isValid()
         {
             throw new NotImplementedException();
         }
