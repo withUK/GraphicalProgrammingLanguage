@@ -9,6 +9,10 @@ namespace GraphicalProgrammingLanguage.Enums
         [Display(Name = "Rectangle")]
         rectangle,
         [Display(Name = "Square")]
-        square
+        square,
+        [Display(Name = "Triangle")]
+        triangle,
+        [Display(Name = "Polygon")]
+        polygon
     }
 }
