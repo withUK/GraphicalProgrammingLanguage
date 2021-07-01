@@ -31,8 +31,6 @@ namespace GraphicalProgrammingLanguage
         public void executeCommand(string input, MainGUI main)
         {
             variableDict = new Dictionary<string, string>();
-            getCommandNameFromInput(input);
-            getVariablesFromInput(input);
 
             var type = Enum.Parse(typeof(CommandTypes), commandName);
             command = cf.getCommand(main, type.ToString());
@@ -42,57 +40,27 @@ namespace GraphicalProgrammingLanguage
                 case CommandTypes.clear:
                     (command as Clear).set(main, variableDict);
                     break;
-                case CommandTypes.drawShape:
+                case CommandTypes.drawshape:
                     (command as DrawShape).set(main, variableDict);
                     break;
-                case CommandTypes.drawTo:
+                case CommandTypes.drawto:
                     (command as DrawTo).set(main, variableDict);
                     break;
-                case CommandTypes.moveTo:
+                case CommandTypes.moveto:
                     (command as MoveTo).set(main, variableDict);
                     break;
                 case CommandTypes.reset:
                     (command as Reset).set(main, variableDict);
                     break;
-                case CommandTypes.setPen:
+                case CommandTypes.setpen:
                     (command as SetPen).set(main, variableDict);
                     break;
                 default:
                     break;
             }
 
-            command.log();
             command.execute();
             main.txtCommandLine.Clear();
-        }
-
-        private void getCommandNameFromInput(string input)
-        {
-            if (input.Contains("(") && input.Contains(")"))
-            {
-                startIndex = input.IndexOf("(");
-                endIndex = input.LastIndexOf(")");
-                commandName = input.Substring(0, startIndex);
-            }
-            else
-            {
-                commandName = input;
-            }
-        }
-
-        private void getVariablesFromInput(string input)
-        {
-            if(input.Contains("(") && input.Contains(")"))
-            {
-                variableString = input.Substring(startIndex + 1, endIndex - startIndex - 1);
-                variableStrings = variableString.Split(",");
-
-                foreach (var item in variableStrings)
-                {
-                    string[] split = item.Split("=");
-                    variableDict.Add(split[0], split[1]);
-                }
-            }
         }
     }
 }

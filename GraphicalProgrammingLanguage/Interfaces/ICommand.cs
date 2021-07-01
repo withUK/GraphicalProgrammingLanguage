@@ -11,8 +11,6 @@ namespace GraphicalProgrammingLanguage.Interfaces
 
         bool validate();
 
-        void log();
-
         void log(MainGUI main);
     }
 }

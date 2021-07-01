@@ -29,10 +29,6 @@ namespace GraphicalProgrammingLanguage.Commands
             this.variables = variables;
         }
 
-        public void log()
-        {
-            Logger.Log($"Command {name} called.");
-        }
         public void log(MainGUI main)
         {
             main.txtLog.AppendText(Logger.Log($"Command {name} called."));
