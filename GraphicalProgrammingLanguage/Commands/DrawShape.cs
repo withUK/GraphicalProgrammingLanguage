@@ -16,25 +16,23 @@ namespace GraphicalProgrammingLanguage.Commands
         // Constructors
         public DrawShape(MainGUI main) : base(main)
         {
-            this.main = main;
-            this.name = CommandTypes.drawshape.ToString();
+            name = CommandTypes.drawshape.ToString();
         }
 
         public DrawShape(MainGUI main, Dictionary<string, string> variables) : base(main, variables)
         {
-            this.main = main;
-            this.name = CommandTypes.drawshape.ToString();
-            this.variables = variables;
-            this.shape = factory.getShape(variables.GetValueOrDefault("type").ToString());
+            name = CommandTypes.drawshape.ToString();
+            if (variables.ContainsKey("type"))
+            {
+                shape = factory.getShape(variables.GetValueOrDefault("type").ToString());
+            }
         }
 
         // Methods
-        public void set(MainGUI main, Dictionary<string, string> variables)
+        public void set(Dictionary<string, string> variables)
         {
-            this.main = main;
             this.variables = variables;
-            this.shape = factory.getShape(variables.GetValueOrDefault("type").ToString());
-            this.shape.set(variables);
+            shape.set(variables);
         }
 
         // Abstracts
@@ -44,7 +42,7 @@ namespace GraphicalProgrammingLanguage.Commands
             shape.draw(main.dc);
         }
 
-        public override bool isValid()
+        public override bool isValid(Dictionary<string, string> variables)
         {
             throw new NotImplementedException();
         }

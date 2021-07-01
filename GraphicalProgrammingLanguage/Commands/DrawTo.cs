@@ -1,7 +1,5 @@
 ﻿using GraphicalProgrammingLanguage.Enums;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace GraphicalProgrammingLanguage.Commands
 {
@@ -14,21 +12,26 @@ namespace GraphicalProgrammingLanguage.Commands
         // Constructors
         public DrawTo(MainGUI main) : base(main)
         {
-            this.name = CommandTypes.drawto.ToString();
+            name = CommandTypes.drawto.ToString();
         }
 
         public DrawTo(MainGUI main, Dictionary<string,string>variables) : base(main, variables)
         {
-            this.name = CommandTypes.drawto.ToString();
+            name = CommandTypes.drawto.ToString();
         }
 
         // Methods
-        public void set(MainGUI main, Dictionary<string, string> variables)
+        public void set(Dictionary<string, string> variables)
         {
-            this.main = main;
             this.variables = variables;
-            this.x = int.Parse(variables.GetValueOrDefault("x"));
-            this.y = int.Parse(variables.GetValueOrDefault("y"));
+            if (variables.ContainsKey("x"))
+            {
+                x = int.Parse(variables.GetValueOrDefault("x"));
+            }
+            if (variables.ContainsKey("y"))
+            {
+                y = int.Parse(variables.GetValueOrDefault("y"));
+            }
         }
 
         // Overrides

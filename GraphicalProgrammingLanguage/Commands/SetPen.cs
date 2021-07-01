@@ -10,41 +10,46 @@ namespace GraphicalProgrammingLanguage.Commands
     {
         // Properties
         protected Pen pen;
+        private float weight;
 
         // Constructors
         public SetPen(MainGUI main) : base(main)
         {
-            this.main = main;
-            this.name = CommandTypes.setpen.ToString();
+            name = CommandTypes.setpen.ToString();
             pen = main.pen;
         }
 
         // Methods
         public void set(MainGUI main, Dictionary<string, string> variables)
         {
-            this.main = main;
             this.variables = variables;
-            pen = main.pen;
         }
 
         // Overrides
         public override void execute()
         {
-            log(main);
-            if (variables.ContainsKey("color"))
+            if (isValid(variables))
             {
-                pen.Color = Color.FromName(variables.GetValueOrDefault("color"));
+                log(main);
+                if (variables.ContainsKey("color"))
+                {
+                    pen.Color = Color.FromName(variables.GetValueOrDefault("color"));
+                }
+                if (variables.ContainsKey("weight"))
+                {
+                    pen.Width = weight;
+                }
             }
-            if (variables.ContainsKey("weight"))
-            {
-                pen.Width = float.Parse(variables.GetValueOrDefault("weight"));
-            }
-
         }
 
-        public override bool isValid()
+        public override bool isValid(Dictionary<string, string> variables)
         {
-            throw new NotImplementedException();
+            if (variables.ContainsKey("weight"))
+            {
+                bool success = float.TryParse(variables.GetValueOrDefault("weight"), out weight);
+                return success;
+            }
+            return true;
         }
     }
 }

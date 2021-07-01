@@ -23,9 +23,8 @@ namespace GraphicalProgrammingLanguage.Commands
         }
 
         // Methods
-        public void set(MainGUI main, Dictionary<string, string> variables)
+        public void set(Dictionary<string, string> variables)
         {
-            this.main = main;
             this.variables = variables;
         }
 

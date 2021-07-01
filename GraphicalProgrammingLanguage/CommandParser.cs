@@ -38,22 +38,22 @@ namespace GraphicalProgrammingLanguage
             switch (type)
             {
                 case CommandTypes.clear:
-                    (command as Clear).set(main, variableDict);
+                    (command as Clear).set(variableDict);
                     break;
                 case CommandTypes.drawshape:
-                    (command as DrawShape).set(main, variableDict);
+                    (command as DrawShape).set(variableDict);
                     break;
                 case CommandTypes.drawto:
-                    (command as DrawTo).set(main, variableDict);
+                    (command as DrawTo).set(variableDict);
                     break;
                 case CommandTypes.moveto:
-                    (command as MoveTo).set(main, variableDict);
+                    (command as MoveTo).set(variableDict);
                     break;
                 case CommandTypes.reset:
-                    (command as Reset).set(main, variableDict);
+                    (command as Reset).set(variableDict);
                     break;
                 case CommandTypes.setpen:
-                    (command as SetPen).set(main, variableDict);
+                    (command as SetPen).set(variableDict);
                     break;
                 default:
                     break;

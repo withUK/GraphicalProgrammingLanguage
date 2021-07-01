@@ -12,20 +12,22 @@ namespace GraphicalProgrammingLanguage.Commands
         // Constructors
         public Clear(MainGUI main) : base(main)
         {
-            this.main = main;
-            this.name = CommandTypes.clear.ToString();
+            name = CommandTypes.clear.ToString();
         }
 
         // Overrides
         public override void execute()
         {
-            log(main);
-            main.dc.Clear(Color.Gainsboro);
+            if (isValid(new Dictionary<string, string>()))
+            {
+                log(main);
+                main.dc.Clear(Color.Gainsboro);
+            }
         }
 
-        public override bool isValid()
+        public override bool isValid(Dictionary<string, string> variables)
         {
-            throw new NotImplementedException();
+            return true;
         }
     }
 }

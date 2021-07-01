@@ -11,29 +11,24 @@ namespace GraphicalProgrammingLanguage.Commands
         // Constructors
         public Reset(MainGUI main) : base(main)
         {
-            this.main = main;
-            this.name = CommandTypes.reset.ToString();
-        }
-
-        // Methods
-        public void set(MainGUI main, Dictionary<string, string> variables)
-        {
-            this.main = main;
-            this.variables = variables;
+            name = CommandTypes.reset.ToString();
         }
 
         // Overrides
         public override void execute()
         {
-            log(main);
-            main.x = 0;
-            main.y = 0;
-            main.dc.Clear(Color.Gainsboro);
+            if (isValid(new Dictionary<string, string>()))
+            {
+                log(main);
+                main.x = 0;
+                main.y = 0;
+                main.dc.Clear(Color.Gainsboro);
+            }
         }
 
-        public override bool isValid()
+        public override bool isValid(Dictionary<string, string> variables)
         {
-            throw new NotImplementedException();
+            return true;
         }
     }
 }

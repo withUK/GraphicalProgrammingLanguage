@@ -17,7 +17,7 @@ namespace GraphicalProgrammingLanguage.Commands
             throw new NotImplementedException();
         }
 
-        public override bool isValid()
+        public override bool isValid(Dictionary<string, string> variables)
         {
             throw new NotImplementedException();
         }
