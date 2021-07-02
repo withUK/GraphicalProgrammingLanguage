@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace GraphicalProgrammingLanguage.Enums
 {
@@ -12,6 +9,10 @@ namespace GraphicalProgrammingLanguage.Enums
         [Display(Name = "Rectangle")]
         rectangle,
         [Display(Name = "Square")]
-        square
+        square,
+        [Display(Name = "Triangle")]
+        triangle,
+        [Display(Name = "Polygon")]
+        polygon
     }
 }

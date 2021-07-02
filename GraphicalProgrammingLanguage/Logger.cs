@@ -5,11 +5,34 @@ namespace GraphicalProgrammingLanguage
 {
     class Logger
     {
-        public static string Log(string message, TextWriter w)
+        public static string LogLaunch()
         {
-            string entry = $"{DateTime.Now.ToLongTimeString()} {DateTime.Now.ToLongDateString()} : {message}";
-            w.WriteLine(entry);
-            return entry;
+            using (StreamWriter w = File.AppendText("log.txt"))
+            {
+                string entry = $"{DateTime.Now.ToLongTimeString()} {DateTime.Now.ToLongDateString()} : Application started";
+                w.WriteLine(entry);
+                return entry;
+            }
+        }
+
+        public static string LogClose()
+        {
+            using (StreamWriter w = File.AppendText("log.txt"))
+            {
+                string entry = $"{DateTime.Now.ToLongTimeString()} {DateTime.Now.ToLongDateString()} : Application ended";
+                w.WriteLine(entry);
+                return entry;
+            }
+        }
+
+        public static string Log(string message)
+        {
+            using (StreamWriter w = File.AppendText("log.txt"))
+            {
+                string entry = $"\n{DateTime.Now.ToLongTimeString()} {DateTime.Now.ToLongDateString()} : {message}";
+                w.WriteLine(entry);
+                return entry;
+            }
         }
     }
 }

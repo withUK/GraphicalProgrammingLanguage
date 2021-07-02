@@ -1,4 +1,5 @@
 ﻿using GraphicalProgrammingLanguage.Interfaces;
+using System.Collections.Generic;
 using System.Drawing;
 
 namespace GraphicalProgrammingLanguage.Shapes
@@ -7,9 +8,11 @@ namespace GraphicalProgrammingLanguage.Shapes
     {
         // Properties
         protected int x { get; set; }
+        protected bool xSet { get; set; }
         protected int y { get; set; }
+        protected bool ySet { get; set; }
 
-        protected int lineWeight;
+        protected float lineWeight { get; set; }
         protected Color lineColor { get; set; }
         protected Color fillColor { get; set; }
 
@@ -19,7 +22,14 @@ namespace GraphicalProgrammingLanguage.Shapes
 
         }
 
-        public Shape(int x, int y, Color lineColor, Color fillColor, int lineWeight)
+        public Shape(MainGUI main)
+        {
+            this.lineWeight = main.pen.Width;
+            this.lineColor = main.pen.Color;
+            this.fillColor = (main.brush as SolidBrush).Color;
+        }
+
+        public Shape(int x, int y, Color lineColor, Color fillColor, float lineWeight)
         {
             this.x = x;
             this.y = y;
@@ -31,19 +41,30 @@ namespace GraphicalProgrammingLanguage.Shapes
         // Methods
         // The 'set' method uses the params in position [0] as x, [1] as y and [2] as the line weight.
         // This virtual method can be overwritten by children of this class that can be more specfic to the shape.
-        public virtual void set(Color lineColor, Color fillColor, params int[] list)
+        public virtual void set(Dictionary<string, string> variables)
         {
-            this.lineColor = lineColor;
-            this.fillColor = fillColor;
-
-            if (list.Length > 1)
-                this.x = list[0];
-
-            if (list.Length > 2)
-                this.y = list[1]; 
-            
-            if (list.Length > 3)
-                this.lineWeight = list[2];
+            if (variables.ContainsKey("x"))
+            {
+                x = int.Parse(variables.GetValueOrDefault("x"));
+                xSet = true;
+            }
+            if (variables.ContainsKey("y"))
+            {
+                y = int.Parse(variables.GetValueOrDefault("y"));
+                ySet = true;
+            }
+            if (variables.ContainsKey("lineweight"))
+            {
+                lineWeight = float.Parse(variables.GetValueOrDefault("lineWeight"));
+            }
+            if (variables.ContainsKey("linecolor"))
+            {
+                lineColor = Color.FromName(variables.GetValueOrDefault("lineColor"));
+            }
+            if (variables.ContainsKey("fillColor"))
+            {
+                fillColor = Color.FromName(variables.GetValueOrDefault("fillColor"));
+            }
         }
 
         // Abstracts
@@ -52,6 +73,7 @@ namespace GraphicalProgrammingLanguage.Shapes
         public abstract double calculateArea();
         public abstract double calculatePerimeter();
         public abstract void draw(Graphics g);
+        public abstract bool hasRequiredVariables();
 
         // Overrides
         // This overrides the base implemention of ToString() but combines with the x & y values.
