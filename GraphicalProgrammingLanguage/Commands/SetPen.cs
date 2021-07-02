@@ -10,41 +10,65 @@ namespace GraphicalProgrammingLanguage.Commands
     {
         // Properties
         protected Pen pen;
+        private float weight;
+
+        private bool colorSet { get; set; }
+        private bool weightSet { get; set; }
+
 
         // Constructors
         public SetPen(MainGUI main) : base(main)
         {
-            this.main = main;
-            this.name = CommandTypes.setPen.ToString();
+            name = CommandTypes.setpen.ToString();
             pen = main.pen;
         }
 
         // Methods
-        public void set(MainGUI main, Dictionary<string, string> variables)
+        public void set(Dictionary<string, string> variables)
         {
-            this.main = main;
             this.variables = variables;
-            pen = main.pen;
+            if (variables != null)
+            {
+                if (variables.ContainsKey("color"))
+                {
+                    colorSet = true;
+                }
+                if (variables.ContainsKey("weight"))
+                {
+                    weightSet = true;
+                }
+            }
         }
 
         // Overrides
         public override void execute()
         {
-            log(main);
-            if (variables.ContainsKey("color"))
+            if (isValid(variables))
             {
-                pen.Color = Color.FromName(variables.GetValueOrDefault("color"));
+                log(main);
+                if (variables.ContainsKey("color"))
+                {
+                    pen.Color = Color.FromName(variables.GetValueOrDefault("color"));
+                }
+                if (variables.ContainsKey("weight"))
+                {
+                    pen.Width = float.Parse(variables.GetValueOrDefault("weight"));
+                }
             }
-            if (variables.ContainsKey("weight"))
-            {
-                pen.Width = float.Parse(variables.GetValueOrDefault("weight"));
-            }
-
         }
 
-        public override bool validate()
+        public override bool hasRequiredParameters()
         {
-            throw new NotImplementedException();
+            if (weightSet || colorSet)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public override bool isValid(Dictionary<string, string> variables)
+        {
+            return hasRequiredParameters();
         }
     }
 }

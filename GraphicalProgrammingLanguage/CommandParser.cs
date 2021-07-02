@@ -3,96 +3,150 @@ using GraphicalProgrammingLanguage.Enums;
 using GraphicalProgrammingLanguage.Factories;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Text;
+using System.Text.RegularExpressions;
 
 namespace GraphicalProgrammingLanguage
 {
     public class CommandParser
     {
+        // Constants
+        private const string REG_PARENTHESES = "^[a-zA-Z]+\\([^)]*\\)$";
+        private const string REG_COMMAND_ONLY = "^[a-zA-Z]+$";
+        private const string REG_VARIABLE = "^[a-zA-Z]+=[a-zA-Z0-9]+$";
+
+        Regex regexParentheses = new Regex(REG_PARENTHESES, RegexOptions.IgnoreCase);
+        Regex regexCommandOnly = new Regex(REG_COMMAND_ONLY, RegexOptions.IgnoreCase);
+        Regex regexVariables = new Regex(REG_VARIABLE, RegexOptions.IgnoreCase);
+
         // Properties
-        private string commandName { get; set; }
-        string variableString { get; set; }
-        private string[] variableStrings { get; set; }
-        private Dictionary<string, string> variableDict;
+        private MainGUI main { get; set; }
         private CommandFactory cf = new CommandFactory();
         private Command command { get; set; }
-        
-        int startIndex = 0;
-        int endIndex = 0;
+        private Dictionary<string, string> variables;
 
         // Constructor
-        public CommandParser()
+        public CommandParser(MainGUI main)
         {
-            
+            this.main = main;
         }
 
         // Methods
-        public void executeCommand(string input, MainGUI main)
+        public void parseCommand(string input)
         {
-            variableDict = new Dictionary<string, string>();
-            getCommandNameFromInput(input);
-            getVariablesFromInput(input);
+            input = input.ToLower().Trim();
+            setCommand(input);
+            setVariablesFromInput(input);
 
-            var type = Enum.Parse(typeof(CommandTypes), commandName);
-            command = cf.getCommand(main, type.ToString());
-                    
-            switch (type)
+            if (command.hasRequiredParameters())
             {
-                case CommandTypes.clear:
-                    (command as Clear).set(main, variableDict);
-                    break;
-                case CommandTypes.drawShape:
-                    (command as DrawShape).set(main, variableDict);
-                    break;
-                case CommandTypes.drawTo:
-                    (command as DrawTo).set(main, variableDict);
-                    break;
-                case CommandTypes.moveTo:
-                    (command as MoveTo).set(main, variableDict);
-                    break;
-                case CommandTypes.reset:
-                    (command as Reset).set(main, variableDict);
-                    break;
-                case CommandTypes.setPen:
-                    (command as SetPen).set(main, variableDict);
-                    break;
-                default:
-                    break;
-            }
-
-            command.log();
-            command.execute();
-            main.txtCommandLine.Clear();
-        }
-
-        private void getCommandNameFromInput(string input)
-        {
-            if (input.Contains("(") && input.Contains(")"))
-            {
-                startIndex = input.IndexOf("(");
-                endIndex = input.LastIndexOf(")");
-                commandName = input.Substring(0, startIndex);
+                command.execute();
+                clearCurrentCommand();
             }
             else
             {
-                commandName = input;
+                setCurrentCommand();
+            }
+
+            main.txtCommandLine.Clear();
+        }
+
+        private void setCommand(string input)
+        {
+            int index = 0;
+            string commandType;
+
+            if (regexParentheses.IsMatch(input))
+            {
+                index = input.IndexOf("(");
+                commandType = input.Substring(0, index);
+
+                command = cf.getCommand(main, commandType);
+            }
+            else if (main.currentCommand != null)
+            {
+                command = main.currentCommand;
+            }
+            else if (regexCommandOnly.IsMatch(input))
+            {
+                command = cf.getCommand(main, input);
             }
         }
 
-        private void getVariablesFromInput(string input)
+        private void setCommandVariables()
         {
-            if(input.Contains("(") && input.Contains(")"))
+            switch (command.name)
             {
-                variableString = input.Substring(startIndex + 1, endIndex - startIndex - 1);
-                variableStrings = variableString.Split(",");
+                case "drawshape":
+                    (command as DrawShape).set(variables);
+                    break;
+                case "drawto":
+                    (command as DrawTo).set(variables);
+                    break;
+                case "moveto":
+                    (command as MoveTo).set(variables);
+                    break;
+                case "setfill":
+                    (command as SetFill).set(variables);
+                    break;
+                case "setpen":
+                    (command as SetPen).set(variables);
+                    break;
+                case "clear":
+                case "reset":
+                    break;
+            }
+        }
 
-                foreach (var item in variableStrings)
+        private void setVariablesFromInput(string input)
+        {
+            int startIndex = 0;
+            int endIndex = 0;
+
+            if (regexParentheses.IsMatch(input))
+            {
+                variables = new Dictionary<string, string>();
+
+                startIndex = input.IndexOf("(");
+                endIndex = input.IndexOf(")");
+
+                string variablesString = input.Substring(startIndex + 1, endIndex - startIndex - 1);
+                string[] split = variablesString.Split(",");
+                foreach (var item in split)
                 {
-                    string[] split = item.Split("=");
-                    variableDict.Add(split[0], split[1]);
+                    if (item.Contains("="))
+                    {
+                        string[] sp = item.Split("=");
+                        variables.Add(sp[0], sp[1]);
+                    }
                 }
             }
+            else if (main.currentCommand != null)
+            {
+                variables = main.currentVariables;
+            }
+
+            if (regexVariables.IsMatch(input))
+            {
+                if (variables == null)
+                    variables = new Dictionary<string, string>();
+
+                string[] split = input.Split("=");
+                variables.Add(split[0], split[1]);
+            }
+
+            setCommandVariables();
+        }
+
+        private void setCurrentCommand()
+        {
+            main.currentCommand = command;
+            main.currentVariables = variables;
+        }
+
+        private void clearCurrentCommand()
+        {
+            main.currentCommand = null;
+            main.currentVariables = null;
         }
     }
 }

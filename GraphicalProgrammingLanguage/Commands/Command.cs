@@ -7,7 +7,7 @@ namespace GraphicalProgrammingLanguage.Commands
     {
         // Properties
         protected MainGUI main { get; set; }
-        protected string name { get; set; }
+        public string name { get; set; }
         protected Dictionary<string,string> variables { get; set; }
 
         // Constructors
@@ -23,16 +23,11 @@ namespace GraphicalProgrammingLanguage.Commands
         }
 
         // Methods
-        public void set(MainGUI main, Dictionary<string, string> variables)
+        public void set(Dictionary<string, string> variables)
         {
-            this.main = main;
             this.variables = variables;
         }
 
-        public void log()
-        {
-            Logger.Log($"Command {name} called.");
-        }
         public void log(MainGUI main)
         {
             main.txtLog.AppendText(Logger.Log($"Command {name} called."));
@@ -40,6 +35,7 @@ namespace GraphicalProgrammingLanguage.Commands
 
         // Abstracts
         public abstract void execute();
-        public abstract bool validate();
+        public abstract bool hasRequiredParameters();
+        public abstract bool isValid(Dictionary<string, string> variables);
     }
 }

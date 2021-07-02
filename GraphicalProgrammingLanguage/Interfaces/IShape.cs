@@ -10,5 +10,6 @@ namespace GraphicalProgrammingLanguage.Interfaces
         double calculateArea();
         double calculatePerimeter();
         void draw(Graphics g);
+        bool hasRequiredVariables();
     }
 }

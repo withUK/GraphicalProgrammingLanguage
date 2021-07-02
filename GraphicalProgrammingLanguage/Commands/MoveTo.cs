@@ -1,7 +1,5 @@
 ﻿using GraphicalProgrammingLanguage.Enums;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace GraphicalProgrammingLanguage.Commands
 {
@@ -9,42 +7,63 @@ namespace GraphicalProgrammingLanguage.Commands
     {
         // Properties
         protected int x { get; set; }
+        private bool xSet { get; set; }
         protected int y { get; set; }
+        private bool ySet { get; set; }
 
         // Constructors
         public MoveTo(MainGUI main) : base(main)
         {
-            this.main = main;
-            this.name = CommandTypes.moveTo.ToString();
+            name = CommandTypes.moveto.ToString();
         }
 
         public MoveTo(MainGUI main, Dictionary<string, string> variables) : base(main, variables)
         {
-            this.main = main;
-            this.name = CommandTypes.moveTo.ToString();
-            this.variables = variables;
+            name = CommandTypes.moveto.ToString();
         }
 
         // Methods
-        public void set(MainGUI main, Dictionary<string, string> variables)
+        public void set(Dictionary<string, string> variables)
         {
-            this.main = main;
             this.variables = variables;
-            this.x = int.Parse(variables.GetValueOrDefault("x"));
-            this.y = int.Parse(variables.GetValueOrDefault("y"));
+            if (variables != null)
+            {
+                if (variables.ContainsKey("x"))
+                {
+                    x = int.Parse(variables.GetValueOrDefault("x"));
+                    xSet = true;
+                }
+                if (variables.ContainsKey("y"))
+                {
+                    y = int.Parse(variables.GetValueOrDefault("y"));
+                    ySet = true;
+                }
+            }
         }
 
         // Overrides
         public override void execute()
         {
-            log(main);
-            main.x = x;
-            main.y = y;
+            if (isValid(variables))
+            {
+                log(main);
+                main.x = x;
+                main.y = y;
+            }
         }
 
-        public override bool validate()
+        public override bool hasRequiredParameters()
         {
-            throw new NotImplementedException();
+            if (xSet && ySet)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public override bool isValid(Dictionary<string, string> variables)
+        {
+            return hasRequiredParameters();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using GraphicalProgrammingLanguage.Factories;
+﻿using GraphicalProgrammingLanguage.Commands;
+using GraphicalProgrammingLanguage.Factories;
 using GraphicalProgrammingLanguage.Shapes;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,12 @@ namespace GraphicalProgrammingLanguage
     public partial class MainGUI : Form
     {
         // Objects
-        internal CommandParser cp = new CommandParser();
+        internal CommandParser cp;
         internal Graphics dc;
         internal Pen pen = new Pen(Color.Black, 1);
-        internal Brush brush = new SolidBrush(Color.Black);
+        internal Brush brush = new SolidBrush(Color.Transparent);
+        internal Command currentCommand;
+        internal Dictionary<string,string> currentVariables;
 
         // Properties
         internal int x = 0, y = 0;
@@ -24,6 +27,7 @@ namespace GraphicalProgrammingLanguage
         public MainGUI()
         {
             InitializeComponent();
+            cp = new CommandParser(this);
             dc = pnlOutput.CreateGraphics();
             txtLog.AppendText(Logger.LogLaunch());
         }
@@ -45,7 +49,7 @@ namespace GraphicalProgrammingLanguage
 
         private void btnCommandLineRun_Click(object sender, EventArgs e)
         {
-            cp.executeCommand(txtCommandLine.Text, this);
+            cp.parseCommand(txtCommandLine.Text);
         }
     }
 }

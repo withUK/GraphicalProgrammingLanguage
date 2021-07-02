@@ -16,17 +16,17 @@ namespace GraphicalProgrammingLanguage.Factories
             {
                 case CommandTypes.clear:
                     return new Clear(main);
-                case CommandTypes.drawShape:
+                case CommandTypes.drawshape:
                     return new DrawShape(main);
-                case CommandTypes.drawTo:
+                case CommandTypes.drawto:
                     return new DrawTo(main);
-                case CommandTypes.moveTo:
+                case CommandTypes.moveto:
                     return new MoveTo(main);
                 case CommandTypes.reset:
                     return new Reset(main);
-                case CommandTypes.setFill:
+                case CommandTypes.setfill:
                     return new SetFill(main);
-                case CommandTypes.setPen:
+                case CommandTypes.setpen:
                     return new SetPen(main);
                 default:
                     ArgumentException argEx = new ArgumentException("CommandFactory error: " + commandType + " does not exist");
