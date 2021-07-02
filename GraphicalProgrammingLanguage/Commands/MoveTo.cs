@@ -7,7 +7,9 @@ namespace GraphicalProgrammingLanguage.Commands
     {
         // Properties
         protected int x { get; set; }
+        private bool xSet { get; set; }
         protected int y { get; set; }
+        private bool ySet { get; set; }
 
         // Constructors
         public MoveTo(MainGUI main) : base(main)
@@ -24,13 +26,18 @@ namespace GraphicalProgrammingLanguage.Commands
         public void set(Dictionary<string, string> variables)
         {
             this.variables = variables;
-            if (variables.ContainsKey("x"))
+            if (variables != null)
             {
-                x = int.Parse(variables.GetValueOrDefault("x"));
-            }
-            if (variables.ContainsKey("y"))
-            {
-                y = int.Parse(variables.GetValueOrDefault("y"));
+                if (variables.ContainsKey("x"))
+                {
+                    x = int.Parse(variables.GetValueOrDefault("x"));
+                    xSet = true;
+                }
+                if (variables.ContainsKey("y"))
+                {
+                    y = int.Parse(variables.GetValueOrDefault("y"));
+                    ySet = true;
+                }
             }
         }
 
@@ -45,13 +52,18 @@ namespace GraphicalProgrammingLanguage.Commands
             }
         }
 
-        public override bool isValid(Dictionary<string, string> variables)
+        public override bool hasRequiredParameters()
         {
-            if (variables.ContainsKey("x") && variables.ContainsKey("y"))
+            if (xSet && ySet)
             {
                 return true;
             }
             return false;
+        }
+
+        public override bool isValid(Dictionary<string, string> variables)
+        {
+            return hasRequiredParameters();
         }
     }
 }

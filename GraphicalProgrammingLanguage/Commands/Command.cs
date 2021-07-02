@@ -7,7 +7,7 @@ namespace GraphicalProgrammingLanguage.Commands
     {
         // Properties
         protected MainGUI main { get; set; }
-        protected string name { get; set; }
+        public string name { get; set; }
         protected Dictionary<string,string> variables { get; set; }
 
         // Constructors
@@ -35,6 +35,7 @@ namespace GraphicalProgrammingLanguage.Commands
 
         // Abstracts
         public abstract void execute();
+        public abstract bool hasRequiredParameters();
         public abstract bool isValid(Dictionary<string, string> variables);
     }
 }

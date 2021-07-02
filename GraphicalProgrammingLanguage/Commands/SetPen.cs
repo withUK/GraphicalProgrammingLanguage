@@ -12,6 +12,10 @@ namespace GraphicalProgrammingLanguage.Commands
         protected Pen pen;
         private float weight;
 
+        private bool colorSet { get; set; }
+        private bool weightSet { get; set; }
+
+
         // Constructors
         public SetPen(MainGUI main) : base(main)
         {
@@ -20,9 +24,20 @@ namespace GraphicalProgrammingLanguage.Commands
         }
 
         // Methods
-        public void set(MainGUI main, Dictionary<string, string> variables)
+        public void set(Dictionary<string, string> variables)
         {
             this.variables = variables;
+            if (variables != null)
+            {
+                if (variables.ContainsKey("color"))
+                {
+                    colorSet = true;
+                }
+                if (variables.ContainsKey("weight"))
+                {
+                    weightSet = true;
+                }
+            }
         }
 
         // Overrides
@@ -42,14 +57,18 @@ namespace GraphicalProgrammingLanguage.Commands
             }
         }
 
+        public override bool hasRequiredParameters()
+        {
+            if (weightSet || colorSet)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public override bool isValid(Dictionary<string, string> variables)
         {
-            if (variables.ContainsKey("weight"))
-            {
-                bool success = float.TryParse(variables.GetValueOrDefault("weight"), out weight);
-                return success;
-            }
-            return true;
+            return hasRequiredParameters();
         }
     }
 }

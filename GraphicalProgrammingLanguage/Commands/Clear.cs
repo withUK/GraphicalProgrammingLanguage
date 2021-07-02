@@ -25,6 +25,11 @@ namespace GraphicalProgrammingLanguage.Commands
             }
         }
 
+        public override bool hasRequiredParameters()
+        {
+            return true;
+        }
+
         public override bool isValid(Dictionary<string, string> variables)
         {
             return true;

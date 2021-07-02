@@ -42,6 +42,11 @@ namespace GraphicalProgrammingLanguage.Commands
             shape.draw(main.dc);
         }
 
+        public override bool hasRequiredParameters()
+        {
+            return true;
+        }
+
         public override bool isValid(Dictionary<string, string> variables)
         {
             throw new NotImplementedException();
