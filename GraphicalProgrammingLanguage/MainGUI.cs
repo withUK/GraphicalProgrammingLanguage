@@ -16,7 +16,7 @@ namespace GraphicalProgrammingLanguage
         internal CommandParser cp;
         internal Graphics dc;
         internal Pen pen = new Pen(Color.Black, 1);
-        internal Brush brush = new SolidBrush(Color.Black);
+        internal Brush brush = new SolidBrush(Color.Transparent);
         internal Command currentCommand;
         internal Dictionary<string,string> currentVariables;
 

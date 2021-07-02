@@ -52,7 +52,7 @@ namespace GraphicalProgrammingLanguage.Commands
                 }
                 if (variables.ContainsKey("weight"))
                 {
-                    pen.Width = weight;
+                    pen.Width = float.Parse(variables.GetValueOrDefault("weight"));
                 }
             }
         }

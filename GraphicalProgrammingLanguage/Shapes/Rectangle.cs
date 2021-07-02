@@ -7,7 +7,9 @@ namespace GraphicalProgrammingLanguage.Shapes
     {
         // Properties
         public int length { get; set; }
+        private bool lengthSet { get; set; }
         public int width { get; set; }
+        private bool widthSet { get; set; }
 
         // Constructors
         public Rectangle() : base()
@@ -15,7 +17,12 @@ namespace GraphicalProgrammingLanguage.Shapes
 
         }
 
-        public Rectangle(int x, int y, int length, int width, Color lineColor, Color fillColor, int lineWeight) : base(x, y, lineColor, fillColor, lineWeight)
+        public Rectangle(MainGUI main) : base(main)
+        {
+
+        }
+
+        public Rectangle(int x, int y, int length, int width, Color lineColor, Color fillColor, float lineWeight) : base(x, y, lineColor, fillColor, lineWeight)
         {
             this.length = length;
             this.width = width;
@@ -41,6 +48,11 @@ namespace GraphicalProgrammingLanguage.Shapes
             g.DrawRectangle(p, x, y, width, length);
         }
 
+        public override bool hasRequiredVariables()
+        {
+            return lengthSet && widthSet;
+        }
+        
         // Overrides
         public override void set(Dictionary<string, string> variables)
         {
@@ -48,7 +60,7 @@ namespace GraphicalProgrammingLanguage.Shapes
             this.y = int.Parse(variables.GetValueOrDefault("y"));
             this.length = int.Parse(variables.GetValueOrDefault("length"));
             this.width = int.Parse(variables.GetValueOrDefault("width"));
-            this.lineWeight = int.Parse(variables.GetValueOrDefault("lineWeight"));
+            this.lineWeight = float.Parse(variables.GetValueOrDefault("lineWeight"));
             this.lineColor = Color.FromName(variables.GetValueOrDefault("lineColor"));
             this.fillColor = Color.FromName(variables.GetValueOrDefault("fillColor"));
         }

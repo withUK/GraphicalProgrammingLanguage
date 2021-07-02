@@ -9,17 +9,20 @@ namespace GraphicalProgrammingLanguage.Shapes
     {
         // Properties
         Point p1 { get; set; }
+        private bool p1Set { get; set; }
         Point p2 { get; set; }
+        private bool p2Set { get; set; }
         Point p3 { get; set; }
+        private bool p3Set { get; set; }
         Point[] points { get; set; }
 
         // Constructors
-        public Triangle() : base()
+        public Triangle(MainGUI main) : base(main)
         {
 
         }
 
-        public Triangle(int x, int y, Color lineColor, Color fillColor, int lineWeight) : base(x, y, lineColor, fillColor, lineWeight)
+        public Triangle(int x, int y, Color lineColor, Color fillColor, float lineWeight) : base(x, y, lineColor, fillColor, lineWeight)
         {
             
         }
@@ -47,12 +50,17 @@ namespace GraphicalProgrammingLanguage.Shapes
             g.DrawPolygon(p, points);
         }
 
+        public override bool hasRequiredVariables()
+        {
+            return p1Set && p2Set && p3Set;
+        }
+
         // Overrides
         public override void set(Dictionary<string, string> variables)
         {
             this.x = int.Parse(variables.GetValueOrDefault("x"));
             this.y = int.Parse(variables.GetValueOrDefault("y"));
-            this.lineWeight = int.Parse(variables.GetValueOrDefault("lineWeight"));
+            this.lineWeight = float.Parse(variables.GetValueOrDefault("lineWeight"));
             this.lineColor = Color.FromName(variables.GetValueOrDefault("lineColor"));
             this.fillColor = Color.FromName(variables.GetValueOrDefault("fillColor"));
 

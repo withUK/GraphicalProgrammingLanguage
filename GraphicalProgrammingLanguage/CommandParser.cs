@@ -33,6 +33,7 @@ namespace GraphicalProgrammingLanguage
         // Methods
         public void parseCommand(string input)
         {
+            input = input.ToLower().Trim();
             setCommand(input);
             setVariablesFromInput(input);
 

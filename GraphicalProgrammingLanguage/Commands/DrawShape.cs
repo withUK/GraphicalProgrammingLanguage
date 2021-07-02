@@ -24,7 +24,7 @@ namespace GraphicalProgrammingLanguage.Commands
             name = CommandTypes.drawshape.ToString();
             if (variables.ContainsKey("type"))
             {
-                shape = factory.getShape(variables.GetValueOrDefault("type").ToString());
+                shape = factory.getShape(main, variables.GetValueOrDefault("type").ToString());
             }
         }
 
@@ -32,7 +32,11 @@ namespace GraphicalProgrammingLanguage.Commands
         public void set(Dictionary<string, string> variables)
         {
             this.variables = variables;
-            shape.set(variables);
+            if (variables.ContainsKey("type"))
+            {
+                shape = factory.getShape(main, variables.GetValueOrDefault("type"));
+                shape.set(variables);
+            }
         }
 
         // Abstracts
@@ -44,7 +48,11 @@ namespace GraphicalProgrammingLanguage.Commands
 
         public override bool hasRequiredParameters()
         {
-            return true;
+            if (shape != null)
+            {
+                return shape.hasRequiredVariables();
+            }
+            return false;
         }
 
         public override bool isValid(Dictionary<string, string> variables)
