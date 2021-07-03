@@ -33,7 +33,7 @@ namespace GraphicalProgrammingLanguage
         // Methods
         public void parseCommand(string input)
         {
-            input = input.ToLower().Trim();
+            input = prepareInput(input);
             setCommand(input);
             setVariablesFromInput(input);
 
@@ -48,6 +48,15 @@ namespace GraphicalProgrammingLanguage
             }
 
             main.txtCommandLine.Clear();
+        }
+
+        private string prepareInput(string input)
+        {
+            input = input.ToLower().Trim();
+
+            input = input.Replace(" ", "");
+
+            return input;
         }
 
         private void setCommand(string input)
