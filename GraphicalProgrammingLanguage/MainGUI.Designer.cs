@@ -42,13 +42,13 @@ namespace GraphicalProgrammingLanguage
             this.btnSave = new System.Windows.Forms.Button();
             this.btnScriptRun = new System.Windows.Forms.Button();
             this.gbxCommands = new System.Windows.Forms.GroupBox();
+            this.txtCommandCount = new System.Windows.Forms.RichTextBox();
             this.txtCommands = new System.Windows.Forms.RichTextBox();
             this.logo = new System.Windows.Forms.PictureBox();
             this.dialogueLoad = new System.Windows.Forms.OpenFileDialog();
             this.lblFileName = new System.Windows.Forms.Label();
             this.gbxLog = new System.Windows.Forms.GroupBox();
             this.txtLog = new System.Windows.Forms.RichTextBox();
-            this.txtCommandCount = new System.Windows.Forms.RichTextBox();
             this.gbxCommands.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
             this.gbxLog.SuspendLayout();
@@ -164,6 +164,18 @@ namespace GraphicalProgrammingLanguage
             this.gbxCommands.TabStop = false;
             this.gbxCommands.Text = "Popular commands";
             // 
+            // txtCommandCount
+            // 
+            this.txtCommandCount.BackColor = System.Drawing.SystemColors.Menu;
+            this.txtCommandCount.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtCommandCount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtCommandCount.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtCommandCount.Location = new System.Drawing.Point(3, 23);
+            this.txtCommandCount.Name = "txtCommandCount";
+            this.txtCommandCount.Size = new System.Drawing.Size(544, 224);
+            this.txtCommandCount.TabIndex = 1;
+            this.txtCommandCount.Text = "";
+            // 
             // txtCommands
             // 
             this.txtCommands.BackColor = System.Drawing.SystemColors.Menu;
@@ -215,17 +227,6 @@ namespace GraphicalProgrammingLanguage
             this.txtLog.Size = new System.Drawing.Size(544, 121);
             this.txtLog.TabIndex = 0;
             this.txtLog.Text = "";
-            // 
-            // txtCommandCount
-            // 
-            this.txtCommandCount.BackColor = System.Drawing.SystemColors.Menu;
-            this.txtCommandCount.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtCommandCount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtCommandCount.Location = new System.Drawing.Point(3, 23);
-            this.txtCommandCount.Name = "txtCommandCount";
-            this.txtCommandCount.Size = new System.Drawing.Size(544, 224);
-            this.txtCommandCount.TabIndex = 1;
-            this.txtCommandCount.Text = "";
             // 
             // MainGUI
             // 

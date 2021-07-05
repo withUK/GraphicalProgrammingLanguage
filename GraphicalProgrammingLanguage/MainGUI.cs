@@ -70,11 +70,11 @@ namespace GraphicalProgrammingLanguage
             {
                 if (String.IsNullOrEmpty(txtCommandCount.Text))
                 {
-                    txtCommandCount.Text = item.CommandName;
+                    txtCommandCount.Text = String.Concat("  ", item.CommandName);
                 }
                 else
                 {
-                    txtCommandCount.Text = String.Concat(txtCommandCount.Text, "\nl", item.CommandName);
+                    txtCommandCount.Text = String.Concat(txtCommandCount.Text, "\n", "  ", item.CommandName);
                 }
             }
         }
