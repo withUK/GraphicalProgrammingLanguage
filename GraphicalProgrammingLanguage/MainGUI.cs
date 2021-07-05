@@ -1,11 +1,11 @@
 ﻿using GraphicalProgrammingLanguage.Commands;
-using GraphicalProgrammingLanguage.Factories;
-using GraphicalProgrammingLanguage.Shapes;
+using GraphicalProgrammingLanguage.Data;
+using GraphicalProgrammingLanguage.Models;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Text;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace GraphicalProgrammingLanguage
@@ -29,6 +29,7 @@ namespace GraphicalProgrammingLanguage
             InitializeComponent();
             cp = new CommandParser(this);
             dc = pnlOutput.CreateGraphics();
+            getData();
             txtLog.AppendText(Logger.LogLaunch());
         }
         // Methods
@@ -50,6 +51,32 @@ namespace GraphicalProgrammingLanguage
         private void btnCommandLineRun_Click(object sender, EventArgs e)
         {
             cp.parseCommand(txtCommandLine.Text);
+        }
+
+        private void getData()
+        {
+            CommandsContext db = new CommandsContext();
+
+            List<CommandUsageCount> count = new List<CommandUsageCount>();
+
+            foreach (var item in db.CommandUsage)
+            {
+                count.Add(item);
+            }
+
+            count = count.OrderByDescending(c => c.UsageCount).ToList();
+
+            foreach (var item in count)
+            {
+                if (String.IsNullOrEmpty(txtCommandCount.Text))
+                {
+                    txtCommandCount.Text = item.CommandName;
+                }
+                else
+                {
+                    txtCommandCount.Text = String.Concat(txtCommandCount.Text, "\nl", item.CommandName);
+                }
+            }
         }
     }
 }
