@@ -79,10 +79,10 @@ myMethod(<parameter list>)
 ### Design and Implementation Standard (20 marks total) 
 - Use of design patterns - factory class (5 marks) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
 - All user created objects from classes that you have designed should use appropriate  inheritance but should also use the factory design pattern. It should be fairly straightforward  to add additional classes to the factory. ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
-- Use of additional design pattern/s (5 marks) 
+- Use of additional design pattern/s (5 marks) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
 
 ### Additional functionality  
-Here you can come up with your own functionality. Although the rest of the marks  make up full marks I may still be able to award any marks that you have missed elsewhere..  Here are some suggestions but you are free to come up with your own, however you should  discuss them with your tutor first.  
+Here you can come up with your own functionality. Although the rest of the marks  make up full marks I may still be able to award any marks that you have missed elsewhere..  Here are some suggestions but you are free to come up with your own, however you should  discuss them with your tutor first.  ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
 
 Additional commands, one example might be to transform/rotate shape, more complex  shapes and the drawing of shapes. 
 
