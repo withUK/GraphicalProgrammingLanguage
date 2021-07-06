@@ -55,12 +55,33 @@ namespace GraphicalProgrammingLanguage.Shapes
         // Overrides
         public override void set(Dictionary<string, string> variables)
         {
-            this.x = int.Parse(variables.GetValueOrDefault("x"));
-            this.y = int.Parse(variables.GetValueOrDefault("y"));
-            this.length = int.Parse(variables.GetValueOrDefault("length"));
-            this.lineWeight = float.Parse(variables.GetValueOrDefault("lineWeight"));
-            this.lineColor = Color.FromName(variables.GetValueOrDefault("lineColor"));
-            this.fillColor = Color.FromName(variables.GetValueOrDefault("fillColor"));
+            if (variables.ContainsKey("x"))
+            {
+                x = int.Parse(variables.GetValueOrDefault("x"));
+                xSet = true;
+            }
+            if (variables.ContainsKey("y"))
+            {
+                y = int.Parse(variables.GetValueOrDefault("y"));
+                ySet = true;
+            }
+            if (variables.ContainsKey("length"))
+            {
+                length = int.Parse(variables.GetValueOrDefault("length"));
+                lengthSet = true;
+            }
+            if (variables.ContainsKey("lineweight"))
+            {
+                lineWeight = float.Parse(variables.GetValueOrDefault("lineweight"));
+            }
+            if (variables.ContainsKey("linecolor"))
+            {
+                lineColor = Color.FromName(variables.GetValueOrDefault("linecolor"));
+            }
+            if (variables.ContainsKey("fillcolor"))
+            {
+                fillColor = Color.FromName(variables.GetValueOrDefault("fillcolor"));
+            }
         }
 
         // This overrides the base implemention of ToString() in this case this is now the Shape class.

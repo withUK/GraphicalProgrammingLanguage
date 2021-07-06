@@ -71,17 +71,17 @@ namespace GraphicalProgrammingLanguage.Shapes
                 radius = int.Parse(variables.GetValueOrDefault("radius"));
                 radiusSet = true;
             }
-            if (variables.ContainsKey("lineWeight"))
+            if (variables.ContainsKey("lineweight"))
             {
-                lineWeight = float.Parse(variables.GetValueOrDefault("lineWeight"));
+                lineWeight = float.Parse(variables.GetValueOrDefault("lineweight"));
             }
-            if (variables.ContainsKey("lineColor"))
+            if (variables.ContainsKey("linecolor"))
             {
-                lineColor = Color.FromName(variables.GetValueOrDefault("lineColor"));
+                lineColor = Color.FromName(variables.GetValueOrDefault("linecolor"));
             }
-            if (variables.ContainsKey("fillCOlor"))
+            if (variables.ContainsKey("fillcolor"))
             {
-                fillColor = Color.FromName(variables.GetValueOrDefault("fillColor"));
+                fillColor = Color.FromName(variables.GetValueOrDefault("fillcolor"));
             }
         }
 

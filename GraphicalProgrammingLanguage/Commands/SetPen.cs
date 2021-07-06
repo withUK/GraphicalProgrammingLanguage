@@ -10,7 +10,6 @@ namespace GraphicalProgrammingLanguage.Commands
     {
         // Properties
         protected Pen pen;
-        private float weight;
 
         private bool colorSet { get; set; }
         private bool weightSet { get; set; }

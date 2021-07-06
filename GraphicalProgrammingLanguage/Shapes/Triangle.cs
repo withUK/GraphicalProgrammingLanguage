@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Text;
 
 namespace GraphicalProgrammingLanguage.Shapes
 {
@@ -19,7 +18,7 @@ namespace GraphicalProgrammingLanguage.Shapes
         // Constructors
         public Triangle(MainGUI main) : base(main)
         {
-
+            
         }
 
         public Triangle(int x, int y, Color lineColor, Color fillColor, float lineWeight) : base(x, y, lineColor, fillColor, lineWeight)
@@ -33,12 +32,16 @@ namespace GraphicalProgrammingLanguage.Shapes
         // Abstracts
         public override double calculateArea()
         {
-            throw new NotImplementedException();
+            return 0.5 * (p1.X * (p2.Y - p3.Y) + p2.X * (p3.Y - p1.Y) + p3.X * (p1.Y - p2.Y));
         }
 
         public override double calculatePerimeter()
         {
-            throw new NotImplementedException();
+            var l1 = Math.Sqrt((p1.X - p2.X) * 2 + (p1.Y - p2.Y) * 2);
+            var l2 = Math.Sqrt((p2.X - p3.X) * 2 + (p2.Y - p3.Y) * 2);
+            var l3 = Math.Sqrt((p3.X - p1.X) * 2 + (p3.Y - p1.Y) * 2);
+
+            return (l1 + l2 + l3) / 2;
         }
 
         public override void draw(Graphics g)
@@ -58,17 +61,55 @@ namespace GraphicalProgrammingLanguage.Shapes
         // Overrides
         public override void set(Dictionary<string, string> variables)
         {
-            this.x = int.Parse(variables.GetValueOrDefault("x"));
-            this.y = int.Parse(variables.GetValueOrDefault("y"));
-            this.lineWeight = float.Parse(variables.GetValueOrDefault("lineWeight"));
-            this.lineColor = Color.FromName(variables.GetValueOrDefault("lineColor"));
-            this.fillColor = Color.FromName(variables.GetValueOrDefault("fillColor"));
+            if (variables.ContainsKey("lineweight"))
+            {
+                lineWeight = float.Parse(variables.GetValueOrDefault("lineweight"));
+            }
+            if (variables.ContainsKey("linecolor"))
+            {
+                lineColor = Color.FromName(variables.GetValueOrDefault("linecolor"));
+            }
+            if (variables.ContainsKey("fillcolor"))
+            {
+                fillColor = Color.FromName(variables.GetValueOrDefault("fillcolor"));
+            }
 
-            p1 = new Point { X = int.Parse(variables.GetValueOrDefault("x1")), Y = int.Parse(variables.GetValueOrDefault("y1")) };
-            p2 = new Point { X = int.Parse(variables.GetValueOrDefault("x2")), Y = int.Parse(variables.GetValueOrDefault("y2")) };
-            p3 = new Point { X = int.Parse(variables.GetValueOrDefault("x3")), Y = int.Parse(variables.GetValueOrDefault("y3")) };
+            if (variables.ContainsKey("p1"))
+            {
+                string pString = variables.GetValueOrDefault("p1");
+                if (pString.Contains(","))
+                {
+                    string[] pSplit = pString.Split(",");
+                    p1 = new Point { X = int.Parse(pSplit[0]), Y = int.Parse(pSplit[1]) };
+                    p1Set = true;
+                }
+            }
+            if (variables.ContainsKey("p2"))
+            {
+                string pString = variables.GetValueOrDefault("p2");
+                if (pString.Contains(","))
+                {
+                    string[] pSplit = pString.Split(",");
+                    p2 = new Point { X = int.Parse(pSplit[0]), Y = int.Parse(pSplit[1]) };
+                    p2Set = true;
+                }
+            }
+            if (variables.ContainsKey("p3"))
+            {
+                string pString = variables.GetValueOrDefault("p3");
+                if (pString.Contains(","))
+                {
+                    string[] pSplit = pString.Split(",");
+                    p3 = new Point { X = int.Parse(pSplit[0]), Y = int.Parse(pSplit[1]) };
+                    p3Set = true;
+                }
+            }
 
-            points = new Point[3] { p1, p2, p3 };
+            if (p1Set && p2Set && p3Set)
+            {
+                points = new Point[] { p1, p2, p3 };
+            }
+
         }
     }
 }

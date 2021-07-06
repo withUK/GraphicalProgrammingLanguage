@@ -1,11 +1,7 @@
 ﻿using GraphicalProgrammingLanguage.Commands;
-using GraphicalProgrammingLanguage.Data;
-using GraphicalProgrammingLanguage.Enums;
 using GraphicalProgrammingLanguage.Factories;
-using GraphicalProgrammingLanguage.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace GraphicalProgrammingLanguage
@@ -16,10 +12,12 @@ namespace GraphicalProgrammingLanguage
         private const string REG_PARENTHESES = "^[a-zA-Z]+\\([^)]*\\)$";
         private const string REG_COMMAND_ONLY = "^[a-zA-Z]+$";
         private const string REG_VARIABLE = "^[a-zA-Z]+=[a-zA-Z0-9]+$";
+        private const string REG_VARIABLE_POINT = "^[a-zA-Z0-9]+=[0-9]+,[0-9]+$";
 
         Regex regexParentheses = new Regex(REG_PARENTHESES, RegexOptions.IgnoreCase);
         Regex regexCommandOnly = new Regex(REG_COMMAND_ONLY, RegexOptions.IgnoreCase);
         Regex regexVariables = new Regex(REG_VARIABLE, RegexOptions.IgnoreCase);
+        Regex regexVariablesPoint = new Regex(REG_VARIABLE_POINT, RegexOptions.IgnoreCase);
 
         // Properties
         private MainGUI main { get; set; }
@@ -139,7 +137,7 @@ namespace GraphicalProgrammingLanguage
                 variables = main.currentVariables;
             }
 
-            if (regexVariables.IsMatch(input))
+            if (regexVariables.IsMatch(input) || regexVariablesPoint.IsMatch(input))
             {
                 if (variables == null)
                     variables = new Dictionary<string, string>();

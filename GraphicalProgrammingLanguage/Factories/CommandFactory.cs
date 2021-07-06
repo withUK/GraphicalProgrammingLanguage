@@ -1,8 +1,6 @@
 ﻿using GraphicalProgrammingLanguage.Enums;
 using GraphicalProgrammingLanguage.Commands;
 using System;
-using System.Collections.Generic;
-using System.Drawing;
 
 namespace GraphicalProgrammingLanguage.Factories
 {

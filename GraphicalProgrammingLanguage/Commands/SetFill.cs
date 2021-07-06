@@ -1,20 +1,46 @@
-﻿using System;
+﻿using GraphicalProgrammingLanguage.Enums;
 using System.Collections.Generic;
-using System.Text;
+using System.Drawing;
 
 namespace GraphicalProgrammingLanguage.Commands
 {
     class SetFill : Command
     {
+        // Properties
+        protected Brush brush;
+        
         // Constructors
         public SetFill(MainGUI main) : base(main)
         {
-            this.main = main;
+            name = CommandTypes.setfill.ToString();
+            brush = main.brush;
         }
 
+        // Methods
+        public void set(Dictionary<string, string> variables)
+        {
+            this.variables = variables;
+            if (variables != null)
+            {
+                if (variables.ContainsKey("color"))
+                {
+                    brush = new SolidBrush(Color.FromName(variables.GetValueOrDefault("color")));
+                }
+                else
+                {
+                    brush = new SolidBrush(Color.Transparent);
+                }
+            }
+        }
+
+        // Overrides
         public override void execute()
         {
-            throw new NotImplementedException();
+            if (isValid(variables))
+            {
+                log(main);
+                main.brush = brush;
+            }
         }
 
         public override bool hasRequiredParameters()
@@ -24,7 +50,7 @@ namespace GraphicalProgrammingLanguage.Commands
 
         public override bool isValid(Dictionary<string, string> variables)
         {
-            throw new NotImplementedException();
+            return hasRequiredParameters();
         }
     }
 }

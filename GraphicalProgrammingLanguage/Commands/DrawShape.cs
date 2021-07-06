@@ -3,7 +3,6 @@ using GraphicalProgrammingLanguage.Factories;
 using GraphicalProgrammingLanguage.Shapes;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 
 namespace GraphicalProgrammingLanguage.Commands
 {
