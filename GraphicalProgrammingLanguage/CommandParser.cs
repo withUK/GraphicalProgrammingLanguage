@@ -1,8 +1,11 @@
 ﻿using GraphicalProgrammingLanguage.Commands;
+using GraphicalProgrammingLanguage.Data;
 using GraphicalProgrammingLanguage.Enums;
 using GraphicalProgrammingLanguage.Factories;
+using GraphicalProgrammingLanguage.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace GraphicalProgrammingLanguage
@@ -40,7 +43,9 @@ namespace GraphicalProgrammingLanguage
             if (command.hasRequiredParameters())
             {
                 command.execute();
+                UsageCounter.AddToCommandCount(command.name);
                 clearCurrentCommand();
+                updateCommandUsage();
             }
             else
             {
@@ -156,6 +161,26 @@ namespace GraphicalProgrammingLanguage
         {
             main.currentCommand = null;
             main.currentVariables = null;
+        }
+
+        private void updateCommandUsage()
+        {
+            List<string> usageOutput = new List<string>();
+            usageOutput = UsageCounter.GetUsageCountOutput();
+
+            main.txtCommandCount.Text = null;
+
+            foreach (var item in usageOutput)
+            {
+                if (String.IsNullOrEmpty(main.txtCommandCount.Text))
+                {
+                    main.txtCommandCount.Text = item;
+                }
+                else
+                {
+                    main.txtCommandCount.Text = String.Concat(main.txtCommandCount.Text, "\n", item);
+                }
+            }
         }
     }
 }
