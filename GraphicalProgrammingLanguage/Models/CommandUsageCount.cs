@@ -11,8 +11,9 @@ namespace GraphicalProgrammingLanguage.Models
     {
         [Key]
         public int Id { get; set; }
-        [Column(TypeName = "text")]
+        [Column(TypeName = "varchar")]
         public string CommandName { get; set; }
+        public string SyntaxExample { get; set; }
         public int UsageCount { get; set; }
     }
 }

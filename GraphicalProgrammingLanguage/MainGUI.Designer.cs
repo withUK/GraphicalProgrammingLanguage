@@ -169,7 +169,7 @@ namespace GraphicalProgrammingLanguage
             this.txtCommandCount.BackColor = System.Drawing.SystemColors.Menu;
             this.txtCommandCount.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtCommandCount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtCommandCount.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtCommandCount.Font = new System.Drawing.Font("Courier New", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtCommandCount.Location = new System.Drawing.Point(3, 23);
             this.txtCommandCount.Name = "txtCommandCount";
             this.txtCommandCount.Size = new System.Drawing.Size(544, 224);
@@ -281,7 +281,7 @@ namespace GraphicalProgrammingLanguage
         private System.Windows.Forms.RichTextBox txtCommands;
         internal System.Windows.Forms.TextBox txtCommandLine;
         internal System.Windows.Forms.RichTextBox txtLog;
-        private System.Windows.Forms.RichTextBox txtCommandCount;
+        internal System.Windows.Forms.RichTextBox txtCommandCount;
     }
 }
 

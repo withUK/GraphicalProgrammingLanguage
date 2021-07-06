@@ -29,7 +29,7 @@ namespace GraphicalProgrammingLanguage
             InitializeComponent();
             cp = new CommandParser(this);
             dc = pnlOutput.CreateGraphics();
-            getData();
+            populateCommandUsage();
             txtLog.AppendText(Logger.LogLaunch());
         }
         // Methods
@@ -53,28 +53,20 @@ namespace GraphicalProgrammingLanguage
             cp.parseCommand(txtCommandLine.Text);
         }
 
-        private void getData()
+        private void populateCommandUsage()
         {
-            CommandsContext db = new CommandsContext();
+            List<string> usageOutput = new List<string>();
+            usageOutput = UsageCounter.GetUsageCountOutput();
 
-            List<CommandUsageCount> count = new List<CommandUsageCount>();
-
-            foreach (var item in db.CommandUsage)
-            {
-                count.Add(item);
-            }
-
-            count = count.OrderByDescending(c => c.UsageCount).ToList();
-
-            foreach (var item in count)
+            foreach (var item in usageOutput)
             {
                 if (String.IsNullOrEmpty(txtCommandCount.Text))
                 {
-                    txtCommandCount.Text = String.Concat("  ", item.CommandName);
+                    txtCommandCount.Text = item;
                 }
                 else
                 {
-                    txtCommandCount.Text = String.Concat(txtCommandCount.Text, "\n", "  ", item.CommandName);
+                    txtCommandCount.Text = String.Concat(txtCommandCount.Text, "\n", item);
                 }
             }
         }
