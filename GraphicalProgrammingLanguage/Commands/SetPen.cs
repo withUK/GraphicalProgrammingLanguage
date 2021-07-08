@@ -6,23 +6,33 @@ using System.Text;
 
 namespace GraphicalProgrammingLanguage.Commands
 {
-    class SetPen : Command
+    /// <summary>
+    /// A dymanic command, set pen is designed to set the color or weight of the pen by passing the name 
+    /// of the parameters. This means weight and color can be set separatly or as part of one call.
+    /// 
+    /// Syntax example : 
+    ///     setpen(weight=3)
+    ///     setpen(color=red)
+    ///     setpen(weight=3,color=red)
+    /// </summary>
+    public class SetPen : Command
     {
-        // Properties
+        #region Properties
         protected Pen pen;
 
         private bool colorSet { get; set; }
         private bool weightSet { get; set; }
+        #endregion
 
-
-        // Constructors
+        #region Constructors
         public SetPen(MainGUI main) : base(main)
         {
             name = CommandTypes.setpen.ToString();
             pen = main.pen;
         }
+        #endregion
 
-        // Methods
+        #region Overrides
         public void set(Dictionary<string, string> variables)
         {
             this.variables = variables;
@@ -39,7 +49,6 @@ namespace GraphicalProgrammingLanguage.Commands
             }
         }
 
-        // Overrides
         public override void execute()
         {
             if (isValid(variables))
@@ -56,18 +65,26 @@ namespace GraphicalProgrammingLanguage.Commands
             }
         }
 
+
+        /// <summary>
+        /// With the command being dynamic in nature has requirements uses the OR logic between the 
+        /// bool variables weightset and colorset.
+        /// </summary>
+        /// <returns></returns>
         public override bool hasRequiredParameters()
         {
-            if (weightSet || colorSet)
-            {
-                return true;
-            }
-            return false;
+            return weightSet || colorSet;
         }
 
+        /// <summary>
+        /// The validity of the command come from the correct variables and so uses hasRequiredParameters.
+        /// </summary>
+        /// <param name="variables"></param>
+        /// <returns></returns>
         public override bool isValid(Dictionary<string, string> variables)
         {
             return hasRequiredParameters();
         }
+        #endregion
     }
 }

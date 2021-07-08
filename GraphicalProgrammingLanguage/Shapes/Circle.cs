@@ -4,7 +4,7 @@ using System.Drawing;
 
 namespace GraphicalProgrammingLanguage.Shapes
 {
-    class Circle : Shape
+    public class Circle : Shape
     {
         // Properties
         public int radius { get; set; }

@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace GraphicalProgrammingLanguage.Shapes
 {
-    class Rectangle : Shape
+    public class Rectangle : Shape
     {
         // Properties
         public int length { get; set; }

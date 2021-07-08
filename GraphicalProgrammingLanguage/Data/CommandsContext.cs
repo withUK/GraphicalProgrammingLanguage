@@ -1,12 +1,13 @@
-﻿using System;
-using GraphicalProgrammingLanguage.Models;
+﻿using GraphicalProgrammingLanguage.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
-
-#nullable disable
 
 namespace GraphicalProgrammingLanguage.Data
 {
+    /// <summary>
+    /// The access point to the GP_DATABASE which holds the count for each command invoked.
+    /// Currently the connection string is hardcoded within the UseSqlServer method however this will be written
+    /// and referenced from a appsettings.json file as developemnt continues.
+    /// </summary>
     public partial class CommandsContext : DbContext
     {
         public CommandsContext()

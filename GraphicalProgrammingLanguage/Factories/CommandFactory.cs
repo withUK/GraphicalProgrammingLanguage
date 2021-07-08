@@ -4,7 +4,12 @@ using System;
 
 namespace GraphicalProgrammingLanguage.Factories
 {
-    class CommandFactory
+    /// <summary>
+    /// Making use of the factory design pattern this class is created to generate commands freely available
+    /// within the command parser.
+    /// Enums utilised for consistent evaluations within the switch statement.
+    /// </summary>
+    public class CommandFactory
     {
         public Command getCommand(MainGUI main, String commandType)
         {

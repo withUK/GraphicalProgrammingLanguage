@@ -6,6 +6,11 @@ using System.Text;
 
 namespace GraphicalProgrammingLanguage.Models
 {
+    /// <summary>
+    /// The CommandUsageCount model is used to bind the entries from the database to the application.
+    /// Table contains fieldsd for syntax examples which is intended to work as a reference guide for 
+    /// users as well as being able to be copied and pasted quickly when tested.
+    /// </summary>
     [Table("Table")]
     public partial class CommandUsageCount
     {

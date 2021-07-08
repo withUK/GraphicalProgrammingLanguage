@@ -4,7 +4,7 @@ using System.Drawing;
 
 namespace GraphicalProgrammingLanguage.Shapes
 {
-    class Triangle : Shape
+    public class Triangle : Shape
     {
         // Properties
         Point p1 { get; set; }

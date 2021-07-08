@@ -4,7 +4,12 @@ using System;
 
 namespace GraphicalProgrammingLanguage.Factories
 {
-    class ShapeFactory
+    /// <summary>
+    /// Making use of the factory design pattern this class is created to generate shape objects freely 
+    /// within the draw shape class.
+    /// Enums utilised for consistent evaluations within the switch statement.
+    /// </summary>
+    public class ShapeFactory
     {
         public Shape getShape(MainGUI main, String shapeType)
         {

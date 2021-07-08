@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace GraphicalProgrammingLanguage.Shapes
 {
-    class Square : Shape
+    public class Square : Shape
     {
         // Properties
         public int length { get; set; }

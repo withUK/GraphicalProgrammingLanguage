@@ -6,6 +6,13 @@ using System.Text.RegularExpressions;
 
 namespace GraphicalProgrammingLanguage
 {
+    /// <summary>
+    /// The command parser is used to take the input from the user and ascertains whether it matches syntax patterns 
+    /// to draw out the command name and variables. When a command has the required parameters the parser executes and
+    /// logs the action as successful.
+    /// The MainGUI is passed within the constructor to ensure the GUI elements are available for access dependant on
+    /// the command.
+    /// </summary>
     public class CommandParser
     {
         // Constants
@@ -53,6 +60,12 @@ namespace GraphicalProgrammingLanguage
             main.txtCommandLine.Clear();
         }
 
+        /// <summary>
+        /// The 'prepareInput' method takes a string input and converts to lowercase and then removes the whitespace to 
+        /// ensure consistant evaluation and extraction of values.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         private string prepareInput(string input)
         {
             input = input.ToLower().Trim();
@@ -62,6 +75,11 @@ namespace GraphicalProgrammingLanguage
             return input;
         }
 
+        /// <summary>
+        /// 'setCommand' uses the REGEX patterns within the class to identify inputs containing parentheses or if it is
+        /// a command on its own, further verification of the command is done within the command factory.
+        /// </summary>
+        /// <param name="input"></param>
         private void setCommand(string input)
         {
             int index = 0;
@@ -84,6 +102,10 @@ namespace GraphicalProgrammingLanguage
             }
         }
 
+        /// <summary>
+        /// This method is used to cast the command object to the relavent command type and initiate the set method 
+        /// appropriately passing the variables dictionary.
+        /// </summary>
         private void setCommandVariables()
         {
             switch (command.name)
@@ -109,6 +131,11 @@ namespace GraphicalProgrammingLanguage
             }
         }
 
+        /// <summary>
+        /// Using the REGEX patterns the 'setVariablesFromInput method identifies whether the entered input string 
+        /// hold variables, whether they are inside parentheses or stand alone variables.
+        /// </summary>
+        /// <param name="input"></param>
         private void setVariablesFromInput(string input)
         {
             int startIndex = 0;
@@ -149,18 +176,32 @@ namespace GraphicalProgrammingLanguage
             setCommandVariables();
         }
 
+        /// <summary>
+        /// This method assigns the built command to the MainGUI object. The purpose of this action is to store a partially
+        /// created command object and variables until they are completed and can be executed.
+        /// </summary>
         private void setCurrentCommand()
         {
             main.currentCommand = command;
             main.currentVariables = variables;
         }
 
+        /// <summary>
+        /// As the command object within the MainGUI is used as storage for incomplete commands, this method is to clear the 
+        /// object and variables.
+        /// This is used on execution of the completed command or if the command is changed before completed.
+        /// </summary>
         private void clearCurrentCommand()
         {
             main.currentCommand = null;
             main.currentVariables = null;
         }
 
+        /// <summary>
+        /// A feature of the application is to 
+        /// On completion of a command the txtCommandCount GUI object is updated with a formatted string value taken from the
+        /// database and ordered by the number of calls to the command.
+        /// </summary>
         private void updateCommandUsage()
         {
             List<string> usageOutput = new List<string>();

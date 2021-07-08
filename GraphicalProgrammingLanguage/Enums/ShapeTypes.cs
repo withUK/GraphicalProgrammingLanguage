@@ -2,6 +2,9 @@
 
 namespace GraphicalProgrammingLanguage.Enums
 {
+    /// <summary>
+    /// Enum values of defined shapes, these are used for consistancy throughout the application.
+    /// </summary>
     internal enum ShapeTypes
     {
         [Display(Name = "Circle")]

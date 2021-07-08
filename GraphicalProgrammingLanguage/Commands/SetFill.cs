@@ -4,19 +4,32 @@ using System.Drawing;
 
 namespace GraphicalProgrammingLanguage.Commands
 {
-    class SetFill : Command
+    /// <summary>
+    /// Set fill makes use of the brush object to set the color of any shapes drawn on the MainGUI's
+    /// graphic. In this application it is the SolidBrush type that is used and does not offer configuration
+    /// to any other type.
+    /// By including a color value within the parentheses that color is used, using empty paretheses sets the 
+    /// fill to transparent effectively turning the fill off.
+    /// 
+    /// Syntax example : 
+    ///     setfill(color=red)
+    ///     setfill()
+    /// </summary>
+    public class SetFill : Command
     {
-        // Properties
+        #region Properties
         protected Brush brush;
-        
-        // Constructors
+        #endregion
+
+        #region Constructors
         public SetFill(MainGUI main) : base(main)
         {
             name = CommandTypes.setfill.ToString();
             brush = main.brush;
         }
+        #endregion
 
-        // Methods
+        #region Methods
         public void set(Dictionary<string, string> variables)
         {
             this.variables = variables;
@@ -32,8 +45,7 @@ namespace GraphicalProgrammingLanguage.Commands
                 }
             }
         }
-
-        // Overrides
+        
         public override void execute()
         {
             if (isValid(variables))
@@ -52,5 +64,6 @@ namespace GraphicalProgrammingLanguage.Commands
         {
             return hasRequiredParameters();
         }
+        #endregion
     }
 }

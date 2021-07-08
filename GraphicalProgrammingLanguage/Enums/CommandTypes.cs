@@ -2,6 +2,9 @@
 
 namespace GraphicalProgrammingLanguage.Enums
 {
+    /// <summary>
+    /// Enum values of defined commands, these are used for consistancy throughout the application.
+    /// </summary>
     internal enum CommandTypes
     {
         [Display(Name = "Clear")]
