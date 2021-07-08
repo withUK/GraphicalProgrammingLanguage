@@ -1,0 +1,452 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GraphicalProgrammingLanguage</name>
+    </assembly>
+    <members>
+        <member name="T:GraphicalProgrammingLanguage.CommandParser">
+            <summary>
+            The command parser is used to take the input from the user and ascertains whether it matches syntax patterns 
+            to draw out the command name and variables. When a command has the required parameters the parser executes and
+            logs the action as successful.
+            The MainGUI is passed within the constructor to ensure the GUI elements are available for access dependant on
+            the command.
+            </summary>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.CommandParser.prepareInput(System.String)">
+            <summary>
+            The 'prepareInput' method takes a string input and converts to lowercase and then removes the whitespace to 
+            ensure consistant evaluation and extraction of values.
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.CommandParser.setCommand(System.String)">
+            <summary>
+            'setCommand' uses the REGEX patterns within the class to identify inputs containing parentheses or if it is
+            a command on its own, further verification of the command is done within the command factory.
+            </summary>
+            <param name="input"></param>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.CommandParser.setCommandVariables">
+            <summary>
+            This method is used to cast the command object to the relavent command type and initiate the set method 
+            appropriately passing the variables dictionary.
+            </summary>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.CommandParser.setVariablesFromInput(System.String)">
+            <summary>
+            Using the REGEX patterns the 'setVariablesFromInput method identifies whether the entered input string 
+            hold variables, whether they are inside parentheses or stand alone variables.
+            </summary>
+            <param name="input"></param>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.CommandParser.setCurrentCommand">
+            <summary>
+            This method assigns the built command to the MainGUI object. The purpose of this action is to store a partially
+            created command object and variables until they are completed and can be executed.
+            </summary>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.CommandParser.clearCurrentCommand">
+            <summary>
+            As the command object within the MainGUI is used as storage for incomplete commands, this method is to clear the 
+            object and variables.
+            This is used on execution of the completed command or if the command is changed before completed.
+            </summary>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.CommandParser.updateCommandUsage">
+            <summary>
+            A feature of the application is to 
+            On completion of a command the txtCommandCount GUI object is updated with a formatted string value taken from the
+            database and ordered by the number of calls to the command.
+            </summary>
+        </member>
+        <member name="T:GraphicalProgrammingLanguage.Commands.Clear">
+            <summary>
+            The clear command is designed to take the graphic from the pnlOutput within the MainGui object
+            and clears anything that had been added to it.
+            
+            Syntax example : 
+                clear
+            </summary>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Commands.Clear.hasRequiredParameters">
+            <summary>
+            HasRequiredParameters returns true without any logic due to the fact the Clear command does 
+            not require any parameters.
+            The method is implemented this way to follow the established pattern within the CommandParser 
+            class, it has the additional benefit of being able to add further logic in future if the 
+            application changes in future iterations.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Commands.Clear.isValid(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            IsValid returns true without any logic due to the fact the Clear command does 
+            not require any parameters.
+            The method is implemented this way to follow the established pattern within the CommandParser 
+            class, it has the additional benefit of being able to add further logic in future if the 
+            application changes in future iterations.
+            </summary>
+            <param name="variables"></param>
+            <returns></returns>
+        </member>
+        <member name="T:GraphicalProgrammingLanguage.Commands.Command">
+            <summary>
+            The base class to all commands that are specified within the application. This class implements 
+            the ICommand interface of which only Set and Log are written, Execute, HasRequiredParameters and 
+            IsValid will left to the children of the base class.
+            </summary>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Commands.Command.set(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            'Set' within this base class takes the variables provided and assigns them to the Dictionary 
+            that is defined within this class.
+            By using a Dictiaonary and setting it at the base class it reduces the need to set multiple 
+            times and can concentrate on the logic within the child.
+            </summary>
+            <param name="variables"></param>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Commands.Command.log(GraphicalProgrammingLanguage.MainGUI)">
+            <summary>
+            The base implemetation of the Log() method is created to record when a command is called, child
+            implementations can hold more specific information if required.
+            </summary>
+            <param name="main"></param>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Commands.Command.execute">
+            <summary>
+            These methods have been brought in by the interface, as the class is abstract these methods are 
+            not reuqired at this level and will be implemented by children of the Command base class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:GraphicalProgrammingLanguage.Commands.DrawShape">
+            <summary>
+            The draw shape command is the main call when wanting to draw any of the shapes defined within the
+            application which are generated by the ShapeFactory.
+            With the dictionary parameters passed to the Set method or the Constructor the values are then passed
+            to the shape class to be populated which inturn executes.
+            
+            Syntax example : 
+            Inline example
+                drawshape(type=circle,x=2,y=2,radius=50)
+                drawshape(type=square,x=2,y=2,length=50)
+            Seperate example
+                drawshape
+                type=circle
+                x=5
+                y=5
+                radius=50
+            </summary>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Commands.DrawShape.hasRequiredParameters">
+            <summary>
+            This implementation of the HasRequiredParameters ensures the shape object has been instansiated and
+            then makes use of the shapes own HasRequiredParameters method as that is the object that requires the
+            variables to successfully execute.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Commands.DrawShape.isValid(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            This method is implemented based on the shape having the correct variables and so make use of the
+            hasRequiredParameters() method.
+            </summary>
+            <param name="variables"></param>
+            <returns></returns>
+        </member>
+        <member name="T:GraphicalProgrammingLanguage.Commands.DrawTo">
+            <summary>
+            The draw to command is implemented to add a graphical line from the current point on the 
+            MainGUI to x y coordinates that are passed via the Set method or on construction. This line
+            uses the current value of the pen weight and color from the MainGUI. 
+            
+            Syntax example : 
+            Inline example
+                drawto(x=20,y=20)
+            Seperate example
+                drawto
+                x=5
+                y=5
+            </summary>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Commands.DrawTo.hasRequiredParameters">
+            <summary>
+            This implementation of the HasRequiredParameters checks the boolean values set when the 
+            coresponding x or y value are set via the parameters.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Commands.DrawTo.isValid(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            With the lack of additional logic requirements the IsValid method makes use of the hasRequiredParameters'
+            method.
+            </summary>
+            <param name="variables"></param>
+            <returns></returns>
+        </member>
+        <member name="T:GraphicalProgrammingLanguage.Commands.MoveTo">
+            <summary>
+            The move to command is implemented to move the position from the current point on the 
+            MainGUI to x y coordinates that are passed via the Set method or on construction.
+            
+            Syntax example : 
+            Inline example
+                moveto(x=20,y=20)
+            Seperate example
+                moveto
+                x=5
+                y=5
+            </summary>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Commands.MoveTo.hasRequiredParameters">
+            <summary>
+            This implementation of the HasRequiredParameters checks the boolean values set when the 
+            coresponding x or y value are set via the parameters.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Commands.MoveTo.isValid(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            With the lack of additional logic requirements the IsValid method makes use of the hasRequiredParameters'
+            method.
+            </summary>
+            <param name="variables"></param>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:GraphicalProgrammingLanguage.Commands.Reset" -->
+        <member name="M:GraphicalProgrammingLanguage.Commands.Reset.hasRequiredParameters">
+            <summary>
+            HasRequiredParameters returns true without any logic due to the fact the Reset command does 
+            not require any parameters.
+            The method is implemented this way to follow the established pattern within the CommandParser 
+            class, it has the additional benefit of being able to add further logic in future if the 
+            application changes in future iterations.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Commands.Reset.isValid(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            IsValid returns true without any logic due to the fact the Reset command does 
+            not require any parameters.
+            The method is implemented this way to follow the established pattern within the CommandParser 
+            class, it has the additional benefit of being able to add further logic in future if the 
+            application changes in future iterations.
+            </summary>
+            <param name="variables"></param>
+            <returns></returns>
+        </member>
+        <member name="T:GraphicalProgrammingLanguage.Commands.SetFill">
+            <summary>
+            Set fill makes use of the brush object to set the color of any shapes drawn on the MainGUI's
+            graphic. In this application it is the SolidBrush type that is used and does not offer configuration
+            to any other type.
+            By including a color value within the parentheses that color is used, using empty paretheses sets the 
+            fill to transparent effectively turning the fill off.
+            
+            Syntax example : 
+                setfill(color=red)
+                setfill()
+            </summary>
+        </member>
+        <member name="T:GraphicalProgrammingLanguage.Commands.SetPen">
+            <summary>
+            A dymanic command, set pen is designed to set the color or weight of the pen by passing the name 
+            of the parameters. This means weight and color can be set separatly or as part of one call.
+            
+            Syntax example : 
+                setpen(weight=3)
+                setpen(color=red)
+                setpen(weight=3,color=red)
+            </summary>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Commands.SetPen.hasRequiredParameters">
+            <summary>
+            With the command being dynamic in nature has requirements uses the OR logic between the 
+            bool variables weightset and colorset.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Commands.SetPen.isValid(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            The validity of the command come from the correct variables and so uses hasRequiredParameters.
+            </summary>
+            <param name="variables"></param>
+            <returns></returns>
+        </member>
+        <member name="T:GraphicalProgrammingLanguage.Data.CommandsContext">
+            <summary>
+            The access point to the GP_DATABASE which holds the count for each command invoked.
+            Currently the connection string is hardcoded within the UseSqlServer method however this will be written
+            and referenced from a appsettings.json file as developemnt continues.
+            </summary>
+        </member>
+        <member name="T:GraphicalProgrammingLanguage.Enums.CommandTypes">
+            <summary>
+            Enum values of defined commands, these are used for consistancy throughout the application.
+            </summary>
+        </member>
+        <member name="T:GraphicalProgrammingLanguage.Enums.ShapeTypes">
+            <summary>
+            Enum values of defined shapes, these are used for consistancy throughout the application.
+            </summary>
+        </member>
+        <member name="T:GraphicalProgrammingLanguage.Factories.CommandFactory">
+            <summary>
+            Making use of the factory design pattern this class is created to generate commands freely available
+            within the command parser.
+            Enums utilised for consistent evaluations within the switch statement.
+            </summary>
+        </member>
+        <member name="T:GraphicalProgrammingLanguage.Factories.ShapeFactory">
+            <summary>
+            Making use of the factory design pattern this class is created to generate shape objects freely 
+            within the draw shape class.
+            Enums utilised for consistent evaluations within the switch statement.
+            </summary>
+        </member>
+        <member name="T:GraphicalProgrammingLanguage.Logger">
+            <summary>
+            The Logger class helper is a set of staic methods that write to an exernal log.txt file held within the source
+            files. The messages generally are designed to reflect the output of the command and also what was input.
+            </summary>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Logger.LogLaunch">
+            <summary>
+            On the launch of the application this method is called to write the event in the log.txt file as well as write 
+            to the txtLog visual control with the DateTime stamp preceeding it.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Logger.LogClose">
+            <summary>
+            As with the LogLaunch the LogClose method is invoked when the application is closed. It still uses the same log.txt 
+            file with the DateTime stamp preceeding it however this method does not write to the txtLog object.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Logger.Log(System.String)">
+            <summary>
+            Log() writes any given string to the log.txt file and the txtLog UI control on a fresh line along with the DateTime 
+            stamp preceeding it.
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:GraphicalProgrammingLanguage.UsageCounter">
+            <summary>
+            The UsageCounter class helper is a set of staic methods that read and write to the GPL_DATABASE held within the source
+            files. Each method is wrapped in a context using statement to handle the resource efficiently by closing the connection 
+            after the method has been exited.
+            </summary>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.UsageCounter.AddToCommandCount(System.String)">
+            <summary>
+            Matching to the given commandName variable, this method increases the count of the record by one each time it is called.
+            </summary>
+            <param name="commandName"></param>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.UsageCounter.GetUsageCountOutput">
+            <summary>
+            Used within the MainGUI class GetUsageOutput() is called to provide the data from the DB in a formatted manner as well as ordered 
+            by the most recent usage count.
+            The outputted string concatinates the CommandName followed by a tab space and then the SyntaxExample, delimited by a colon.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:GraphicalProgrammingLanguage.Interfaces.ICommand">
+            <summary>
+            The command interface holds methods used for common actions relating to a generic command.
+            </summary>
+        </member>
+        <member name="T:GraphicalProgrammingLanguage.Interfaces.IShape">
+            <summary>
+            The shape interface holds methods used for common actions relating to a generic shape.
+            CalculateArea and CalculatePerimenter are intended to be used within the override for toString() method.
+            </summary>
+        </member>
+        <member name="F:GraphicalProgrammingLanguage.MainGUI.components">
+            <summary>
+             Required designer variable.
+            </summary>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.MainGUI.Dispose(System.Boolean)">
+            <summary>
+             Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.MainGUI.InitializeComponent">
+            <summary>
+             Required method for Designer support - do not modify
+             the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:GraphicalProgrammingLanguage.Models.CommandUsageCount">
+            <summary>
+            The CommandUsageCount model is used to bind the entries from the database to the application.
+            Table contains fieldsd for syntax examples which is intended to work as a reference guide for 
+            users as well as being able to be copied and pasted quickly when tested.
+            </summary>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Program.Main">
+            <summary>
+             The main entry point for the application.
+            </summary>
+        </member>
+        <member name="T:GraphicalProgrammingLanguage.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:GraphicalProgrammingLanguage.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:GraphicalProgrammingLanguage.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:GraphicalProgrammingLanguage.Properties.Resources.gpl_logo_sml">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:GraphicalProgrammingLanguage.Properties.Resources.gpl_logo_vsml">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:GraphicalProgrammingLanguage.Properties.Resources.gpl_logo_vsml1">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="T:GraphicalProgrammingLanguage.Shapes.Shape">
+            <summary>
+            The base class to all shapes that are specified within the application. This class implements 
+            the IShape interface of which only Set is written, CalculateArea, CalculatePerimeter, Draw and 
+            hasRequiredVariables will left to the children of the base class.
+            </summary>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Shapes.Shape.set(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            The 'set' method uses the params in position [0] as x, [1] as y and [2] as the line weight. 
+            This virtual method can be overwritten by children of this class that can be more specfic to the shape.
+            </summary>
+            <param name="variables"></param>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Shapes.Shape.calculateArea">
+            <summary>
+            These methods have been brought in by the interface, as the class is abstract these methods are not reuqired 
+            at this level and will be implemented by children of the Shape base class.
+            </summary>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:GraphicalProgrammingLanguage.Shapes.Shape.ToString" -->
+    </members>
+</doc>
