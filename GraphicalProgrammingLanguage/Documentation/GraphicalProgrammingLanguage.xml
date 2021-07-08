@@ -419,6 +419,12 @@
               Looks up a localized resource of type System.Drawing.Bitmap.
             </summary>
         </member>
+        <member name="M:GraphicalProgrammingLanguage.Shapes.Circle.ToString">
+            <summary>
+            This overrides the base implemention of ToString() in this case this is now the Shape class.
+            </summary>
+            <returns>Example output: 'StringRef x=1, y=2 : radius=3, perimeter=4, area=5'</returns>
+        </member>
         <member name="T:GraphicalProgrammingLanguage.Shapes.Shape">
             <summary>
             The base class to all shapes that are specified within the application. This class implements 

@@ -11,19 +11,20 @@ namespace GraphicalProgrammingLanguage.Shapes
         private bool radiusSet { get; set; }
 
         // Constructors
-        public Circle() : base()
-        {
+        public Circle() : base() { }
 
-        }
-
-        public Circle(MainGUI main) : base(main)
-        {
-
-        }
+        public Circle(MainGUI main) : base(main) { }
 
         public Circle(int x, int y, int radius, Color lineColor, Color fillColor, float lineWeight) : base(x, y, lineColor, fillColor, lineWeight)
-        {   
-            this.radius = radius;
+        {
+            Dictionary<string, string> variables = new Dictionary<string, string>();
+            variables.Add("x", x.ToString());
+            variables.Add("y", y.ToString());
+            variables.Add("radius", radius.ToString());
+            variables.Add("linecolor", lineColor.ToString());
+            variables.Add("fillcolor", fillColor.ToString());
+            variables.Add("lineweight", lineWeight.ToString());
+            set(variables);
         }
 
         // Methods
@@ -50,7 +51,7 @@ namespace GraphicalProgrammingLanguage.Shapes
 
         public override bool hasRequiredVariables()
         {
-            return radiusSet && xSet & ySet;
+            return radiusSet && xSet && ySet;
         }
 
         // Overrides
@@ -85,11 +86,13 @@ namespace GraphicalProgrammingLanguage.Shapes
             }
         }
 
-        // This overrides the base implemention of ToString() in this case this is now the Shape class.
-        // Example output: 'StringRef 1, 2 : 3'
+        /// <summary>
+        /// This overrides the base implemention of ToString() in this case this is now the Shape class.
+        /// </summary>
+        /// <returns>Example output: 'StringRef x=1, y=2 : radius=3, perimeter=4, area=5'</returns>
         public override string ToString()
         {
-            return base.ToString() + this.radius;
+            return base.ToString() + "radius=" + this.radius + ", perimeter=" + calculatePerimeter() + ", area=" + calculateArea();
         }
     }
 }

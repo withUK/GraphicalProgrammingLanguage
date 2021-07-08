@@ -89,14 +89,15 @@ namespace GraphicalProgrammingLanguage.Shapes
         public abstract bool hasRequiredVariables();
         #endregion
 
-        // Overrides
+        #region Overrides
         /// <summary>
         /// This overrides the base implemention of ToString() but combines with the x & y values.
         /// </summary>
         /// <returns></returns>
         public override string ToString()
         {
-            return base.ToString() + " " + this.x + ", " + this.y + " : ";
+            return base.ToString() + " : x=" + this.x + ", y=" + this.y + " : ";
         }
+        #endregion
     }
 }

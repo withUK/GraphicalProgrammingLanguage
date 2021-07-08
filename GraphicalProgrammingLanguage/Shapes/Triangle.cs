@@ -16,14 +16,26 @@ namespace GraphicalProgrammingLanguage.Shapes
         Point[] points { get; set; }
 
         // Constructors
-        public Triangle(MainGUI main) : base(main)
+        public Triangle() : base()
         {
-            
+
         }
 
-        public Triangle(int x, int y, Color lineColor, Color fillColor, float lineWeight) : base(x, y, lineColor, fillColor, lineWeight)
+        public Triangle(MainGUI main) : base(main)
         {
-            
+
+        }
+
+        public Triangle(int x, int y, Color lineColor, Color fillColor, float lineWeight, int x2, int y2, int x3, int y3) : base(x, y, lineColor, fillColor, lineWeight)
+        {
+            Dictionary<string, string> variables = new Dictionary<string, string>();
+            variables.Add("p1", string.Concat(x.ToString(), ",", y.ToString()));
+            variables.Add("p2", string.Concat(x2.ToString(), ",", y2.ToString()));
+            variables.Add("p3", string.Concat(x3.ToString(), ",", y3.ToString()));
+            variables.Add("linecolor", lineColor.ToString());
+            variables.Add("fillcolor", fillColor.ToString());
+            variables.Add("lineweight", lineWeight.ToString());
+            set(variables);
         }
 
         // Methods
@@ -37,11 +49,11 @@ namespace GraphicalProgrammingLanguage.Shapes
 
         public override double calculatePerimeter()
         {
-            var l1 = Math.Sqrt((p1.X - p2.X) * 2 + (p1.Y - p2.Y) * 2);
-            var l2 = Math.Sqrt((p2.X - p3.X) * 2 + (p2.Y - p3.Y) * 2);
-            var l3 = Math.Sqrt((p3.X - p1.X) * 2 + (p3.Y - p1.Y) * 2);
+            var l1 = Math.Sqrt((p1.X - p2.X) * (p1.X - p2.X) + (p1.Y - p2.Y) * (p1.Y - p2.Y));
+            var l2 = Math.Sqrt((p2.X - p3.X) * (p2.X - p3.X) + (p2.Y - p3.Y) * (p2.Y - p3.Y));
+            var l3 = Math.Sqrt((p3.X - p1.X) * (p3.X - p1.X) + (p3.Y - p1.Y) * (p3.Y - p1.Y));
 
-            return (l1 + l2 + l3) / 2;
+            return l1 + l2 + l3;
         }
 
         public override void draw(Graphics g)
@@ -109,7 +121,11 @@ namespace GraphicalProgrammingLanguage.Shapes
             {
                 points = new Point[] { p1, p2, p3 };
             }
+        }
 
+        public override string ToString()
+        {
+            return base.ToString() + "p1=" + p1.ToString() + ", p2=" + p2.ToString() + ", p3=" + p3.ToString() + ", perimeter=" + calculatePerimeter() + ", area=" + calculateArea();
         }
     }
 }

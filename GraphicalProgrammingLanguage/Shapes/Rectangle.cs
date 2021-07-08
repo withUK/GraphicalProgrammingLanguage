@@ -24,8 +24,15 @@ namespace GraphicalProgrammingLanguage.Shapes
 
         public Rectangle(int x, int y, int length, int width, Color lineColor, Color fillColor, float lineWeight) : base(x, y, lineColor, fillColor, lineWeight)
         {
-            this.length = length;
-            this.width = width;
+            Dictionary<string, string> variables = new Dictionary<string, string>();
+            variables.Add("x", x.ToString());
+            variables.Add("y", y.ToString());
+            variables.Add("length", length.ToString());
+            variables.Add("width", width.ToString());
+            variables.Add("linecolor", lineColor.ToString());
+            variables.Add("fillcolor", fillColor.ToString());
+            variables.Add("lineweight", lineWeight.ToString());
+            set(variables);
         }
 
         // Methods
@@ -50,7 +57,7 @@ namespace GraphicalProgrammingLanguage.Shapes
 
         public override bool hasRequiredVariables()
         {
-            return lengthSet && widthSet;
+            return lengthSet && widthSet && xSet && ySet;
         }
         
         // Overrides
@@ -94,7 +101,7 @@ namespace GraphicalProgrammingLanguage.Shapes
         // Example output: 'StringRef 1, 2 : 3, 4'
         public override string ToString()
         {
-            return base.ToString() + this.length + ", " + this.width;
+            return base.ToString() + "length=" + this.length + ", width=" + this.width + ", perimeter=" + calculatePerimeter() + ", area=" + calculateArea();
         }
     }
 }
