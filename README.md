@@ -16,7 +16,7 @@ Produce a fairly complex  program. The idea of the program is to produce a simpl
 - For high marks I expect a professional standard with many and regular commits each  time something significant has been added with comprehensive descriptions. I also expect  Unit tests to be included. 
 
 #### Code Documentation and Standards 
-- Code documented with XML tags, XML documentation produced (I want to see the  documentation and not just the comments in the code). For high marks I expect  documentation to a professional standard. (5 marks)  
+- Code documented with XML tags, XML documentation produced (I want to see the  documentation and not just the comments in the code). For high marks I expect  documentation to a professional standard. (5 marks) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
 - Use of exception handling (including user generated exceptions) (5 marks)   
 
 ### Unit Tests (10 marks total)
@@ -43,7 +43,7 @@ Your implementation must have a proper interface with a window/area for typing a
 - Draw basic shapes:  
 + rectangle <width>, <height> (2 marks) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
 + circle <radius> (2 marks) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
-+ triangle (you can do this any way you like) (2 marks)  
++ triangle (you can do this any way you like) (2 marks) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
 - Colours and fills  
 + pen <colour> e.g pen red, or pen green (three or four colours). (2 marks) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
 + fill <on/off> e.g. fill on, makes subsequent shape operations  filled and not outline. (2 marks)  
