@@ -23,20 +23,7 @@ namespace GraphicalProgrammingLanguage
                 return entry;
             }
         }
-        /// <summary>
-        /// As with the LogLaunch the LogClose method is invoked when the application is closed. It still uses the same log.txt 
-        /// file with the DateTime stamp preceeding it however this method does not write to the txtLog object.
-        /// </summary>
-        /// <returns></returns>
-        public static void LogClose()
-        {
-            using (StreamWriter w = File.AppendText("log.txt"))
-            {
-                string entry = $"{DateTime.Now.ToLongTimeString()} {DateTime.Now.ToLongDateString()} : Application ended";
-                w.WriteLine(entry);
-            }
-        }
-
+        
         /// <summary>
         /// Log() writes any given string to the log.txt file and the txtLog UI control on a fresh line along with the DateTime 
         /// stamp preceeding it.
