@@ -23,7 +23,7 @@ namespace GraphicalProgrammingLanguage.Commands.Tests
         public void IsValid_ReturnsTrue()
         {
             Reset c = new Reset(main);
-            var result = c.isValid(new Dictionary<string, string>());
+            var result = c.IsValid(new Dictionary<string, string>());
             Assert.IsTrue(result);
         }
     }

@@ -35,19 +35,19 @@ namespace GraphicalProgrammingLanguage.Shapes
             variables.Add("linecolor", lineColor.ToString());
             variables.Add("fillcolor", fillColor.ToString());
             variables.Add("lineweight", lineWeight.ToString());
-            set(variables);
+            Set(variables);
         }
 
         // Methods
 
 
         // Abstracts
-        public override double calculateArea()
+        public override double CalculateArea()
         {
             return 0.5 * (p1.X * (p2.Y - p3.Y) + p2.X * (p3.Y - p1.Y) + p3.X * (p1.Y - p2.Y));
         }
 
-        public override double calculatePerimeter()
+        public override double CalculatePerimeter()
         {
             var l1 = Math.Sqrt((p1.X - p2.X) * (p1.X - p2.X) + (p1.Y - p2.Y) * (p1.Y - p2.Y));
             var l2 = Math.Sqrt((p2.X - p3.X) * (p2.X - p3.X) + (p2.Y - p3.Y) * (p2.Y - p3.Y));
@@ -56,7 +56,7 @@ namespace GraphicalProgrammingLanguage.Shapes
             return l1 + l2 + l3;
         }
 
-        public override void draw(Graphics g)
+        public override void Draw(Graphics g)
         {
             Pen p = new Pen(lineColor, lineWeight);
             SolidBrush b = new SolidBrush(fillColor);
@@ -65,13 +65,13 @@ namespace GraphicalProgrammingLanguage.Shapes
             g.DrawPolygon(p, points);
         }
 
-        public override bool hasRequiredVariables()
+        public override bool HasRequiredVariables()
         {
             return p1Set && p2Set && p3Set;
         }
 
         // Overrides
-        public override void set(Dictionary<string, string> variables)
+        public override void Set(Dictionary<string, string> variables)
         {
             if (variables.ContainsKey("lineweight"))
             {
@@ -125,7 +125,7 @@ namespace GraphicalProgrammingLanguage.Shapes
 
         public override string ToString()
         {
-            return base.ToString() + "p1=" + p1.ToString() + ", p2=" + p2.ToString() + ", p3=" + p3.ToString() + ", perimeter=" + calculatePerimeter() + ", area=" + calculateArea();
+            return base.ToString() + "p1=" + p1.ToString() + ", p2=" + p2.ToString() + ", p3=" + p3.ToString() + ", perimeter=" + CalculatePerimeter() + ", area=" + CalculateArea();
         }
     }
 }

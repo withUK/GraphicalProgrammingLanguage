@@ -17,21 +17,21 @@ namespace GraphicalProgrammingLanguage.Shapes.Tests
         [TestMethod()]
         public void CalculateAreaTest_ReturnExpectedResultFromInput()
         {
-            var result = complete.calculateArea();
+            var result = complete.CalculateArea();
             Assert.AreEqual(result, 10000);
         }
 
         [TestMethod()]
         public void CalculatePerimeterTest_ReturnExpectedResultFromInput()
         {
-            var result = complete.calculatePerimeter();
+            var result = complete.CalculatePerimeter();
             Assert.AreEqual(result, 400);
         }
 
         [TestMethod()]
         public void HasRequiredVariables_ReturnsTrueIfAllVariablesSet()
         {
-            var result = complete.hasRequiredVariables();
+            var result = complete.HasRequiredVariables();
             Assert.IsTrue(result);
         }
 
@@ -43,9 +43,9 @@ namespace GraphicalProgrammingLanguage.Shapes.Tests
         {
             Dictionary<string, string> v = new Dictionary<string, string>();
             v.Add(key, value);
-            partial.set(v);
+            partial.Set(v);
 
-            var result = partial.hasRequiredVariables();
+            var result = partial.HasRequiredVariables();
             Assert.IsFalse(result);
         }
 

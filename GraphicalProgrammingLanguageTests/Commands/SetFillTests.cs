@@ -32,7 +32,7 @@ namespace GraphicalProgrammingLanguage.Commands.Tests
             v.Add("color", "red");
             d.set(v);
 
-            Assert.IsTrue(d.isValid(v));
+            Assert.IsTrue(d.IsValid(v));
         }
     }
 }

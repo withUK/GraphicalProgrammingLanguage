@@ -29,24 +29,24 @@ namespace GraphicalProgrammingLanguage.Shapes
             variables.Add("linecolor", lineColor.ToString());
             variables.Add("fillcolor", fillColor.ToString());
             variables.Add("lineweight", lineWeight.ToString());
-            set(variables);
+            Set(variables);
         }
 
         // Methods
 
 
         // Abstracts
-        public override double calculateArea()
+        public override double CalculateArea()
         {
             return length * length;
         }
 
-        public override double calculatePerimeter()
+        public override double CalculatePerimeter()
         {
             return length * 4;
         }
 
-        public override void draw(Graphics g)
+        public override void Draw(Graphics g)
         {
             Pen p = new Pen(lineColor, lineWeight);
             SolidBrush b = new SolidBrush(fillColor);
@@ -54,13 +54,13 @@ namespace GraphicalProgrammingLanguage.Shapes
             g.DrawRectangle(p, x, y, length, length);
         }
 
-        public override bool hasRequiredVariables()
+        public override bool HasRequiredVariables()
         {
             return lengthSet && xSet && ySet;
         }
 
         // Overrides
-        public override void set(Dictionary<string, string> variables)
+        public override void Set(Dictionary<string, string> variables)
         {
             if (variables.ContainsKey("x"))
             {
@@ -95,7 +95,7 @@ namespace GraphicalProgrammingLanguage.Shapes
         // Example output: 'StringRef 1, 2 : 3'
         public override string ToString()
         {
-            return base.ToString() + "length=" + this.length + ", perimeter=" + calculatePerimeter() + ", area=" + calculateArea();
+            return base.ToString() + "length=" + this.length + ", perimeter=" + CalculatePerimeter() + ", area=" + CalculateArea();
         }
     }
 }

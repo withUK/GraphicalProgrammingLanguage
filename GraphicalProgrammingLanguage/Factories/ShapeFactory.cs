@@ -11,7 +11,7 @@ namespace GraphicalProgrammingLanguage.Factories
     /// </summary>
     public class ShapeFactory
     {
-        public Shape getShape(MainGUI main, String shapeType)
+        public Shape GetShape(MainGUI main, String shapeType)
         {
             try
             {

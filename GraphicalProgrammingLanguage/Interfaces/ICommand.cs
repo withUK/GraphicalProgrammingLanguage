@@ -8,12 +8,12 @@ namespace GraphicalProgrammingLanguage.Interfaces
     interface ICommand
     {
         // Methods
-        void set(Dictionary<string, string> variables);
+        void Set(Dictionary<string, string> variables);
 
-        void execute();
+        void Execute();
 
-        bool isValid(Dictionary<string, string> variables);
+        bool IsValid(Dictionary<string, string> variables);
 
-        void log(MainGUI main);
+        void Log(MainGUI main);
     }
 }

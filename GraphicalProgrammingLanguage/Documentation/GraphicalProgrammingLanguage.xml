@@ -13,7 +13,7 @@
             the command.
             </summary>
         </member>
-        <member name="M:GraphicalProgrammingLanguage.CommandParser.prepareInput(System.String)">
+        <member name="M:GraphicalProgrammingLanguage.CommandParser.PrepareInput(System.String)">
             <summary>
             The 'prepareInput' method takes a string input and converts to lowercase and then removes the whitespace to 
             ensure consistant evaluation and extraction of values.
@@ -21,40 +21,40 @@
             <param name="input"></param>
             <returns></returns>
         </member>
-        <member name="M:GraphicalProgrammingLanguage.CommandParser.setCommand(System.String)">
+        <member name="M:GraphicalProgrammingLanguage.CommandParser.SetCommand(System.String)">
             <summary>
             'setCommand' uses the REGEX patterns within the class to identify inputs containing parentheses or if it is
             a command on its own, further verification of the command is done within the command factory.
             </summary>
             <param name="input"></param>
         </member>
-        <member name="M:GraphicalProgrammingLanguage.CommandParser.setCommandVariables">
+        <member name="M:GraphicalProgrammingLanguage.CommandParser.SetCommandVariables">
             <summary>
             This method is used to cast the command object to the relavent command type and initiate the set method 
             appropriately passing the variables dictionary.
             </summary>
         </member>
-        <member name="M:GraphicalProgrammingLanguage.CommandParser.setVariablesFromInput(System.String)">
+        <member name="M:GraphicalProgrammingLanguage.CommandParser.SetVariablesFromInput(System.String)">
             <summary>
             Using the REGEX patterns the 'setVariablesFromInput method identifies whether the entered input string 
             hold variables, whether they are inside parentheses or stand alone variables.
             </summary>
             <param name="input"></param>
         </member>
-        <member name="M:GraphicalProgrammingLanguage.CommandParser.setCurrentCommand">
+        <member name="M:GraphicalProgrammingLanguage.CommandParser.SetCurrentCommand">
             <summary>
             This method assigns the built command to the MainGUI object. The purpose of this action is to store a partially
             created command object and variables until they are completed and can be executed.
             </summary>
         </member>
-        <member name="M:GraphicalProgrammingLanguage.CommandParser.clearCurrentCommand">
+        <member name="M:GraphicalProgrammingLanguage.CommandParser.ClearCurrentCommand">
             <summary>
             As the command object within the MainGUI is used as storage for incomplete commands, this method is to clear the 
             object and variables.
             This is used on execution of the completed command or if the command is changed before completed.
             </summary>
         </member>
-        <member name="M:GraphicalProgrammingLanguage.CommandParser.updateCommandUsage">
+        <member name="M:GraphicalProgrammingLanguage.CommandParser.UpdateCommandUsage">
             <summary>
             A feature of the application is to 
             On completion of a command the txtCommandCount GUI object is updated with a formatted string value taken from the
@@ -80,7 +80,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:GraphicalProgrammingLanguage.Commands.Clear.isValid(System.Collections.Generic.Dictionary{System.String,System.String})">
+        <member name="M:GraphicalProgrammingLanguage.Commands.Clear.IsValid(System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
             IsValid returns true without any logic due to the fact the Clear command does 
             not require any parameters.
@@ -98,7 +98,7 @@
             IsValid will left to the children of the base class.
             </summary>
         </member>
-        <member name="M:GraphicalProgrammingLanguage.Commands.Command.set(System.Collections.Generic.Dictionary{System.String,System.String})">
+        <member name="M:GraphicalProgrammingLanguage.Commands.Command.Set(System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
             'Set' within this base class takes the variables provided and assigns them to the Dictionary 
             that is defined within this class.
@@ -107,14 +107,14 @@
             </summary>
             <param name="variables"></param>
         </member>
-        <member name="M:GraphicalProgrammingLanguage.Commands.Command.log(GraphicalProgrammingLanguage.MainGUI)">
+        <member name="M:GraphicalProgrammingLanguage.Commands.Command.Log(GraphicalProgrammingLanguage.MainGUI)">
             <summary>
             The base implemetation of the Log() method is created to record when a command is called, child
             implementations can hold more specific information if required.
             </summary>
             <param name="main"></param>
         </member>
-        <member name="M:GraphicalProgrammingLanguage.Commands.Command.execute">
+        <member name="M:GraphicalProgrammingLanguage.Commands.Command.Execute">
             <summary>
             These methods have been brought in by the interface, as the class is abstract these methods are 
             not reuqired at this level and will be implemented by children of the Command base class.
@@ -148,7 +148,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:GraphicalProgrammingLanguage.Commands.DrawShape.isValid(System.Collections.Generic.Dictionary{System.String,System.String})">
+        <member name="M:GraphicalProgrammingLanguage.Commands.DrawShape.IsValid(System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
             This method is implemented based on the shape having the correct variables and so make use of the
             hasRequiredParameters() method.
@@ -178,7 +178,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:GraphicalProgrammingLanguage.Commands.DrawTo.isValid(System.Collections.Generic.Dictionary{System.String,System.String})">
+        <member name="M:GraphicalProgrammingLanguage.Commands.DrawTo.IsValid(System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
             With the lack of additional logic requirements the IsValid method makes use of the hasRequiredParameters'
             method.
@@ -207,7 +207,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:GraphicalProgrammingLanguage.Commands.MoveTo.isValid(System.Collections.Generic.Dictionary{System.String,System.String})">
+        <member name="M:GraphicalProgrammingLanguage.Commands.MoveTo.IsValid(System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
             With the lack of additional logic requirements the IsValid method makes use of the hasRequiredParameters'
             method.
@@ -226,7 +226,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:GraphicalProgrammingLanguage.Commands.Reset.isValid(System.Collections.Generic.Dictionary{System.String,System.String})">
+        <member name="M:GraphicalProgrammingLanguage.Commands.Reset.IsValid(System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
             IsValid returns true without any logic due to the fact the Reset command does 
             not require any parameters.
@@ -268,7 +268,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:GraphicalProgrammingLanguage.Commands.SetPen.isValid(System.Collections.Generic.Dictionary{System.String,System.String})">
+        <member name="M:GraphicalProgrammingLanguage.Commands.SetPen.IsValid(System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
             The validity of the command come from the correct variables and so uses hasRequiredParameters.
             </summary>
@@ -432,14 +432,14 @@
             hasRequiredVariables will left to the children of the base class.
             </summary>
         </member>
-        <member name="M:GraphicalProgrammingLanguage.Shapes.Shape.set(System.Collections.Generic.Dictionary{System.String,System.String})">
+        <member name="M:GraphicalProgrammingLanguage.Shapes.Shape.Set(System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
             The 'set' method uses the params in position [0] as x, [1] as y and [2] as the line weight. 
             This virtual method can be overwritten by children of this class that can be more specfic to the shape.
             </summary>
             <param name="variables"></param>
         </member>
-        <member name="M:GraphicalProgrammingLanguage.Shapes.Shape.calculateArea">
+        <member name="M:GraphicalProgrammingLanguage.Shapes.Shape.CalculateArea">
             <summary>
             These methods have been brought in by the interface, as the class is abstract these methods are not reuqired 
             at this level and will be implemented by children of the Shape base class.

@@ -39,22 +39,22 @@ namespace GraphicalProgrammingLanguage
         }
 
         // Methods
-        public void parseCommand(string input)
+        public void ParseCommand(string input)
         {
-            input = prepareInput(input);
-            setCommand(input);
-            setVariablesFromInput(input);
+            input = PrepareInput(input);
+            SetCommand(input);
+            SetVariablesFromInput(input);
 
             if (command.hasRequiredParameters())
             {
-                command.execute();
+                command.Execute();
                 UsageCounter.AddToCommandCount(command.name);
-                clearCurrentCommand();
-                updateCommandUsage();
+                ClearCurrentCommand();
+                UpdateCommandUsage();
             }
             else
             {
-                setCurrentCommand();
+                SetCurrentCommand();
             }
 
             main.txtCommandLine.Clear();
@@ -66,7 +66,7 @@ namespace GraphicalProgrammingLanguage
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        private string prepareInput(string input)
+        private string PrepareInput(string input)
         {
             input = input.ToLower().Trim();
 
@@ -80,7 +80,7 @@ namespace GraphicalProgrammingLanguage
         /// a command on its own, further verification of the command is done within the command factory.
         /// </summary>
         /// <param name="input"></param>
-        private void setCommand(string input)
+        private void SetCommand(string input)
         {
             int index = 0;
             string commandType;
@@ -90,7 +90,7 @@ namespace GraphicalProgrammingLanguage
                 index = input.IndexOf("(");
                 commandType = input.Substring(0, index);
 
-                command = cf.getCommand(main, commandType);
+                command = cf.GetCommand(main, commandType);
             }
             else if (main.currentCommand != null)
             {
@@ -98,7 +98,7 @@ namespace GraphicalProgrammingLanguage
             }
             else if (regexCommandOnly.IsMatch(input))
             {
-                command = cf.getCommand(main, input);
+                command = cf.GetCommand(main, input);
             }
         }
 
@@ -106,7 +106,7 @@ namespace GraphicalProgrammingLanguage
         /// This method is used to cast the command object to the relavent command type and initiate the set method 
         /// appropriately passing the variables dictionary.
         /// </summary>
-        private void setCommandVariables()
+        private void SetCommandVariables()
         {
             switch (command.name)
             {
@@ -136,7 +136,7 @@ namespace GraphicalProgrammingLanguage
         /// hold variables, whether they are inside parentheses or stand alone variables.
         /// </summary>
         /// <param name="input"></param>
-        private void setVariablesFromInput(string input)
+        private void SetVariablesFromInput(string input)
         {
             int startIndex = 0;
             int endIndex = 0;
@@ -173,14 +173,14 @@ namespace GraphicalProgrammingLanguage
                 variables.Add(split[0], split[1]);
             }
 
-            setCommandVariables();
+            SetCommandVariables();
         }
 
         /// <summary>
         /// This method assigns the built command to the MainGUI object. The purpose of this action is to store a partially
         /// created command object and variables until they are completed and can be executed.
         /// </summary>
-        private void setCurrentCommand()
+        private void SetCurrentCommand()
         {
             main.currentCommand = command;
             main.currentVariables = variables;
@@ -191,7 +191,7 @@ namespace GraphicalProgrammingLanguage
         /// object and variables.
         /// This is used on execution of the completed command or if the command is changed before completed.
         /// </summary>
-        private void clearCurrentCommand()
+        private void ClearCurrentCommand()
         {
             main.currentCommand = null;
             main.currentVariables = null;
@@ -202,7 +202,7 @@ namespace GraphicalProgrammingLanguage
         /// On completion of a command the txtCommandCount GUI object is updated with a formatted string value taken from the
         /// database and ordered by the number of calls to the command.
         /// </summary>
-        private void updateCommandUsage()
+        private void UpdateCommandUsage()
         {
             List<string> usageOutput = new List<string>();
             usageOutput = UsageCounter.GetUsageCountOutput();

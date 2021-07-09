@@ -58,7 +58,7 @@ namespace GraphicalProgrammingLanguage
 
         private void btnCommandLineRun_Click(object sender, EventArgs e)
         {
-            cp.parseCommand(txtCommandLine.Text);
+            cp.ParseCommand(txtCommandLine.Text);
         }
 
         private void populateCommandUsage()

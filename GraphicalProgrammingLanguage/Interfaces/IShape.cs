@@ -10,10 +10,10 @@ namespace GraphicalProgrammingLanguage.Interfaces
     interface IShape
     {
         // Methods
-        void set(Dictionary<string, string> variables);
-        double calculateArea();
-        double calculatePerimeter();
-        void draw(Graphics g);
-        bool hasRequiredVariables();
+        void Set(Dictionary<string, string> variables);
+        double CalculateArea();
+        double CalculatePerimeter();
+        void Draw(Graphics g);
+        bool HasRequiredVariables();
     }
 }
