@@ -41,7 +41,7 @@ namespace GraphicalProgrammingLanguage.Commands
             name = CommandTypes.drawshape.ToString();
             if (variables.ContainsKey("type"))
             {
-                shape = factory.getShape(main, variables.GetValueOrDefault("type").ToString());
+                shape = factory.GetShape(main, variables.GetValueOrDefault("type").ToString());
             }
         }
         #endregion
@@ -52,17 +52,17 @@ namespace GraphicalProgrammingLanguage.Commands
             this.variables = variables;
             if (variables.ContainsKey("type"))
             {
-                shape = factory.getShape(main, variables.GetValueOrDefault("type"));
-                shape.set(variables);
+                shape = factory.GetShape(main, variables.GetValueOrDefault("type"));
+                shape.Set(variables);
             }
         }
 
-        public override void execute()
+        public override void Execute()
         {
-            if (isValid(this.variables))
+            if (IsValid(this.variables))
             {
-                log(main);
-                shape.draw(main.dc);
+                Log(main);
+                shape.Draw(main.dc);
             }
         }
 
@@ -76,7 +76,7 @@ namespace GraphicalProgrammingLanguage.Commands
         {
             if (shape != null)
             {
-                return shape.hasRequiredVariables();
+                return shape.HasRequiredVariables();
             }
             return false;
         }
@@ -87,7 +87,7 @@ namespace GraphicalProgrammingLanguage.Commands
         /// </summary>
         /// <param name="variables"></param>
         /// <returns></returns>
-        public override bool isValid(Dictionary<string, string> variables)
+        public override bool IsValid(Dictionary<string, string> variables)
         {
             return hasRequiredParameters();
         }

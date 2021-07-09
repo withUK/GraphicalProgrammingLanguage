@@ -11,7 +11,7 @@ namespace GraphicalProgrammingLanguage.Factories
     /// </summary>
     public class CommandFactory
     {
-        public Command getCommand(MainGUI main, String commandType)
+        public Command GetCommand(MainGUI main, String commandType)
         {
             try
             {

@@ -22,7 +22,7 @@ namespace GraphicalProgrammingLanguage.Factories.Tests
         [DataRow("setpen")]
         public void GetCommandTest_ReturnsCommandType_WhenValidCommandNamePassed(string commandName)
         {
-            var result = f.getCommand(main, commandName);
+            var result = f.GetCommand(main, commandName);
             Assert.IsInstanceOfType(result, typeof(Commands.Command));
         }
 
@@ -30,7 +30,7 @@ namespace GraphicalProgrammingLanguage.Factories.Tests
         [ExpectedException(typeof(ArgumentException))]
         public void GetCommandTest_ReturnsException_WhenInVlaidShapeNamePassed()
         {
-            var result = f.getCommand(main, "InvalidCommand");
+            var result = f.GetCommand(main, "InvalidCommand");
         }
     }
 }

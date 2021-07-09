@@ -51,7 +51,7 @@ namespace GraphicalProgrammingLanguage.Commands.Tests
         public void isValid_ReturnsFalseIfShapeIsNull()
         {
             DrawShape d = new DrawShape(main);
-            var result = d.isValid(new Dictionary<string, string>());
+            var result = d.IsValid(new Dictionary<string, string>());
             Assert.IsFalse(result);
         }
 
@@ -64,7 +64,7 @@ namespace GraphicalProgrammingLanguage.Commands.Tests
 
             d.set(v);
 
-            var result = d.isValid(v);
+            var result = d.IsValid(v);
             Assert.IsFalse(result);
         }
 
@@ -79,7 +79,7 @@ namespace GraphicalProgrammingLanguage.Commands.Tests
             v.Add("radius", "100");
             d.set(v);
 
-            var result = d.isValid(v);
+            var result = d.IsValid(v);
             Assert.IsTrue(result);
         }
     }

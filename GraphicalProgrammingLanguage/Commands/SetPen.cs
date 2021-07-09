@@ -49,11 +49,11 @@ namespace GraphicalProgrammingLanguage.Commands
             }
         }
 
-        public override void execute()
+        public override void Execute()
         {
-            if (isValid(variables))
+            if (IsValid(variables))
             {
-                log(main);
+                Log(main);
                 if (variables.ContainsKey("color"))
                 {
                     pen.Color = Color.FromName(variables.GetValueOrDefault("color"));
@@ -81,7 +81,7 @@ namespace GraphicalProgrammingLanguage.Commands
         /// </summary>
         /// <param name="variables"></param>
         /// <returns></returns>
-        public override bool isValid(Dictionary<string, string> variables)
+        public override bool IsValid(Dictionary<string, string> variables)
         {
             return hasRequiredParameters();
         }

@@ -37,7 +37,7 @@ namespace GraphicalProgrammingLanguage.Commands
         /// times and can concentrate on the logic within the child.
         /// </summary>
         /// <param name="variables"></param>
-        public void set(Dictionary<string, string> variables)
+        public void Set(Dictionary<string, string> variables)
         {
             this.variables = variables;
         }
@@ -47,7 +47,7 @@ namespace GraphicalProgrammingLanguage.Commands
         /// implementations can hold more specific information if required.
         /// </summary>
         /// <param name="main"></param>
-        public void log(MainGUI main)
+        public void Log(MainGUI main)
         {
             main.txtLog.AppendText(Logger.Log($"Command {name} called."));
         }
@@ -58,9 +58,9 @@ namespace GraphicalProgrammingLanguage.Commands
         /// not reuqired at this level and will be implemented by children of the Command base class.
         /// </summary>
         /// <returns></returns>
-        public abstract void execute();
+        public abstract void Execute();
         public abstract bool hasRequiredParameters();
-        public abstract bool isValid(Dictionary<string, string> variables);
+        public abstract bool IsValid(Dictionary<string, string> variables);
         #endregion
     }
 }

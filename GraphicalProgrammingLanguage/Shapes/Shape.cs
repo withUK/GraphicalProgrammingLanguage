@@ -51,7 +51,7 @@ namespace GraphicalProgrammingLanguage.Shapes
         /// This virtual method can be overwritten by children of this class that can be more specfic to the shape.
         /// </summary>
         /// <param name="variables"></param>
-        public virtual void set(Dictionary<string, string> variables)
+        public virtual void Set(Dictionary<string, string> variables)
         {
             if (variables.ContainsKey("x"))
             {
@@ -83,10 +83,10 @@ namespace GraphicalProgrammingLanguage.Shapes
         /// at this level and will be implemented by children of the Shape base class.
         /// </summary>
         /// <returns></returns>
-        public abstract double calculateArea();
-        public abstract double calculatePerimeter();
-        public abstract void draw(Graphics g);
-        public abstract bool hasRequiredVariables();
+        public abstract double CalculateArea();
+        public abstract double CalculatePerimeter();
+        public abstract void Draw(Graphics g);
+        public abstract bool HasRequiredVariables();
         #endregion
 
         #region Overrides

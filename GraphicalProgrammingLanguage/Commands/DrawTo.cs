@@ -56,11 +56,11 @@ namespace GraphicalProgrammingLanguage.Commands
             }
         }
 
-        public override void execute()
+        public override void Execute()
         {
-            if (isValid(variables))
+            if (IsValid(variables))
             {
-                log(main);
+                Log(main);
                 main.dc.DrawLine(main.pen, main.x, main.y, x, y);
                 main.x = x;
                 main.y = y;
@@ -87,7 +87,7 @@ namespace GraphicalProgrammingLanguage.Commands
         /// </summary>
         /// <param name="variables"></param>
         /// <returns></returns>
-        public override bool isValid(Dictionary<string, string> variables)
+        public override bool IsValid(Dictionary<string, string> variables)
         {
             return hasRequiredParameters();
         }

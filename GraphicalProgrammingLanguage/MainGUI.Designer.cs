@@ -49,6 +49,7 @@ namespace GraphicalProgrammingLanguage
             this.lblFileName = new System.Windows.Forms.Label();
             this.gbxLog = new System.Windows.Forms.GroupBox();
             this.txtLog = new System.Windows.Forms.RichTextBox();
+            this.dialogueSave = new System.Windows.Forms.SaveFileDialog();
             this.gbxCommands.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
             this.gbxLog.SuspendLayout();
@@ -143,6 +144,7 @@ namespace GraphicalProgrammingLanguage
             this.btnSave.TabIndex = 12;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnScriptRun
             // 
@@ -279,6 +281,7 @@ namespace GraphicalProgrammingLanguage
         private System.Windows.Forms.Label lblFileName;
         private System.Windows.Forms.GroupBox gbxLog;
         private System.Windows.Forms.RichTextBox txtCommands;
+        private System.Windows.Forms.SaveFileDialog dialogueSave;
         internal System.Windows.Forms.RichTextBox txtScript;
         internal System.Windows.Forms.TextBox txtCommandLine;
         internal System.Windows.Forms.RichTextBox txtLog;

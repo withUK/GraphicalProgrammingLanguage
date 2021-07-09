@@ -19,7 +19,7 @@ namespace GraphicalProgrammingLanguage.Factories.Tests
         [DataRow("triangle")]
         public void GetCommandTest_ReturnsShapeType_WhenValidShapeNamePassed(string shapeName)
         {
-            var result = f.getShape(main, shapeName);
+            var result = f.GetShape(main, shapeName);
             Assert.IsInstanceOfType(result, typeof(Shapes.Shape));
         }
 
@@ -27,7 +27,7 @@ namespace GraphicalProgrammingLanguage.Factories.Tests
         [ExpectedException(typeof(ArgumentException))]
         public void GetCommandTest_ReturnsException_WhenInVlaidShapeNamePassed()
         {
-            var result = f.getShape(main, "InvalidShape");
+            var result = f.GetShape(main, "InvalidShape");
         }
     }
 }

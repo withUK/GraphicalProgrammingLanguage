@@ -21,11 +21,11 @@ namespace GraphicalProgrammingLanguage.Commands
         #endregion
 
         #region Overrides
-        public override void execute()
+        public override void Execute()
         {
-            if (isValid(new Dictionary<string, string>()))
+            if (IsValid(new Dictionary<string, string>()))
             {
-                log(main);
+                Log(main);
                 main.dc.Clear(Color.Gainsboro);
             }
         }
@@ -52,7 +52,7 @@ namespace GraphicalProgrammingLanguage.Commands
         /// </summary>
         /// <param name="variables"></param>
         /// <returns></returns>
-        public override bool isValid(Dictionary<string, string> variables)
+        public override bool IsValid(Dictionary<string, string> variables)
         {
             return true;
         }
