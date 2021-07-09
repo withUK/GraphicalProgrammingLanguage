@@ -32,16 +32,27 @@ namespace GraphicalProgrammingLanguage
         // Methods
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            using (StreamWriter w = File.AppendText("log.txt"))
+            dialogueLoad.Filter = "Text Files|*.txt;*.text";
+            if (dialogueLoad.ShowDialog() == DialogResult.OK)
             {
-                dialogueLoad.Filter = "Text Files|*.txt;*.text";
-                if (dialogueLoad.ShowDialog() == DialogResult.OK)
-                {
-                    lblFileName.Text = String.Concat(" : ", dialogueLoad.SafeFileName);
-                    var fileContent = new StreamReader(dialogueLoad.FileName);
-                    txtScript.Text = fileContent.ReadToEnd();
-                    txtLog.Text = Logger.Log($"{dialogueLoad.FileName} loaded.") + "\n" + txtLog.Text;
-                }
+                lblFileName.Text = String.Concat(" : ", dialogueLoad.SafeFileName);
+                var fileContent = new StreamReader(dialogueLoad.FileName);
+                txtScript.Text = fileContent.ReadToEnd();
+                txtLog.Text = Logger.Log($"{dialogueLoad.FileName} loaded.") + "\n" + txtLog.Text;
+            }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            dialogueSave.Filter = "Text Files|*.txt;*.text";
+            if (dialogueSave.ShowDialog() == DialogResult.OK)
+            {
+                StreamWriter writer = new StreamWriter(dialogueSave.OpenFile());
+                writer.Write(txtScript.Text);
+                writer.Dispose();
+                writer.Close();
+                
+                MessageBox.Show(string.Concat("File : ", dialogueSave.FileName, " has been saved successfully."));
             }
         }
 
