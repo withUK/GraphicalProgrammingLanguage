@@ -32,37 +32,27 @@ namespace GraphicalProgrammingLanguage
         // Methods
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            using (StreamWriter w = File.AppendText("log.txt"))
+            dialogueLoad.Filter = "Text Files|*.txt;*.text";
+            if (dialogueLoad.ShowDialog() == DialogResult.OK)
             {
-                dialogueLoad.Filter = "Text Files|*.txt;*.text";
-                if (dialogueLoad.ShowDialog() == DialogResult.OK)
-                {
-                    lblFileName.Text = String.Concat(" : ", dialogueLoad.SafeFileName);
-                    var fileContent = new StreamReader(dialogueLoad.FileName);
-                    txtScript.Text = fileContent.ReadToEnd();
-                    txtLog.Text = Logger.Log($"{dialogueLoad.FileName} loaded.") + "\n" + txtLog.Text;
-                }
-                w.Close();
+                lblFileName.Text = String.Concat(" : ", dialogueLoad.SafeFileName);
+                var fileContent = new StreamReader(dialogueLoad.FileName);
+                txtScript.Text = fileContent.ReadToEnd();
+                txtLog.Text = Logger.Log($"{dialogueLoad.FileName} loaded.") + "\n" + txtLog.Text;
             }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            
             dialogueSave.Filter = "Text Files|*.txt;*.text";
             if (dialogueSave.ShowDialog() == DialogResult.OK)
             {
-                if (dialogueSave.OpenFile() != null)
-                {
-                    StreamWriter txt = new StreamWriter(dialogueSave.FileName);
-                    txt.Write(txtScript.Text);
-                    txt.Close();
-                }
+                StreamWriter writer = new StreamWriter(dialogueSave.OpenFile());
+                writer.Write(txtScript.Text);
+                writer.Dispose();
+                writer.Close();
                 
-                using (StreamWriter w = File.AppendText("log.txt"))
-                {
-                    txtLog.Text = Logger.Log($"{dialogueSave.FileName} saved.", w) + "\n" + txtLog.Text;
-                }
+                MessageBox.Show(string.Concat("File : ", dialogueSave.FileName, " has been saved successfully."));
             }
         }
 
