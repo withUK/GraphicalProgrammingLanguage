@@ -152,6 +152,7 @@ namespace GraphicalProgrammingLanguage
             this.btnScriptRun.TabIndex = 13;
             this.btnScriptRun.Text = "Run";
             this.btnScriptRun.UseVisualStyleBackColor = true;
+            this.btnScriptRun.Click += new System.EventHandler(this.btnScriptRun_Click);
             // 
             // gbxCommands
             // 
@@ -263,7 +264,6 @@ namespace GraphicalProgrammingLanguage
 
         #endregion
 
-        private System.Windows.Forms.RichTextBox txtScript;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label lblCommandLine;
         private System.Windows.Forms.Label lblScript;
@@ -279,6 +279,7 @@ namespace GraphicalProgrammingLanguage
         private System.Windows.Forms.Label lblFileName;
         private System.Windows.Forms.GroupBox gbxLog;
         private System.Windows.Forms.RichTextBox txtCommands;
+        internal System.Windows.Forms.RichTextBox txtScript;
         internal System.Windows.Forms.TextBox txtCommandLine;
         internal System.Windows.Forms.RichTextBox txtLog;
         internal System.Windows.Forms.RichTextBox txtCommandCount;
