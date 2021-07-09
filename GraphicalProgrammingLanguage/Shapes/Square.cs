@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace GraphicalProgrammingLanguage.Shapes
 {
-    class Square : Shape
+    public class Square : Shape
     {
         // Properties
         public int length { get; set; }
@@ -22,7 +22,14 @@ namespace GraphicalProgrammingLanguage.Shapes
 
         public Square(int x, int y, int length, Color lineColor, Color fillColor, float lineWeight) : base(x, y, lineColor, fillColor, lineWeight)
         {
-            this.length = length;
+            Dictionary<string, string> variables = new Dictionary<string, string>();
+            variables.Add("x", x.ToString());
+            variables.Add("y", y.ToString());
+            variables.Add("length", length.ToString());
+            variables.Add("linecolor", lineColor.ToString());
+            variables.Add("fillcolor", fillColor.ToString());
+            variables.Add("lineweight", lineWeight.ToString());
+            set(variables);
         }
 
         // Methods
@@ -49,25 +56,46 @@ namespace GraphicalProgrammingLanguage.Shapes
 
         public override bool hasRequiredVariables()
         {
-            return lengthSet;
+            return lengthSet && xSet && ySet;
         }
 
         // Overrides
         public override void set(Dictionary<string, string> variables)
         {
-            this.x = int.Parse(variables.GetValueOrDefault("x"));
-            this.y = int.Parse(variables.GetValueOrDefault("y"));
-            this.length = int.Parse(variables.GetValueOrDefault("length"));
-            this.lineWeight = float.Parse(variables.GetValueOrDefault("lineWeight"));
-            this.lineColor = Color.FromName(variables.GetValueOrDefault("lineColor"));
-            this.fillColor = Color.FromName(variables.GetValueOrDefault("fillColor"));
+            if (variables.ContainsKey("x"))
+            {
+                x = int.Parse(variables.GetValueOrDefault("x"));
+                xSet = true;
+            }
+            if (variables.ContainsKey("y"))
+            {
+                y = int.Parse(variables.GetValueOrDefault("y"));
+                ySet = true;
+            }
+            if (variables.ContainsKey("length"))
+            {
+                length = int.Parse(variables.GetValueOrDefault("length"));
+                lengthSet = true;
+            }
+            if (variables.ContainsKey("lineweight"))
+            {
+                lineWeight = float.Parse(variables.GetValueOrDefault("lineweight"));
+            }
+            if (variables.ContainsKey("linecolor"))
+            {
+                lineColor = Color.FromName(variables.GetValueOrDefault("linecolor"));
+            }
+            if (variables.ContainsKey("fillcolor"))
+            {
+                fillColor = Color.FromName(variables.GetValueOrDefault("fillcolor"));
+            }
         }
 
         // This overrides the base implemention of ToString() in this case this is now the Shape class.
         // Example output: 'StringRef 1, 2 : 3'
         public override string ToString()
         {
-            return base.ToString() + this.length;
+            return base.ToString() + "length=" + this.length + ", perimeter=" + calculatePerimeter() + ", area=" + calculateArea();
         }
     }
 }

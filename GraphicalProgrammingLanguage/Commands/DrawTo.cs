@@ -3,15 +3,29 @@ using System.Collections.Generic;
 
 namespace GraphicalProgrammingLanguage.Commands
 {
-    class DrawTo : Command
+    /// <summary>
+    /// The draw to command is implemented to add a graphical line from the current point on the 
+    /// MainGUI to x y coordinates that are passed via the Set method or on construction. This line
+    /// uses the current value of the pen weight and color from the MainGUI. 
+    /// 
+    /// Syntax example : 
+    /// Inline example
+    ///     drawto(x=20,y=20)
+    /// Seperate example
+    ///     drawto
+    ///     x=5
+    ///     y=5
+    /// </summary>
+    public class DrawTo : Command
     {
-        // Properties
+        #region Properties
         protected int x { get; set; }
         private bool xSet { get; set; }
         protected int y { get; set; }
         private bool ySet { get; set; }
+        #endregion
 
-        // Constructors
+        #region Constructors
         public DrawTo(MainGUI main) : base(main)
         {
             name = CommandTypes.drawto.ToString();
@@ -21,8 +35,9 @@ namespace GraphicalProgrammingLanguage.Commands
         {
             name = CommandTypes.drawto.ToString();
         }
+        #endregion
 
-        // Methods
+        #region Overrides
         public void set(Dictionary<string, string> variables)
         {
             this.variables = variables;
@@ -41,7 +56,6 @@ namespace GraphicalProgrammingLanguage.Commands
             }
         }
 
-        // Overrides
         public override void execute()
         {
             if (isValid(variables))
@@ -53,6 +67,11 @@ namespace GraphicalProgrammingLanguage.Commands
             }
         }
 
+        /// <summary>
+        /// This implementation of the HasRequiredParameters checks the boolean values set when the 
+        /// coresponding x or y value are set via the parameters.
+        /// </summary>
+        /// <returns></returns>
         public override bool hasRequiredParameters()
         {
             if (xSet && ySet)
@@ -62,9 +81,16 @@ namespace GraphicalProgrammingLanguage.Commands
             return false;
         }
 
+        /// <summary>
+        /// With the lack of additional logic requirements the IsValid method makes use of the hasRequiredParameters'
+        /// method.
+        /// </summary>
+        /// <param name="variables"></param>
+        /// <returns></returns>
         public override bool isValid(Dictionary<string, string> variables)
         {
             return hasRequiredParameters();
         }
+        #endregion
     }
 }

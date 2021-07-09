@@ -42,6 +42,7 @@ namespace GraphicalProgrammingLanguage
             this.btnSave = new System.Windows.Forms.Button();
             this.btnScriptRun = new System.Windows.Forms.Button();
             this.gbxCommands = new System.Windows.Forms.GroupBox();
+            this.txtCommandCount = new System.Windows.Forms.RichTextBox();
             this.txtCommands = new System.Windows.Forms.RichTextBox();
             this.logo = new System.Windows.Forms.PictureBox();
             this.dialogueLoad = new System.Windows.Forms.OpenFileDialog();
@@ -156,6 +157,7 @@ namespace GraphicalProgrammingLanguage
             // 
             // gbxCommands
             // 
+            this.gbxCommands.Controls.Add(this.txtCommandCount);
             this.gbxCommands.Controls.Add(this.txtCommands);
             this.gbxCommands.Location = new System.Drawing.Point(625, 449);
             this.gbxCommands.Name = "gbxCommands";
@@ -163,6 +165,18 @@ namespace GraphicalProgrammingLanguage
             this.gbxCommands.TabIndex = 14;
             this.gbxCommands.TabStop = false;
             this.gbxCommands.Text = "Popular commands";
+            // 
+            // txtCommandCount
+            // 
+            this.txtCommandCount.BackColor = System.Drawing.SystemColors.Menu;
+            this.txtCommandCount.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtCommandCount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtCommandCount.Font = new System.Drawing.Font("Courier New", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtCommandCount.Location = new System.Drawing.Point(3, 23);
+            this.txtCommandCount.Name = "txtCommandCount";
+            this.txtCommandCount.Size = new System.Drawing.Size(544, 224);
+            this.txtCommandCount.TabIndex = 1;
+            this.txtCommandCount.Text = "";
             // 
             // txtCommands
             // 
@@ -270,6 +284,7 @@ namespace GraphicalProgrammingLanguage
         private System.Windows.Forms.SaveFileDialog dialogueSave;
         internal System.Windows.Forms.TextBox txtCommandLine;
         internal System.Windows.Forms.RichTextBox txtLog;
+        internal System.Windows.Forms.RichTextBox txtCommandCount;
     }
 }
 

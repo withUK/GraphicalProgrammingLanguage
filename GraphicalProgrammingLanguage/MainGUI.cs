@@ -1,6 +1,4 @@
 ﻿using GraphicalProgrammingLanguage.Commands;
-using GraphicalProgrammingLanguage.Factories;
-using GraphicalProgrammingLanguage.Shapes;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -28,6 +26,7 @@ namespace GraphicalProgrammingLanguage
             InitializeComponent();
             cp = new CommandParser(this);
             dc = pnlOutput.CreateGraphics();
+            populateCommandUsage();
             txtLog.AppendText(Logger.LogLaunch());
         }
         // Methods
@@ -70,6 +69,24 @@ namespace GraphicalProgrammingLanguage
         private void btnCommandLineRun_Click(object sender, EventArgs e)
         {
             cp.parseCommand(txtCommandLine.Text);
+        }
+
+        private void populateCommandUsage()
+        {
+            List<string> usageOutput = new List<string>();
+            usageOutput = UsageCounter.GetUsageCountOutput();
+
+            foreach (var item in usageOutput)
+            {
+                if (String.IsNullOrEmpty(txtCommandCount.Text))
+                {
+                    txtCommandCount.Text = item;
+                }
+                else
+                {
+                    txtCommandCount.Text = String.Concat(txtCommandCount.Text, "\n", item);
+                }
+            }
         }
     }
 }

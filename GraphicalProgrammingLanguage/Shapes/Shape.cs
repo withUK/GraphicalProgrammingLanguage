@@ -4,9 +4,14 @@ using System.Drawing;
 
 namespace GraphicalProgrammingLanguage.Shapes
 {
-    abstract class Shape : IShape
+    /// <summary>
+    /// The base class to all shapes that are specified within the application. This class implements 
+    /// the IShape interface of which only Set is written, CalculateArea, CalculatePerimeter, Draw and 
+    /// hasRequiredVariables will left to the children of the base class.
+    /// </summary>
+    public abstract class Shape : IShape
     {
-        // Properties
+        #region Properties
         protected int x { get; set; }
         protected bool xSet { get; set; }
         protected int y { get; set; }
@@ -15,8 +20,9 @@ namespace GraphicalProgrammingLanguage.Shapes
         protected float lineWeight { get; set; }
         protected Color lineColor { get; set; }
         protected Color fillColor { get; set; }
+        #endregion
 
-        // Constructors
+        #region Constructors
         public Shape()
         {
 
@@ -37,10 +43,14 @@ namespace GraphicalProgrammingLanguage.Shapes
             this.lineColor = lineColor;
             this.fillColor = fillColor;
         }
+        #endregion
 
-        // Methods
-        // The 'set' method uses the params in position [0] as x, [1] as y and [2] as the line weight.
-        // This virtual method can be overwritten by children of this class that can be more specfic to the shape.
+        #region Methods
+        /// <summary>
+        /// The 'set' method uses the params in position [0] as x, [1] as y and [2] as the line weight. 
+        /// This virtual method can be overwritten by children of this class that can be more specfic to the shape.
+        /// </summary>
+        /// <param name="variables"></param>
         public virtual void set(Dictionary<string, string> variables)
         {
             if (variables.ContainsKey("x"))
@@ -68,18 +78,26 @@ namespace GraphicalProgrammingLanguage.Shapes
         }
 
         // Abstracts
-        // These methods have been brought in by the interface, as the class is abstract these methods are not reuqired at this level
-        // and will be implemented by children of the Shape base class.
+        /// <summary>
+        /// These methods have been brought in by the interface, as the class is abstract these methods are not reuqired 
+        /// at this level and will be implemented by children of the Shape base class.
+        /// </summary>
+        /// <returns></returns>
         public abstract double calculateArea();
         public abstract double calculatePerimeter();
         public abstract void draw(Graphics g);
         public abstract bool hasRequiredVariables();
+        #endregion
 
-        // Overrides
-        // This overrides the base implemention of ToString() but combines with the x & y values.
+        #region Overrides
+        /// <summary>
+        /// This overrides the base implemention of ToString() but combines with the x & y values.
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
-            return base.ToString() + " " + this.x + ", " + this.y + " : ";
+            return base.ToString() + " : x=" + this.x + ", y=" + this.y + " : ";
         }
+        #endregion
     }
 }
