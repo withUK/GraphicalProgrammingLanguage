@@ -33,8 +33,8 @@ Your implementation must have a proper interface with a window/area for typing a
 - Reads a program (in the program window) and executes it with a “run”  command (typed into the command line). (5 marks) 
 - Saves and loads a program (2 marks) 
 - Syntax checking 
-+ Checks for valid commands (2 marks)  
-+ Checks for valid parameters (2 marks)  
+- - Checks for valid commands (2 marks)  
+- - Checks for valid parameters (2 marks)  
 #### Basic drawing commands (all commands should be case insensitive)  
 - Position pen (moveTo) (2 marks) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png) 
 - pen draw (drawTo) (2 marks) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
