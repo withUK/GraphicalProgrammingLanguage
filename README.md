@@ -73,8 +73,8 @@ Endmethod
 ```
 myMethod(<parameter list>)
 ```
--- working methods without parameters (5 marks)  
--- working with parameters (+5 marks)  
+- - working methods without parameters (5 marks)  
+- - working with parameters (+5 marks)  
 
 ### Design and Implementation Standard (20 marks total) 
 - Use of design patterns - factory class (5 marks) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
