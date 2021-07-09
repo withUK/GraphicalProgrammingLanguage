@@ -46,7 +46,7 @@ Your implementation must have a proper interface with a window/area for typing a
 - - triangle (you can do this any way you like) (2 marks) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
 - Colours and fills:  
 - - pen <colour> e.g pen red, or pen green (three or four colours). (2 marks) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
-- - fill <on/off> e.g. fill on, makes subsequent shape operations  filled and not outline. (2 marks)  
+- - fill <on/off> e.g. fill on, makes subsequent shape operations  filled and not outline. (2 marks) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
 
 The program should be written using inheritance and design patterns (specifically  marked below) so that additional commands could easily be added without affecting the rest  of the code. Marks may be deducted if this is not the case.
 
