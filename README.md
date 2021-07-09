@@ -13,17 +13,17 @@ Produce a fairly complex  program. The idea of the program is to produce a simpl
 - Early commit ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
 - At least five commits of software (no marks if less) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
 - Description with each commit about what has been done/changed and what is to be  done next. ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
-- For high marks I expect a professional standard with many and regular commits each  time something significant has been added with comprehensive descriptions. I also expect  Unit tests to be included. 
+- For high marks I expect a professional standard with many and regular commits each  time something significant has been added with comprehensive descriptions. I also expect  Unit tests to be included. ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
 
 #### Code Documentation and Standards 
 - Code documented with XML tags, XML documentation produced (I want to see the  documentation and not just the comments in the code). For high marks I expect  documentation to a professional standard. (5 marks) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
 - Use of exception handling (including user generated exceptions) (5 marks)   
 
 ### Unit Tests (10 marks total)
-- Unit Test project set up (2 marks)  
-- Minimal set of tests set up (2 marks)  
+- Unit Test project set up (2 marks)  ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
+- Minimal set of tests set up (2 marks)  ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
 - Appropriately documented.(3 marks)  
-- Full set of tests (3 marks) 
+- Full set of tests (3 marks) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
 
 ### Basic Implementation (30 marks total)
 Your implementation must have a proper interface with a window/area for typing a  “program” into and a window/area for displaying the output of the “program”. You should  also have a command line where commands are executed immediately. The actual layout is  up to you.  
