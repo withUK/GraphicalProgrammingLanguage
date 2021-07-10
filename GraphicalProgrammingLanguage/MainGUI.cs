@@ -42,6 +42,8 @@ namespace GraphicalProgrammingLanguage
                 var fileContent = new StreamReader(dialogueLoad.FileName);
                 txtScript.Text = fileContent.ReadToEnd();
                 txtLog.Text = Logger.Log($"{dialogueLoad.FileName} loaded.") + "\n" + txtLog.Text;
+                fileContent.Dispose();
+                fileContent.Close();
             }
         }
 
@@ -61,12 +63,12 @@ namespace GraphicalProgrammingLanguage
 
         private void btnCommandLineRun_Click(object sender, EventArgs e)
         {
-            cp.ParseCommand(txtCommandLine.Text);
+            cp.ExecuteCommand(txtCommandLine.Text);
         }
 
         private void btnScriptRun_Click(object sender, EventArgs e)
         {
-            sp.ParseScript();
+            sp.ExecuteScript(txtScript.Text);
         }
 
         private void populateCommandUsage()

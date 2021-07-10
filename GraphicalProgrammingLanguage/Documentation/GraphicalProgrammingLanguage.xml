@@ -34,7 +34,7 @@
             appropriately passing the variables dictionary.
             </summary>
         </member>
-        <member name="M:GraphicalProgrammingLanguage.CommandParser.SetVariablesFromInput(System.String)">
+        <member name="M:GraphicalProgrammingLanguage.CommandParser.GetVariablesFromInput(System.String)">
             <summary>
             Using the REGEX patterns the 'setVariablesFromInput method identifies whether the entered input string 
             hold variables, whether they are inside parentheses or stand alone variables.
