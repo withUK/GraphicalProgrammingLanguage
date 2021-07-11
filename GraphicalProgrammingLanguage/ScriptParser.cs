@@ -10,13 +10,13 @@ namespace GraphicalProgrammingLanguage
     public class ScriptParser
     {
         // Constants
-        private const string REG_VARIABLE = "^var\\s[a-zA-Z]+=[a-zA-Z0-9]+$";
+        private const string REG_VARIABLE = "^var\\s[a-zA-Z]+=[a-zA-Z0-9\\/+*-]+$";
         private const string REG_METHOD = "^method\\s[a-zA-Z]+\\([a-zA-Z0-9,;]+\\)$";
         private const string REG_SCRIPT_COMMAND = "^[a-zA-Z]+\\s[a-zA-Z0-9=<>\\s]+$";
         private const string REG_SCRIPT_IFSTATEMENT = "^if\\s[a-zA-Z]+=[a-zA-Z0-9]+$";
-        private const string REG_SCRIPT_IFSTATEMENT_PARENTHESIS = "^if\\([a-zA-Z]+[=<>]+[a-zA-Z]+\\)$";
+        private const string REG_SCRIPT_IFSTATEMENT_PARENTHESIS = "^if\\([a-zA-Z0-9]+[=<>]+[a-zA-Z0-9]+\\)$";
         private const string REG_SCRIPT_WHILESTATEMENT = "^while\\s[a-zA-Z]+=[a-zA-Z0-9]+$";
-        private const string REG_SCRIPT_WHILESTATEMENT_PARENTHESIS = "^while\\s[a-zA-Z]+=[a-zA-Z0-9]+$";
+        private const string REG_SCRIPT_WHILESTATEMENT_PARENTHESIS = "^while\\([a-zA-Z0-9]+[=<>]+[a-zA-Z0-9]+\\)$";
         private const string REG_SCRIPT_FORSTATEMENT = "^for\\s[a-zA-Z]+=[a-zA-Z0-9]+$";
         private const string REG_SCRIPT_FORSTATEMENT_PARENTHESIS = "^for\\s[a-zA-Z]+=[a-zA-Z0-9]+$";
         private const string REG_PARENTHESES = "^[a-zA-Z]+\\([^)]*\\)$";
@@ -85,7 +85,15 @@ namespace GraphicalProgrammingLanguage
             {
                 var thisLine = scriptArray[i];
 
-                if (regexIfParenthesisStatement.IsMatch(thisLine) )
+                if (regexIfParenthesisStatement.IsMatch(thisLine) || regexIfStatement.IsMatch(thisLine))
+                {
+                    i = ParseStatements(i, thisLine);
+                }
+                else if(regexForParenthesisStatement.IsMatch(thisLine) || regexForStatement.IsMatch(thisLine))
+                {
+                    i = ParseStatements(i, thisLine);
+                }
+                else if(regexWhileParenthesisStatement.IsMatch(thisLine) || regexWhileStatement.IsMatch(thisLine))
                 {
                     i = ParseStatements(i, thisLine);
                 }
@@ -97,6 +105,8 @@ namespace GraphicalProgrammingLanguage
                 }
                 else if (regexVariable.IsMatch(thisLine))
                 {
+                    thisLine = thisLine.Replace("var", "");
+                    thisLine = thisLine.Trim();
                     string[] split = thisLine.Split("=");
                     if (variables.ContainsKey(split[0]))
                     {
@@ -116,10 +126,11 @@ namespace GraphicalProgrammingLanguage
 
         private int ParseStatements(int i, string thisLine)
         {
+            List<Command> commands = new List<Command>();
+            List<string> contents = new List<string>();
+            
             if (thisLine.StartsWith("if"))
             {
-                List<Command> commands = new List<Command>();
-                List<string> contents = new List<string>();
                 int order = 1;
                 int beginIndex = i;
                 i++;
@@ -140,10 +151,32 @@ namespace GraphicalProgrammingLanguage
 
                 if (ParseCondition(scriptArray[beginIndex]))
                 {
-                    foreach (var item in commands)
-                    {
-                        item.Execute();
-                    }
+                    ExecuteCommands(commands);
+                }
+            }
+            else if (thisLine.StartsWith("while"))
+            {
+                int order = 1;
+                int beginIndex = i;
+                i++;
+
+                var currentLine = scriptArray[i];
+
+                while (currentLine != "endwhile")
+                {
+                    Command c = GetCommand(currentLine);
+                    c.order = order;
+                    c.main = TakeSnapshotOfMain(c);
+
+                    commands.Add(c);
+                    i++;
+                    order++;
+                    currentLine = scriptArray[i];
+                }
+
+                while (ParseCondition(scriptArray[beginIndex]))
+                {
+                    ExecuteCommands(commands);
                 }
             }
             else
@@ -154,6 +187,14 @@ namespace GraphicalProgrammingLanguage
             }
 
             return i;
+        }
+
+        private static void ExecuteCommands(List<Command> commands)
+        {
+            foreach (var item in commands)
+            {
+                item.Execute();
+            }
         }
 
         private MainGUI TakeSnapshotOfMain(Command c)
@@ -295,7 +336,6 @@ namespace GraphicalProgrammingLanguage
                     break;
                 default:
                     throw new Exception("Comparitor not recognised.");
-                    break;
             }
 
             return false;
@@ -343,6 +383,12 @@ namespace GraphicalProgrammingLanguage
                     if (item.Contains("="))
                     {
                         string[] sp = item.Split("=");
+
+                        if (this.variables.ContainsKey(sp[1]))
+                        {
+                            sp[1] = this.variables.GetValueOrDefault(sp[1]);
+                        }
+
                         variables.Add(sp[0], sp[1]);
                     }
                 }
@@ -352,13 +398,82 @@ namespace GraphicalProgrammingLanguage
                 variables = main.currentVariables;
             }
 
-            if (regexVariables.IsMatch(input) || regexVariablesPoint.IsMatch(input))
+            if (regexVariables.IsMatch(input) || regexVariablesPoint.IsMatch(input) || regexVariable.IsMatch(input))
             {
-                if (variables == null)
-                    variables = new Dictionary<string, string>();
+                if (this.variables == null)
+                    this.variables = new Dictionary<string, string>();
 
-                string[] split = input.Split("=");
-                variables.Add(split[0], split[1]);
+                string[] sp = input.Split("=");
+
+                if (regexVariable.IsMatch(input))
+                {
+                    string delimiter = ""; 
+                    sp[0] = sp[0].Replace("var", "").Trim();
+
+                    if (sp[1].Contains("+"))
+                        delimiter = "+";
+                    if (sp[1].Contains("-"))
+                        delimiter = "-";
+                    if (sp[1].Contains("*"))
+                        delimiter = "*";
+                    if (sp[1].Contains("/"))
+                        delimiter = "/";
+
+                    string[] inlineSp = sp[1].Split(delimiter);
+
+                    if (this.variables.ContainsKey(inlineSp[0]))
+                    {
+                        inlineSp[0] = this.variables.GetValueOrDefault(inlineSp[0]);
+                    }
+                    if (this.variables.ContainsKey(inlineSp[1]))
+                    {
+                        inlineSp[1] = this.variables.GetValueOrDefault(inlineSp[1]);
+                    }
+
+                    if (regexNumber.IsMatch(inlineSp[0]) && regexNumber.IsMatch(inlineSp[1]))
+                    {
+                        float x = 0;
+                        switch (delimiter)
+                        {
+                            case "+":
+                                x = float.Parse(inlineSp[0]) + float.Parse(inlineSp[1]);
+                                break;
+                            case "-":
+                                x = float.Parse(inlineSp[0]) - float.Parse(inlineSp[1]);
+                                break;
+                            case "*":
+                                x = float.Parse(inlineSp[0]) * float.Parse(inlineSp[1]);
+                                break;
+                            case "/":
+                                x = float.Parse(inlineSp[0]) / float.Parse(inlineSp[1]);
+                                break;
+                            default:
+                                break;
+                        }
+
+                        sp[1] = x.ToString();
+                    }
+
+                }
+
+                if (this.variables.ContainsKey(sp[1]))
+                {
+                    sp[1] = this.variables.GetValueOrDefault(sp[1]);
+                }
+
+                if (!this.variables.ContainsKey(sp[0]))
+                {
+                    this.variables.Add(sp[0], sp[1]);
+                }
+                else
+                {
+                    this.variables[sp[0]] = sp[1];
+                }
+            }
+
+            if (true)
+            {
+
             }
 
             switch (command.name)
