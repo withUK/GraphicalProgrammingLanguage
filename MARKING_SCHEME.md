@@ -26,7 +26,7 @@ Your implementation must have a proper interface with a window/area for typing a
 #### Appropriate UI conforming to above specification (1 mark) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
 #### Command parser class  
 - Reads and executes commands on command line one at a time (2 marks)  ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
-- Reads a program (in the program window) and executes it with a “run”  command (typed into the command line). (5 marks) 
+- Reads a program (in the program window) and executes it with a “run”  command (typed into the command line). (5 marks) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
 - Saves and loads a program (2 marks) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
 - Syntax checking 
   - Checks for valid commands (2 marks)  
