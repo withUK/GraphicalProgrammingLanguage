@@ -359,23 +359,6 @@
             CalculateArea and CalculatePerimenter are intended to be used within the override for toString() method.
             </summary>
         </member>
-        <member name="F:GraphicalProgrammingLanguage.MainGUI.components">
-            <summary>
-             Required designer variable.
-            </summary>
-        </member>
-        <member name="M:GraphicalProgrammingLanguage.MainGUI.Dispose(System.Boolean)">
-            <summary>
-             Clean up any resources being used.
-            </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        </member>
-        <member name="M:GraphicalProgrammingLanguage.MainGUI.InitializeComponent">
-            <summary>
-             Required method for Designer support - do not modify
-             the contents of this method with the code editor.
-            </summary>
-        </member>
         <member name="T:GraphicalProgrammingLanguage.Models.CommandUsageCount">
             <summary>
             The CommandUsageCount model is used to bind the entries from the database to the application.
@@ -447,5 +430,22 @@
             <returns></returns>
         </member>
         <!-- Badly formed XML comment ignored for member "M:GraphicalProgrammingLanguage.Shapes.Shape.ToString" -->
+        <member name="F:GraphicalProgrammingLanguage.MainGUI.components">
+            <summary>
+             Required designer variable.
+            </summary>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.MainGUI.Dispose(System.Boolean)">
+            <summary>
+             Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.MainGUI.InitializeComponent">
+            <summary>
+             Required method for Designer support - do not modify
+             the contents of this method with the code editor.
+            </summary>
+        </member>
     </members>
 </doc>
