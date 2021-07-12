@@ -13,20 +13,33 @@
             the command.
             </summary>
         </member>
+        <member name="M:GraphicalProgrammingLanguage.CommandParser.#ctor(GraphicalProgrammingLanguage.MainGUI)">
+            <summary>
+            Instantiates object to enable the ability to interpretate the entries from the command line.
+            </summary>
+            <param name="main">MainGUI passed to constructor to allow all UI objects to be available so they can 
+            be updated following actions.</param>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.CommandParser.ParseCommand(System.String)">
+            <summary>
+            Accepts the values from the command line and retrieves and evaluates the contents of the input from the 
+            command line.
+            </summary>
+            <param name="input">Intended to be the input recieved from the GUI object txtCommand</param>
+        </member>
         <member name="M:GraphicalProgrammingLanguage.CommandParser.PrepareInput(System.String)">
             <summary>
             The 'prepareInput' method takes a string input and converts to lowercase and then removes the whitespace to 
             ensure consistant evaluation and extraction of values.
             </summary>
-            <param name="input"></param>
-            <returns></returns>
+            <param name="input">Input recieved from the GUI object txtCommand</param>
         </member>
         <member name="M:GraphicalProgrammingLanguage.CommandParser.SetCommand(System.String)">
             <summary>
             'setCommand' uses the REGEX patterns within the class to identify inputs containing parentheses or if it is
             a command on its own, further verification of the command is done within the command factory.
             </summary>
-            <param name="input"></param>
+            <param name="input">Input recieved from the GUI object txtCommand following it being prepared.</param>
         </member>
         <member name="M:GraphicalProgrammingLanguage.CommandParser.SetCommandVariables">
             <summary>
@@ -39,7 +52,7 @@
             Using the REGEX patterns the 'setVariablesFromInput method identifies whether the entered input string 
             hold variables, whether they are inside parentheses or stand alone variables.
             </summary>
-            <param name="input"></param>
+            <param name="input">Input recieved from the GUI object txtCommand following it being prepared.</param>
         </member>
         <member name="M:GraphicalProgrammingLanguage.CommandParser.SetCurrentCommand">
             <summary>
@@ -78,18 +91,18 @@
             class, it has the additional benefit of being able to add further logic in future if the 
             application changes in future iterations.
             </summary>
-            <returns></returns>
+            <returns>Returns true as no variables required for this action.</returns>
         </member>
         <member name="M:GraphicalProgrammingLanguage.Commands.Clear.IsValid(System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
-            IsValid returns true without any logic due to the fact the Clear command does 
+            eturns true without any logic due to the fact the Clear command does 
             not require any parameters.
             The method is implemented this way to follow the established pattern within the CommandParser 
             class, it has the additional benefit of being able to add further logic in future if the 
             application changes in future iterations.
             </summary>
-            <param name="variables"></param>
-            <returns></returns>
+            <param name="variables">A dictionary object to hold string values which can be parsed where required.</param>
+            <returns>Returns true as no variables required for this action.</returns>
         </member>
         <member name="T:GraphicalProgrammingLanguage.Commands.Command">
             <summary>
@@ -105,7 +118,7 @@
             By using a Dictiaonary and setting it at the base class it reduces the need to set multiple 
             times and can concentrate on the logic within the child.
             </summary>
-            <param name="variables"></param>
+            <param name="variables">A dictionary object to hold string values which can be parsed where required.</param>
         </member>
         <member name="M:GraphicalProgrammingLanguage.Commands.Command.Log(GraphicalProgrammingLanguage.MainGUI)">
             <summary>
@@ -140,21 +153,33 @@
                 radius=50
             </summary>
         </member>
+        <member name="M:GraphicalProgrammingLanguage.Commands.DrawShape.set(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Takes variables passed to the method from within the variables dictionary and assigns them to the relevent
+            fields ready for execution when completed.
+            </summary>
+            <param name="variables">A dictionary object to hold string values which can be parsed where required.</param>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Commands.DrawShape.Execute">
+            <summary>
+            Begins the command if valid and draws the defined shape to the graphic object in the MainGUI.
+            If not valid then message added to the log.
+            </summary>
+        </member>
         <member name="M:GraphicalProgrammingLanguage.Commands.DrawShape.hasRequiredParameters">
             <summary>
-            This implementation of the HasRequiredParameters ensures the shape object has been instansiated and
-            then makes use of the shapes own HasRequiredParameters method as that is the object that requires the
-            variables to successfully execute.
+            Ensures the shape object has been instansiated and then makes use of the shapes own HasRequiredParameters 
+            method as that is the object that requires the variables to successfully execute.
             </summary>
-            <returns></returns>
+            <returns>Returns true if object has required parameters to build the specified shape.</returns>
         </member>
         <member name="M:GraphicalProgrammingLanguage.Commands.DrawShape.IsValid(System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
             This method is implemented based on the shape having the correct variables and so make use of the
             hasRequiredParameters() method.
             </summary>
-            <param name="variables"></param>
-            <returns></returns>
+            <param name="variables">A dictionary object to hold string values which can be parsed where required.</param>
+            <returns>Returns true if object has required parameters to build the specified shape.</returns>
         </member>
         <member name="T:GraphicalProgrammingLanguage.Commands.DrawTo">
             <summary>
@@ -171,6 +196,19 @@
                 y=5
             </summary>
         </member>
+        <member name="M:GraphicalProgrammingLanguage.Commands.DrawTo.set(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Takes variables passed to the method from within the variables dictionary and assigns them to the relevent
+            fields ready for execution when completed.
+            </summary>
+            <param name="variables">A dictionary object to hold string values which can be parsed where required.</param>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Commands.DrawTo.Execute">
+            <summary>
+            Begins the command if valid and draws the line to the defined location on the graphic object in the MainGUI.
+            If not valid then message added to the log.
+            </summary>
+        </member>
         <member name="M:GraphicalProgrammingLanguage.Commands.DrawTo.hasRequiredParameters">
             <summary>
             This implementation of the HasRequiredParameters checks the boolean values set when the 
@@ -183,8 +221,8 @@
             With the lack of additional logic requirements the IsValid method makes use of the hasRequiredParameters'
             method.
             </summary>
-            <param name="variables"></param>
-            <returns></returns>
+            <param name="variables">A dictionary object to hold string values which can be parsed where required.</param>
+            <returns>Returns true if object has required parameters to draw to the specified location.</returns>
         </member>
         <member name="T:GraphicalProgrammingLanguage.Commands.MoveTo">
             <summary>
@@ -200,22 +238,43 @@
                 y=5
             </summary>
         </member>
+        <member name="M:GraphicalProgrammingLanguage.Commands.MoveTo.set(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Takes variables passed to the method from within the variables dictionary and assigns them to the relevent
+            fields ready for execution when completed.
+            </summary>
+            <param name="variables">A dictionary object to hold string values which can be parsed where required.</param>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Commands.MoveTo.Execute">
+            <summary>
+            Begins the command if valid and moves the pen to the defined location on the graphic object in the MainGUI.
+            If not valid then message added to the log.
+            </summary>
+        </member>
         <member name="M:GraphicalProgrammingLanguage.Commands.MoveTo.hasRequiredParameters">
             <summary>
             This implementation of the HasRequiredParameters checks the boolean values set when the 
             coresponding x or y value are set via the parameters.
             </summary>
-            <returns></returns>
+            <returns>Returns true if object has required parameters to move to the specified location.</returns>
         </member>
         <member name="M:GraphicalProgrammingLanguage.Commands.MoveTo.IsValid(System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
             With the lack of additional logic requirements the IsValid method makes use of the hasRequiredParameters'
             method.
             </summary>
-            <param name="variables"></param>
-            <returns></returns>
+            <param name="variables">A dictionary object to hold string values which can be parsed where required.</param>
+            <returns>Returns true if object has required parameters to move to the specified location.</returns>
         </member>
         <!-- Badly formed XML comment ignored for member "T:GraphicalProgrammingLanguage.Commands.Reset" -->
+        <member name="M:GraphicalProgrammingLanguage.Commands.Reset.Execute">
+            <summary>
+            Begins the command if valid and sets the graphic object in the MainGUI back to the default 
+            state. This includes the position of the pen as well as the canvas being cleared.
+            This makes use of the 'Clear' command to avoid re writing the statement.
+            If not valid then message added to the log.
+            </summary>
+        </member>
         <member name="M:GraphicalProgrammingLanguage.Commands.Reset.hasRequiredParameters">
             <summary>
             HasRequiredParameters returns true without any logic due to the fact the Reset command does 
@@ -224,7 +283,7 @@
             class, it has the additional benefit of being able to add further logic in future if the 
             application changes in future iterations.
             </summary>
-            <returns></returns>
+            <returns>Returns true as no variables required for this action.</returns>
         </member>
         <member name="M:GraphicalProgrammingLanguage.Commands.Reset.IsValid(System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
@@ -234,8 +293,8 @@
             class, it has the additional benefit of being able to add further logic in future if the 
             application changes in future iterations.
             </summary>
-            <param name="variables"></param>
-            <returns></returns>
+            <param name="variables">A dictionary object to hold string values which can be parsed where required.</param>
+            <returns>Returns true as no variables required for this action.</returns>
         </member>
         <member name="T:GraphicalProgrammingLanguage.Commands.SetFill">
             <summary>
@@ -249,6 +308,32 @@
                 setfill(color=red)
                 setfill()
             </summary>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Commands.SetFill.set(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Takes variables passed to the method from within the variables dictionary and assigns them to the relevent
+            fields ready for execution when completed.
+            </summary>
+            <param name="variables">A dictionary object to hold string values which can be parsed where required.</param>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Commands.SetFill.Execute">
+            <summary>
+            Begins the command if valid and sets the brush object within the MainGUI to the one built wihin this class.
+            If not valid then message added to the log.
+            </summary>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Commands.SetFill.hasRequiredParameters">
+            <summary>
+            Checks the class to ensure it has what is required to successfully execute the action.
+            </summary>
+            <returns>Returns true as no variables required for this action to execute.</returns>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Commands.SetFill.IsValid(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Makes use of the hasRequiredParameters method as there is no further logic required to verify the action.
+            </summary>
+            <param name="variables">A dictionary object to hold string values which can be parsed where required.</param>
+            <returns>Returns true as no variables required for this action to execute.</returns>
         </member>
         <member name="T:GraphicalProgrammingLanguage.Commands.SetPen">
             <summary>
@@ -272,7 +357,7 @@
             <summary>
             The validity of the command come from the correct variables and so uses hasRequiredParameters.
             </summary>
-            <param name="variables"></param>
+            <param name="variables">A dictionary object to hold string values which can be parsed where required.</param>
             <returns></returns>
         </member>
         <member name="T:GraphicalProgrammingLanguage.Data.CommandsContext">
@@ -317,15 +402,15 @@
             On the launch of the application this method is called to write the event in the log.txt file as well as write 
             to the txtLog visual control with the DateTime stamp preceeding it.
             </summary>
-            <returns></returns>
+            <returns>String value intended to be used when writing to the GUI object txtLog</returns>
         </member>
         <member name="M:GraphicalProgrammingLanguage.Logger.Log(System.String)">
             <summary>
             Log() writes any given string to the log.txt file and the txtLog UI control on a fresh line along with the DateTime 
             stamp preceeding it.
             </summary>
-            <param name="message"></param>
-            <returns></returns>
+            <param name="message">String value provided to be written to the log</param>
+            <returns>String value intended to be used when writing to the GUI object txtLog</returns>
         </member>
         <member name="T:GraphicalProgrammingLanguage.UsageCounter">
             <summary>
@@ -346,7 +431,7 @@
             by the most recent usage count.
             The outputted string concatinates the CommandName followed by a tab space and then the SyntaxExample, delimited by a colon.
             </summary>
-            <returns></returns>
+            <returns>List of strings which can be iterated through and added to the GUI command in the MainGUI</returns>
         </member>
         <member name="T:GraphicalProgrammingLanguage.Interfaces.ICommand">
             <summary>
@@ -357,23 +442,6 @@
             <summary>
             The shape interface holds methods used for common actions relating to a generic shape.
             CalculateArea and CalculatePerimenter are intended to be used within the override for toString() method.
-            </summary>
-        </member>
-        <member name="F:GraphicalProgrammingLanguage.MainGUI.components">
-            <summary>
-             Required designer variable.
-            </summary>
-        </member>
-        <member name="M:GraphicalProgrammingLanguage.MainGUI.Dispose(System.Boolean)">
-            <summary>
-             Clean up any resources being used.
-            </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        </member>
-        <member name="M:GraphicalProgrammingLanguage.MainGUI.InitializeComponent">
-            <summary>
-             Required method for Designer support - do not modify
-             the contents of this method with the code editor.
             </summary>
         </member>
         <member name="T:GraphicalProgrammingLanguage.Models.CommandUsageCount">
@@ -419,11 +487,104 @@
               Looks up a localized resource of type System.Drawing.Bitmap.
             </summary>
         </member>
+        <member name="M:GraphicalProgrammingLanguage.Shapes.Circle.#ctor(System.Int32,System.Int32,System.Int32,System.Drawing.Color,System.Drawing.Color,System.Single)">
+            <summary>
+            This constructor is passed all the variables required to action the draw method following instantiated.
+            </summary>
+            <param name="x">Horizontal coordinate of the pen.</param>
+            <param name="y">Verticle coordinate of the pen.</param>
+            <param name="radius">The expected radius of the drawn object.</param>
+            <param name="lineColor">The string value of a color for the line.</param>
+            <param name="fillColor">The string value of a color for the fill.</param>
+            <param name="lineWeight">The width of the line.</param>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Shapes.Circle.Set(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Takes variables passed to the method from within the variables dictionary and assigns them to the relevent
+            fields ready for execution when completed.
+            x, y and radius are the required fields.
+            </summary>
+            <param name="variables">A dictionary object to hold string values which can be parsed where required.</param>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Shapes.Circle.CalculateArea">
+            <summary>
+            Calculates the area of the created shape using the PI value from the C# Math library.
+            </summary>
+            <returns>The calulated value of the area in an unrestricted decimal format.</returns>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Shapes.Circle.CalculatePerimeter">
+            <summary>
+            Calculates the perimeter of the created shape using the PI value from the C# Math library.
+            </summary>
+            <returns>The calulated value of the perimeter in an unrestricted decimal format.</returns>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Shapes.Circle.Draw(System.Drawing.Graphics)">
+            <summary>
+            The action that adds the specified shape the MainGUI graphic object.
+            </summary>
+            <param name="g">Graphics object, intended to be provided from the MainGUI</param>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Shapes.Circle.HasRequiredVariables">
+            <summary>
+            Uses the check variables xSet, xSet and radiusSet to ascertain whether the required variables have been set.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:GraphicalProgrammingLanguage.Shapes.Circle.ToString">
             <summary>
             This overrides the base implemention of ToString() in this case this is now the Shape class.
             </summary>
             <returns>Example output: 'StringRef x=1, y=2 : radius=3, perimeter=4, area=5'</returns>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Shapes.Rectangle.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Drawing.Color,System.Drawing.Color,System.Single)">
+            <summary>
+            This constructor is passed all the variables required to action the draw method following instantiation.
+            </summary>
+            <param name="x">Horizontal coordinate of the pen.</param>
+            <param name="y">Verticle coordinate of the pen.</param>
+            <param name="length">The value of the length of the rectangle as an integer.</param>
+            <param name="width">The value of the width of the rectangle as an integer.</param>
+            <param name="lineColor">The string value of a color for the line.</param>
+            <param name="fillColor">The string value of a color for the fill.</param>
+            <param name="lineWeight">The width of the line.</param>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Shapes.Rectangle.CalculateArea">
+            <summary>
+            Calculates the area of the created shape using the given length and width properties.
+            </summary>
+            <returns>The calulated value of the area in an unrestricted decimal format.</returns>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Shapes.Rectangle.CalculatePerimeter">
+            <summary>
+            Calculates the perimeter of the created shape using the given length and width properties.
+            </summary>
+            <returns>The calulated value of the perimeter in an unrestricted decimal format.</returns>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Shapes.Rectangle.Draw(System.Drawing.Graphics)">
+            <summary>
+            The action that adds the specified shape the MainGUI graphic object.
+            </summary>
+            <param name="g">Graphics object, intended to be provided from the MainGUI</param>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Shapes.Rectangle.HasRequiredVariables">
+            <summary>
+            Uses the check variables xSet, xSet, lengthSet and widthSet to ascertain whether the required variables have been set.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Shapes.Rectangle.Set(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Takes variables passed to the method from within the variables dictionary and assigns them to the relevent
+            fields ready for execution when completed.
+            x, y, length and width are the required fields.
+            </summary>
+            <param name="variables">A dictionary object to hold string values which can be parsed where required.</param>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Shapes.Rectangle.ToString">
+            <summary>
+            This overrides the base implemention of ToString() in this case this is now the Shape class.
+            </summary>
+            <returns>Example output: 'StringRef x=1, y=2 : length=3, width=3, perimeter=4, area=5'</returns>
         </member>
         <member name="T:GraphicalProgrammingLanguage.Shapes.Shape">
             <summary>
@@ -437,7 +598,7 @@
             The 'set' method uses the params in position [0] as x, [1] as y and [2] as the line weight. 
             This virtual method can be overwritten by children of this class that can be more specfic to the shape.
             </summary>
-            <param name="variables"></param>
+            <param name="variables">A dictionary object to hold string values which can be parsed where required.</param>
         </member>
         <member name="M:GraphicalProgrammingLanguage.Shapes.Shape.CalculateArea">
             <summary>
@@ -447,5 +608,117 @@
             <returns></returns>
         </member>
         <!-- Badly formed XML comment ignored for member "M:GraphicalProgrammingLanguage.Shapes.Shape.ToString" -->
+        <member name="M:GraphicalProgrammingLanguage.Shapes.Square.#ctor(System.Int32,System.Int32,System.Int32,System.Drawing.Color,System.Drawing.Color,System.Single)">
+            <summary>
+            This constructor is passed all the variables required to action the draw method following instantiation.
+            </summary>
+            <param name="x">Horizontal coordinate of the pen.</param>
+            <param name="y">Verticle coordinate of the pen.</param>
+            <param name="length">The value of the length of the rectangle as an integer.</param>
+            <param name="lineColor">The string value of a color for the line.</param>
+            <param name="fillColor">The string value of a color for the fill.</param>
+            <param name="lineWeight">The width of the line.</param>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Shapes.Square.CalculateArea">
+            <summary>
+            Calculates the area of the created shape using the given length property.
+            </summary>
+            <returns>The calulated value of the area in an unrestricted decimal format.</returns>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Shapes.Square.CalculatePerimeter">
+            <summary>
+            Calculates the perimeter of the created shape using the given length property.
+            </summary>
+            <returns>The calulated value of the area in an unrestricted decimal format.</returns>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Shapes.Square.Draw(System.Drawing.Graphics)">
+            <summary>
+            The action that adds the specified shape the MainGUI graphic object.
+            </summary>
+            <param name="g">Graphics object, intended to be provided from the MainGUI</param>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Shapes.Square.HasRequiredVariables">
+            <summary>
+            Uses the check variables xSet, xSet and lengthSet to ascertain whether the required variables have been set.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Shapes.Square.Set(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Takes variables passed to the method from within the variables dictionary and assigns them to the relevent
+            fields ready for execution when completed.
+            x, y and length are the required fields.
+            </summary>
+            <param name="variables">A dictionary object to hold string values which can be parsed where required.</param>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Shapes.Square.ToString">
+            <summary>
+            This overrides the base implemention of ToString() in this case this is now the Shape class.
+            </summary>
+            <returns>Example output: 'StringRef x=1, y=2 : length=3, perimeter=4, area=5'</returns>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Shapes.Triangle.#ctor(System.Int32,System.Int32,System.Drawing.Color,System.Drawing.Color,System.Single,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            This constructor is passed the variables required to action the draw method following instantiation.
+            </summary>
+            <param name="x">Horizontal coordinate of the pen.</param>
+            <param name="y">Verticle coordinate of the pen.</param>
+            <param name="lineColor">The string value of a color for the line.</param>
+            <param name="fillColor">The string value of a color for the fill.</param>
+            <param name="lineWeight">The width of the line.</param>
+            <param name="x2">Horizontal coordinate of the pen for the second point.</param>
+            <param name="y2">Verticle coordinate of the pen for the second point.</param>
+            <param name="x3">Horizontal coordinate of the pen for the third point.</param>
+            <param name="y3">Verticle coordinate of the pen for the third point.</param>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Shapes.Triangle.CalculateArea">
+            <summary>
+            Calculates the area of the created shape using the given coordinate points properties.
+            </summary>
+            <returns>The calulated value of the area in an unrestricted decimal format.</returns>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Shapes.Triangle.CalculatePerimeter">
+            <summary>
+            Calculates the perimeter of the created shape using the given length and width properties.
+            </summary>
+            <returns>The calulated value of the perimeter in an unrestricted decimal format.</returns>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Shapes.Triangle.Draw(System.Drawing.Graphics)">
+            <summary>
+            The action that adds the specified shape the MainGUI graphic object.
+            </summary>
+            <param name="g">Graphics object, intended to be provided from the MainGUI</param>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Shapes.Triangle.HasRequiredVariables">
+            <summary>
+            Uses the check variables p1Set, p2Set and p3Set to ascertain whether the required variables have been set.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.Shapes.Triangle.Set(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Takes variables passed to the method from within the variables dictionary and assigns them to the relevent
+            fields ready for execution when completed.
+            p1, p2 and p3 are the required fields.
+            </summary>
+            <param name="variables">A dictionary object to hold string values which can be parsed where required.</param>
+        </member>
+        <member name="F:GraphicalProgrammingLanguage.MainGUI.components">
+            <summary>
+             Required designer variable.
+            </summary>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.MainGUI.Dispose(System.Boolean)">
+            <summary>
+             Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:GraphicalProgrammingLanguage.MainGUI.InitializeComponent">
+            <summary>
+             Required method for Designer support - do not modify
+             the contents of this method with the code editor.
+            </summary>
+        </member>
     </members>
 </doc>

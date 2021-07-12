@@ -50,7 +50,7 @@ namespace GraphicalProgrammingLanguage.Shapes
         /// The 'set' method uses the params in position [0] as x, [1] as y and [2] as the line weight. 
         /// This virtual method can be overwritten by children of this class that can be more specfic to the shape.
         /// </summary>
-        /// <param name="variables"></param>
+        /// <param name="variables">A dictionary object to hold string values which can be parsed where required.</param>
         public virtual void Set(Dictionary<string, string> variables)
         {
             if (variables.ContainsKey("x"))
@@ -67,7 +67,7 @@ namespace GraphicalProgrammingLanguage.Shapes
             {
                 lineWeight = float.Parse(variables.GetValueOrDefault("lineWeight"));
             }
-            if (variables.ContainsKey("linecolor"))
+            if (variables.ContainsKey("linecolor")) 
             {
                 lineColor = Color.FromName(variables.GetValueOrDefault("lineColor"));
             }

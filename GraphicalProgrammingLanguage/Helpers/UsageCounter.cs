@@ -34,7 +34,7 @@ namespace GraphicalProgrammingLanguage
         /// by the most recent usage count.
         /// The outputted string concatinates the CommandName followed by a tab space and then the SyntaxExample, delimited by a colon.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of strings which can be iterated through and added to the GUI command in the MainGUI</returns>
         public static List<string> GetUsageCountOutput()
         {
             List<CommandUsageCount> usage = new List<CommandUsageCount>();

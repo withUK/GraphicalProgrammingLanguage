@@ -6,11 +6,17 @@ using System.Text;
 
 namespace GraphicalProgrammingLanguage.Commands.Tests
 {
+    /// <summary>
+    /// Set of tests intended to test the core functionality of the MoveTo command object.
+    /// </summary>
     [TestClass()]
     public class MoveToTests
     {
         private MainGUI main = new MainGUI();
 
+        /// <summary>
+        /// Returns a true value when the required variables have been passed.
+        /// </summary>
         [TestMethod()]
         public void Set_ReturnsTrueWhenSetsParameters()
         {
@@ -27,6 +33,9 @@ namespace GraphicalProgrammingLanguage.Commands.Tests
             Assert.IsTrue(d.hasRequiredParameters());
         }
 
+        /// <summary>
+        /// Returns a false value when the required variables have not been passed.
+        /// </summary>
         [TestMethod()]
         public void Set_ReturnsFalseWhenParametersNotFullySet()
         {

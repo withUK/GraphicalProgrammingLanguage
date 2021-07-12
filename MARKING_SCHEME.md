@@ -26,7 +26,7 @@ Your implementation must have a proper interface with a window/area for typing a
 #### Appropriate UI conforming to above specification (1 mark) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
 #### Command parser class  
 - Reads and executes commands on command line one at a time (2 marks)  ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
-- Reads a program (in the program window) and executes it with a “run”  command (typed into the command line). (5 marks) 
+- Reads a program (in the program window) and executes it with a “run”  command (typed into the command line). (5 marks) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
 - Saves and loads a program (2 marks) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
 - Syntax checking 
   - Checks for valid commands (2 marks)  
@@ -51,9 +51,9 @@ The idea here is that it behaves like a proper programming language with sequenc
 - Variables - allows variables to be used in loop and as parameters to draw  commands (5 marks)  
 - Loop command (5 marks)  
   - Repeats everything between Loop on the first line and “end” on a later  line.  
-- If statement (5 marks) 
-  - for one line (2 marks) 
-  - for block with “endif” (3 marks)
+- If statement (5 marks) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
+  - for one line (2 marks) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
+  - for block with “endif” (3 marks) ![tick](https://user-images.githubusercontent.com/22601795/123541061-4aec3080-d73a-11eb-98cf-efff87d37041.png)
 - Syntax checking (5 marks)  
   - Syntax of the program is checked before the program is run and  reported appropriately.  
 - Methods (10 marks)  

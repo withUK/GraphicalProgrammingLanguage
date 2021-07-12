@@ -15,7 +15,7 @@ namespace GraphicalProgrammingLanguage
     /// </summary>
     public class CommandParser
     {
-        // Constants
+        #region Constants
         private const string REG_PARENTHESES = "^[a-zA-Z]+\\([^)]*\\)$";
         private const string REG_COMMAND_ONLY = "^[a-zA-Z]+$";
         private const string REG_VARIABLE = "^[a-zA-Z]+=[a-zA-Z0-9]+$";
@@ -25,37 +25,63 @@ namespace GraphicalProgrammingLanguage
         Regex regexCommandOnly = new Regex(REG_COMMAND_ONLY, RegexOptions.IgnoreCase);
         Regex regexVariables = new Regex(REG_VARIABLE, RegexOptions.IgnoreCase);
         Regex regexVariablesPoint = new Regex(REG_VARIABLE_POINT, RegexOptions.IgnoreCase);
+        #endregion
 
-        // Properties
+        #region Properties
         private MainGUI main { get; set; }
         private CommandFactory cf = new CommandFactory();
         private Command command { get; set; }
         private Dictionary<string, string> variables;
+        #endregion
 
-        // Constructor
+        #region Constructor
+        /// <summary>
+        /// Instantiates object to enable the ability to interpretate the entries from the command line.
+        /// </summary>
+        /// <param name="main">MainGUI passed to constructor to allow all UI objects to be available so they can 
+        /// be updated following actions.</param>
         public CommandParser(MainGUI main)
         {
             this.main = main;
         }
+        #endregion
 
+        #region Methods
+        /// <summary>
+        /// Accepts the values from the command line and retrieves and evaluates the contents of the input from the 
+        /// command line.
+        /// </summary>
+        /// <param name="input">Intended to be the input recieved from the GUI object txtCommand</param>
+        public void ParseCommand(string input)
         // Methods
         public void ExecuteCommand(string input)
         {
             input = PrepareInput(input);
-            SetCommand(input);
-            variables = GetVariablesFromInput(input);
-            SetCommandVariables();
-
-            if (command.hasRequiredParameters())
+            try
             {
-                command.Execute();
-                UsageCounter.AddToCommandCount(command.name);
-                ClearCurrentCommand();
-                UpdateCommandUsage();
+                SetCommand(input);
             }
-            else
+            catch (ArgumentException e)
             {
-                SetCurrentCommand();
+                main.txtLog.AppendText(Logger.Log(e.Message));
+                main.txtCommandLine.Clear();
+                return;
+            }
+            if (command != null && !String.IsNullOrEmpty(input))
+            {
+                SetVariablesFromInput(input);
+
+                if (command.hasRequiredParameters())
+                {
+                    command.Execute();
+                    UsageCounter.AddToCommandCount(command.name);
+                    ClearCurrentCommand();
+                    UpdateCommandUsage();
+                }
+                else
+                {
+                    SetCurrentCommand();
+                }
             }
 
             main.txtCommandLine.Clear();
@@ -65,8 +91,7 @@ namespace GraphicalProgrammingLanguage
         /// The 'prepareInput' method takes a string input and converts to lowercase and then removes the whitespace to 
         /// ensure consistant evaluation and extraction of values.
         /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
+        /// <param name="input">Input recieved from the GUI object txtCommand</param>
         private string PrepareInput(string input)
         {
             input = input.ToLower().Trim();
@@ -80,26 +105,33 @@ namespace GraphicalProgrammingLanguage
         /// 'setCommand' uses the REGEX patterns within the class to identify inputs containing parentheses or if it is
         /// a command on its own, further verification of the command is done within the command factory.
         /// </summary>
-        /// <param name="input"></param>
+        /// <param name="input">Input recieved from the GUI object txtCommand following it being prepared.</param>
         private void SetCommand(string input)
         {
             int index = 0;
             string commandType;
 
-            if (regexParentheses.IsMatch(input))
+            try
             {
-                index = input.IndexOf("(");
-                commandType = input.Substring(0, index);
+                if (regexParentheses.IsMatch(input))
+                {
+                    index = input.IndexOf("(");
+                    commandType = input.Substring(0, index);
 
-                command = cf.GetCommand(main, commandType);
+                    command = cf.GetCommand(main, commandType);
+                }
+                else if (main.currentCommand != null)
+                {
+                    command = main.currentCommand;
+                }
+                else if (regexCommandOnly.IsMatch(input))
+                {
+                    command = cf.GetCommand(main, input);
+                }
             }
-            else if (main.currentCommand != null)
+            catch (ArgumentException e)
             {
-                command = main.currentCommand;
-            }
-            else if (regexCommandOnly.IsMatch(input))
-            {
-                command = cf.GetCommand(main, input);
+                throw e;
             }
         }
 
@@ -222,5 +254,6 @@ namespace GraphicalProgrammingLanguage
                 }
             }
         }
+        #endregion
     }
 }

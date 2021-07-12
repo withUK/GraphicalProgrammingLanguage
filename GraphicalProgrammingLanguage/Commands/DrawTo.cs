@@ -38,6 +38,11 @@ namespace GraphicalProgrammingLanguage.Commands
         #endregion
 
         #region Overrides
+        /// <summary>
+        /// Takes variables passed to the method from within the variables dictionary and assigns them to the relevent
+        /// fields ready for execution when completed.
+        /// </summary>
+        /// <param name="variables">A dictionary object to hold string values which can be parsed where required.</param>
         public void set(Dictionary<string, string> variables)
         {
             this.variables = variables;
@@ -56,6 +61,10 @@ namespace GraphicalProgrammingLanguage.Commands
             }
         }
 
+        /// <summary>
+        /// Begins the command if valid and draws the line to the defined location on the graphic object in the MainGUI.
+        /// If not valid then message added to the log.
+        /// </summary>
         public override void Execute()
         {
             if (IsValid(variables))
@@ -64,6 +73,10 @@ namespace GraphicalProgrammingLanguage.Commands
                 main.dc.DrawLine(main.pen, main.x, main.y, x, y);
                 main.x = x;
                 main.y = y;
+            }
+            else
+            {
+                Logger.Log($"Unable to execute {name}");
             }
         }
 
@@ -85,8 +98,8 @@ namespace GraphicalProgrammingLanguage.Commands
         /// With the lack of additional logic requirements the IsValid method makes use of the hasRequiredParameters'
         /// method.
         /// </summary>
-        /// <param name="variables"></param>
-        /// <returns></returns>
+        /// <param name="variables">A dictionary object to hold string values which can be parsed where required.</param>
+        /// <returns>Returns true if object has required parameters to draw to the specified location.</returns>
         public override bool IsValid(Dictionary<string, string> variables)
         {
             return hasRequiredParameters();
