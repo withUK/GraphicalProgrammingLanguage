@@ -67,7 +67,7 @@ namespace GraphicalProgrammingLanguage.Shapes
             {
                 lineWeight = float.Parse(variables.GetValueOrDefault("lineWeight"));
             }
-            if (variables.ContainsKey("linecolor"))
+            if (variables.ContainsKey("linecolor")) 
             {
                 lineColor = Color.FromName(variables.GetValueOrDefault("lineColor"));
             }
