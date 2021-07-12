@@ -20,7 +20,7 @@
             <param name="main">MainGUI passed to constructor to allow all UI objects to be available so they can 
             be updated following actions.</param>
         </member>
-        <member name="M:GraphicalProgrammingLanguage.CommandParser.ParseCommand(System.String)">
+        <member name="M:GraphicalProgrammingLanguage.CommandParser.ExecuteCommand(System.String)">
             <summary>
             Accepts the values from the command line and retrieves and evaluates the contents of the input from the 
             command line.
@@ -52,7 +52,7 @@
             Using the REGEX patterns the 'setVariablesFromInput method identifies whether the entered input string 
             hold variables, whether they are inside parentheses or stand alone variables.
             </summary>
-            <param name="input">Input recieved from the GUI object txtCommand following it being prepared.</param>
+            <param name="input"></param>
         </member>
         <member name="M:GraphicalProgrammingLanguage.CommandParser.SetCurrentCommand">
             <summary>

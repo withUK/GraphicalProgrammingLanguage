@@ -11,11 +11,13 @@ namespace GraphicalProgrammingLanguage
     {
         // Objects
         internal CommandParser cp;
+        internal ScriptParser sp;
         internal Graphics dc;
         internal Pen pen = new Pen(Color.Black, 1);
         internal Brush brush = new SolidBrush(Color.Transparent);
         internal Command currentCommand;
         internal Dictionary<string,string> currentVariables;
+        internal StreamReader fileContent;
 
         // Properties
         internal int x = 0, y = 0;
@@ -25,6 +27,7 @@ namespace GraphicalProgrammingLanguage
         {
             InitializeComponent();
             cp = new CommandParser(this);
+            sp = new ScriptParser(this);
             dc = pnlOutput.CreateGraphics();
             populateCommandUsage();
             txtLog.AppendText(Logger.LogLaunch());
@@ -39,6 +42,8 @@ namespace GraphicalProgrammingLanguage
                 var fileContent = new StreamReader(dialogueLoad.FileName);
                 txtScript.Text = fileContent.ReadToEnd();
                 txtLog.Text = Logger.Log($"{dialogueLoad.FileName} loaded.") + "\n" + txtLog.Text;
+                fileContent.Dispose();
+                fileContent.Close();
             }
         }
 
@@ -58,7 +63,12 @@ namespace GraphicalProgrammingLanguage
 
         private void btnCommandLineRun_Click(object sender, EventArgs e)
         {
-            cp.ParseCommand(txtCommandLine.Text);
+            cp.ExecuteCommand(txtCommandLine.Text);
+        }
+
+        private void btnScriptRun_Click(object sender, EventArgs e)
+        {
+            sp.ExecuteScript(txtScript.Text);
         }
 
         private void populateCommandUsage()

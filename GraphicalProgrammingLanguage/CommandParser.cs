@@ -52,7 +52,7 @@ namespace GraphicalProgrammingLanguage
         /// command line.
         /// </summary>
         /// <param name="input">Intended to be the input recieved from the GUI object txtCommand</param>
-        public void ParseCommand(string input)
+        public void ExecuteCommand(string input)
         {
             input = PrepareInput(input);
             try
@@ -166,15 +166,15 @@ namespace GraphicalProgrammingLanguage
         /// Using the REGEX patterns the 'setVariablesFromInput method identifies whether the entered input string 
         /// hold variables, whether they are inside parentheses or stand alone variables.
         /// </summary>
-        /// <param name="input">Input recieved from the GUI object txtCommand following it being prepared.</param>
-        private void SetVariablesFromInput(string input)
+        /// <param name="input"></param>
+        public Dictionary<string, string> SetVariablesFromInput(string input)
         {
             int startIndex = 0;
             int endIndex = 0;
 
             if (regexParentheses.IsMatch(input))
             {
-                variables = new Dictionary<string, string>();
+                Dictionary<string, string> variables = new Dictionary<string, string>();
 
                 startIndex = input.IndexOf("(");
                 endIndex = input.IndexOf(")");
@@ -204,7 +204,7 @@ namespace GraphicalProgrammingLanguage
                 variables.Add(split[0], split[1]);
             }
 
-            SetCommandVariables();
+            return variables;
         }
 
         /// <summary>

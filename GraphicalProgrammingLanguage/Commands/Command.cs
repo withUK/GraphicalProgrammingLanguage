@@ -11,8 +11,9 @@ namespace GraphicalProgrammingLanguage.Commands
     public abstract class Command : ICommand
     {
         #region Properties
-        protected MainGUI main { get; set; }
+        internal MainGUI main { get; set; }
         public string name { get; set; }
+        public int order { get; set; }
         protected Dictionary<string,string> variables { get; set; }
         #endregion
 
@@ -51,8 +52,9 @@ namespace GraphicalProgrammingLanguage.Commands
         {
             main.txtLog.AppendText(Logger.Log($"Command {name} called."));
         }
+        #endregion
 
-        // Abstracts
+        #region Abstracts
         /// <summary>
         /// These methods have been brought in by the interface, as the class is abstract these methods are 
         /// not reuqired at this level and will be implemented by children of the Command base class.
