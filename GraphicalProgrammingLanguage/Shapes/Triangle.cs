@@ -6,7 +6,7 @@ namespace GraphicalProgrammingLanguage.Shapes
 {
     public class Triangle : Shape
     {
-        // Properties
+        #region Properties
         Point p1 { get; set; }
         private bool p1Set { get; set; }
         Point p2 { get; set; }
@@ -14,8 +14,9 @@ namespace GraphicalProgrammingLanguage.Shapes
         Point p3 { get; set; }
         private bool p3Set { get; set; }
         Point[] points { get; set; }
+        #endregion
 
-        // Constructors
+        #region Constructors
         public Triangle() : base()
         {
 
@@ -26,6 +27,18 @@ namespace GraphicalProgrammingLanguage.Shapes
 
         }
 
+        /// <summary>
+        /// This constructor is passed the variables required to action the draw method following instantiation.
+        /// </summary>
+        /// <param name="x">Horizontal coordinate of the pen.</param>
+        /// <param name="y">Verticle coordinate of the pen.</param>
+        /// <param name="lineColor">The string value of a color for the line.</param>
+        /// <param name="fillColor">The string value of a color for the fill.</param>
+        /// <param name="lineWeight">The width of the line.</param>
+        /// <param name="x2">Horizontal coordinate of the pen for the second point.</param>
+        /// <param name="y2">Verticle coordinate of the pen for the second point.</param>
+        /// <param name="x3">Horizontal coordinate of the pen for the third point.</param>
+        /// <param name="y3">Verticle coordinate of the pen for the third point.</param>
         public Triangle(int x, int y, Color lineColor, Color fillColor, float lineWeight, int x2, int y2, int x3, int y3) : base(x, y, lineColor, fillColor, lineWeight)
         {
             Dictionary<string, string> variables = new Dictionary<string, string>();
@@ -37,16 +50,22 @@ namespace GraphicalProgrammingLanguage.Shapes
             variables.Add("lineweight", lineWeight.ToString());
             Set(variables);
         }
+        #endregion
 
-        // Methods
-
-
-        // Abstracts
+        #region Overrides
+        /// <summary>
+        /// Calculates the area of the created shape using the given coordinate points properties.
+        /// </summary>
+        /// <returns>The calulated value of the area in an unrestricted decimal format.</returns>
         public override double CalculateArea()
         {
             return 0.5 * (p1.X * (p2.Y - p3.Y) + p2.X * (p3.Y - p1.Y) + p3.X * (p1.Y - p2.Y));
         }
 
+        /// <summary>
+        /// Calculates the perimeter of the created shape using the given length and width properties.
+        /// </summary>
+        /// <returns>The calulated value of the perimeter in an unrestricted decimal format.</returns>
         public override double CalculatePerimeter()
         {
             var l1 = Math.Sqrt((p1.X - p2.X) * (p1.X - p2.X) + (p1.Y - p2.Y) * (p1.Y - p2.Y));
@@ -56,6 +75,10 @@ namespace GraphicalProgrammingLanguage.Shapes
             return l1 + l2 + l3;
         }
 
+        /// <summary>
+        /// The action that adds the specified shape the MainGUI graphic object.
+        /// </summary>
+        /// <param name="g">Graphics object, intended to be provided from the MainGUI</param>
         public override void Draw(Graphics g)
         {
             Pen p = new Pen(lineColor, lineWeight);
@@ -65,12 +88,21 @@ namespace GraphicalProgrammingLanguage.Shapes
             g.DrawPolygon(p, points);
         }
 
+        /// <summary>
+        /// Uses the check variables p1Set, p2Set and p3Set to ascertain whether the required variables have been set.
+        /// </summary>
+        /// <returns></returns>
         public override bool HasRequiredVariables()
         {
             return p1Set && p2Set && p3Set;
         }
 
-        // Overrides
+        /// <summary>
+        /// Takes variables passed to the method from within the variables dictionary and assigns them to the relevent
+        /// fields ready for execution when completed.
+        /// p1, p2 and p3 are the required fields.
+        /// </summary>
+        /// <param name="variables">A dictionary object to hold string values which can be parsed where required.</param>
         public override void Set(Dictionary<string, string> variables)
         {
             if (variables.ContainsKey("lineweight"))
@@ -127,5 +159,6 @@ namespace GraphicalProgrammingLanguage.Shapes
         {
             return base.ToString() + "p1=" + p1.ToString() + ", p2=" + p2.ToString() + ", p3=" + p3.ToString() + ", perimeter=" + CalculatePerimeter() + ", area=" + CalculateArea();
         }
+        #endregion
     }
 }

@@ -23,6 +23,12 @@ namespace GraphicalProgrammingLanguage.Commands
         #endregion
 
         #region Overrides
+        /// <summary>
+        /// Begins the command if valid and sets the graphic object in the MainGUI back to the default 
+        /// state. This includes the position of the pen as well as the canvas being cleared.
+        /// This makes use of the 'Clear' command to avoid re writing the statement.
+        /// If not valid then message added to the log.
+        /// </summary>
         public override void Execute()
         {
             if (IsValid(new Dictionary<string, string>()))
@@ -41,7 +47,7 @@ namespace GraphicalProgrammingLanguage.Commands
         /// class, it has the additional benefit of being able to add further logic in future if the 
         /// application changes in future iterations.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns true as no variables required for this action.</returns>
         public override bool hasRequiredParameters()
         {
             return true;
@@ -54,8 +60,8 @@ namespace GraphicalProgrammingLanguage.Commands
         /// class, it has the additional benefit of being able to add further logic in future if the 
         /// application changes in future iterations.
         /// </summary>
-        /// <param name="variables"></param>
-        /// <returns></returns>
+        /// <param name="variables">A dictionary object to hold string values which can be parsed where required.</param>
+        /// <returns>Returns true as no variables required for this action.</returns>
         public override bool IsValid(Dictionary<string, string> variables)
         {
             return true;

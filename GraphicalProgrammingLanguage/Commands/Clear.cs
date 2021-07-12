@@ -37,21 +37,21 @@ namespace GraphicalProgrammingLanguage.Commands
         /// class, it has the additional benefit of being able to add further logic in future if the 
         /// application changes in future iterations.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns true as no variables required for this action.</returns>
         public override bool hasRequiredParameters()
         {
             return true;
         }
 
         /// <summary>
-        /// IsValid returns true without any logic due to the fact the Clear command does 
+        /// eturns true without any logic due to the fact the Clear command does 
         /// not require any parameters.
         /// The method is implemented this way to follow the established pattern within the CommandParser 
         /// class, it has the additional benefit of being able to add further logic in future if the 
         /// application changes in future iterations.
         /// </summary>
-        /// <param name="variables"></param>
-        /// <returns></returns>
+        /// <param name="variables">A dictionary object to hold string values which can be parsed where required.</param>
+        /// <returns>Returns true as no variables required for this action.</returns>
         public override bool IsValid(Dictionary<string, string> variables)
         {
             return true;

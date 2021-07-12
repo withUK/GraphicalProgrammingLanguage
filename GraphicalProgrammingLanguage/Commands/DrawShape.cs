@@ -47,6 +47,11 @@ namespace GraphicalProgrammingLanguage.Commands
         #endregion
 
         #region Overrides
+        /// <summary>
+        /// Takes variables passed to the method from within the variables dictionary and assigns them to the relevent
+        /// fields ready for execution when completed.
+        /// </summary>
+        /// <param name="variables">A dictionary object to hold string values which can be parsed where required.</param>
         public void set(Dictionary<string, string> variables)
         {
             this.variables = variables;
@@ -57,6 +62,10 @@ namespace GraphicalProgrammingLanguage.Commands
             }
         }
 
+        /// <summary>
+        /// Begins the command if valid and draws the defined shape to the graphic object in the MainGUI.
+        /// If not valid then message added to the log.
+        /// </summary>
         public override void Execute()
         {
             if (IsValid(this.variables))
@@ -64,14 +73,17 @@ namespace GraphicalProgrammingLanguage.Commands
                 Log(main);
                 shape.Draw(main.dc);
             }
+            else
+            {
+                Logger.Log($"Unable to execute {name}");
+            }
         }
 
         /// <summary>
-        /// This implementation of the HasRequiredParameters ensures the shape object has been instansiated and
-        /// then makes use of the shapes own HasRequiredParameters method as that is the object that requires the
-        /// variables to successfully execute.
+        /// Ensures the shape object has been instansiated and then makes use of the shapes own HasRequiredParameters 
+        /// method as that is the object that requires the variables to successfully execute.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns true if object has required parameters to build the specified shape.</returns>
         public override bool hasRequiredParameters()
         {
             if (shape != null)
@@ -85,8 +97,8 @@ namespace GraphicalProgrammingLanguage.Commands
         /// This method is implemented based on the shape having the correct variables and so make use of the
         /// hasRequiredParameters() method.
         /// </summary>
-        /// <param name="variables"></param>
-        /// <returns></returns>
+        /// <param name="variables">A dictionary object to hold string values which can be parsed where required.</param>
+        /// <returns>Returns true if object has required parameters to build the specified shape.</returns>
         public override bool IsValid(Dictionary<string, string> variables)
         {
             return hasRequiredParameters();

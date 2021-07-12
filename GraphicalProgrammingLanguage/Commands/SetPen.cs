@@ -79,7 +79,7 @@ namespace GraphicalProgrammingLanguage.Commands
         /// <summary>
         /// The validity of the command come from the correct variables and so uses hasRequiredParameters.
         /// </summary>
-        /// <param name="variables"></param>
+        /// <param name="variables">A dictionary object to hold string values which can be parsed where required.</param>
         /// <returns></returns>
         public override bool IsValid(Dictionary<string, string> variables)
         {

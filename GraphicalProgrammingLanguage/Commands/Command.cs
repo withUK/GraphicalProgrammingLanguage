@@ -36,7 +36,7 @@ namespace GraphicalProgrammingLanguage.Commands
         /// By using a Dictiaonary and setting it at the base class it reduces the need to set multiple 
         /// times and can concentrate on the logic within the child.
         /// </summary>
-        /// <param name="variables"></param>
+        /// <param name="variables">A dictionary object to hold string values which can be parsed where required.</param>
         public void Set(Dictionary<string, string> variables)
         {
             this.variables = variables;

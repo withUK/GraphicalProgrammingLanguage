@@ -5,13 +5,14 @@ namespace GraphicalProgrammingLanguage.Shapes
 {
     public class Rectangle : Shape
     {
-        // Properties
+        #region/ Properties
         public int length { get; set; }
         private bool lengthSet { get; set; }
         public int width { get; set; }
         private bool widthSet { get; set; }
+        #endregion
 
-        // Constructors
+        #region Constructors
         public Rectangle() : base()
         {
 
@@ -22,6 +23,16 @@ namespace GraphicalProgrammingLanguage.Shapes
 
         }
 
+        /// <summary>
+        /// This constructor is passed all the variables required to action the draw method following instantiation.
+        /// </summary>
+        /// <param name="x">Horizontal coordinate of the pen.</param>
+        /// <param name="y">Verticle coordinate of the pen.</param>
+        /// <param name="length">The value of the length of the rectangle as an integer.</param>
+        /// <param name="width">The value of the width of the rectangle as an integer.</param>
+        /// <param name="lineColor">The string value of a color for the line.</param>
+        /// <param name="fillColor">The string value of a color for the fill.</param>
+        /// <param name="lineWeight">The width of the line.</param>
         public Rectangle(int x, int y, int length, int width, Color lineColor, Color fillColor, float lineWeight) : base(x, y, lineColor, fillColor, lineWeight)
         {
             Dictionary<string, string> variables = new Dictionary<string, string>();
@@ -34,19 +45,31 @@ namespace GraphicalProgrammingLanguage.Shapes
             variables.Add("lineweight", lineWeight.ToString());
             Set(variables);
         }
+        #endregion
 
-        // Methods
-        // Abstracts
+        #region Overrides
+        /// <summary>
+        /// Calculates the area of the created shape using the given length and width properties.
+        /// </summary>
+        /// <returns>The calulated value of the area in an unrestricted decimal format.</returns>
         public override double CalculateArea()
         {
             return length * width;
         }
 
+        /// <summary>
+        /// Calculates the perimeter of the created shape using the given length and width properties.
+        /// </summary>
+        /// <returns>The calulated value of the perimeter in an unrestricted decimal format.</returns>
         public override double CalculatePerimeter()
         {
             return (2 * length) + (2 * width);
         }
 
+        /// <summary>
+        /// The action that adds the specified shape the MainGUI graphic object.
+        /// </summary>
+        /// <param name="g">Graphics object, intended to be provided from the MainGUI</param>
         public override void Draw(Graphics g)
         {
             Pen p = new Pen(lineColor, lineWeight);
@@ -55,12 +78,21 @@ namespace GraphicalProgrammingLanguage.Shapes
             g.DrawRectangle(p, x, y, width, length);
         }
 
+        /// <summary>
+        /// Uses the check variables xSet, xSet, lengthSet and widthSet to ascertain whether the required variables have been set.
+        /// </summary>
+        /// <returns></returns>
         public override bool HasRequiredVariables()
         {
             return lengthSet && widthSet && xSet && ySet;
         }
-        
-        // Overrides
+
+        /// <summary>
+        /// Takes variables passed to the method from within the variables dictionary and assigns them to the relevent
+        /// fields ready for execution when completed.
+        /// x, y, length and width are the required fields.
+        /// </summary>
+        /// <param name="variables">A dictionary object to hold string values which can be parsed where required.</param>
         public override void Set(Dictionary<string, string> variables)
         {
             if (variables.ContainsKey("x"))
@@ -97,11 +129,14 @@ namespace GraphicalProgrammingLanguage.Shapes
             }
         }
 
-        // This overrides the base implemention of ToString() in this case this is now the Shape class.
-        // Example output: 'StringRef 1, 2 : 3, 4'
+        /// <summary>
+        /// This overrides the base implemention of ToString() in this case this is now the Shape class.
+        /// </summary>
+        /// <returns>Example output: 'StringRef x=1, y=2 : length=3, width=3, perimeter=4, area=5'</returns>
         public override string ToString()
         {
             return base.ToString() + "length=" + this.length + ", width=" + this.width + ", perimeter=" + CalculatePerimeter() + ", area=" + CalculateArea();
         }
+        #endregion
     }
 }
