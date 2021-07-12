@@ -37,9 +37,9 @@ namespace GraphicalProgrammingLanguage.Commands
         /// <param name="variables">A dictionary object to hold string values which can be parsed where required.</param>
         public void set(Dictionary<string, string> variables)
         {
-            this.variables = variables;
             if (variables != null)
             {
+                this.variables = variables;
                 if (variables.ContainsKey("color"))
                 {
                     brush = new SolidBrush(Color.FromName(variables.GetValueOrDefault("color")));

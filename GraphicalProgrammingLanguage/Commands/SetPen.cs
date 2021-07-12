@@ -35,9 +35,9 @@ namespace GraphicalProgrammingLanguage.Commands
         #region Overrides
         public void set(Dictionary<string, string> variables)
         {
-            this.variables = variables;
             if (variables != null)
             {
+                this.variables = variables;
                 if (variables.ContainsKey("color"))
                 {
                     colorSet = true;

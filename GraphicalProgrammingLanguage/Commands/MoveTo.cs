@@ -44,9 +44,9 @@ namespace GraphicalProgrammingLanguage.Commands
         /// <param name="variables">A dictionary object to hold string values which can be parsed where required.</param>
         public void set(Dictionary<string, string> variables)
         {
-            this.variables = variables;
             if (variables != null)
             {
+                this.variables = variables;
                 if (variables.ContainsKey("x"))
                 {
                     x = int.Parse(variables.GetValueOrDefault("x"));
