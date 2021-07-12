@@ -6,9 +6,16 @@ using System.Text;
 
 namespace GraphicalProgrammingLanguage.Tests
 {
+    /// <summary>
+    /// Set of tests intended to test the functionality provided by the UsageCounter helper.
+    /// </summary>
     [TestClass()]
     public class UsageCounterTests
     {
+        /// <summary>
+        /// Checks the number of command types present in the enum and checks the correct number of records are present 
+        /// in the database table.
+        /// </summary>
         [TestMethod]
         public void GetUsageCountOutput_ReturnsListOfFormattedStrings()
         {
