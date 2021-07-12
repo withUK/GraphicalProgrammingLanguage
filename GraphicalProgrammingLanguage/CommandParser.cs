@@ -67,7 +67,8 @@ namespace GraphicalProgrammingLanguage
             }
             if (command != null && !String.IsNullOrEmpty(input))
             {
-                SetVariablesFromInput(input);
+                variables = SetVariablesFromInput(input);
+                SetCommandVariables();
 
                 if (command.hasRequiredParameters())
                 {
@@ -172,10 +173,10 @@ namespace GraphicalProgrammingLanguage
             int startIndex = 0;
             int endIndex = 0;
 
+            Dictionary<string, string> variables = new Dictionary<string, string>();
+
             if (regexParentheses.IsMatch(input))
             {
-                Dictionary<string, string> variables = new Dictionary<string, string>();
-
                 startIndex = input.IndexOf("(");
                 endIndex = input.IndexOf(")");
 
