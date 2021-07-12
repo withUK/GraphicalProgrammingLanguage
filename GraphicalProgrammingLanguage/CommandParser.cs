@@ -167,7 +167,7 @@ namespace GraphicalProgrammingLanguage
         /// hold variables, whether they are inside parentheses or stand alone variables.
         /// </summary>
         /// <param name="input"></param>
-        public Dictionary<string, string> GetVariablesFromInput(string input)
+        public Dictionary<string, string> SetVariablesFromInput(string input)
         {
             int startIndex = 0;
             int endIndex = 0;

@@ -23,6 +23,7 @@ namespace GraphicalProgrammingLanguage
         private const string REG_COMMAND_ONLY = "^[a-zA-Z]+$";
         private const string REG_VARIABLE_IND = "^[a-zA-Z]+=[a-zA-Z0-9]+$";
         private const string REG_VARIABLE_POINT = "^[a-zA-Z0-9]+=[0-9]+,[0-9]+$";
+        private const string REG_MATH = "^[\\/*\\-+]+$";
 
         private const string REG_NUMBER = "^[0-9]+$";
         private const string REG_STRING = "^[a-zA-Z]+$";
@@ -40,6 +41,7 @@ namespace GraphicalProgrammingLanguage
         Regex regexCommandOnly = new Regex(REG_COMMAND_ONLY, RegexOptions.IgnoreCase);
         Regex regexVariables = new Regex(REG_VARIABLE_IND, RegexOptions.IgnoreCase);
         Regex regexVariablesPoint = new Regex(REG_VARIABLE_POINT, RegexOptions.IgnoreCase);
+        Regex regexMath = new Regex(REG_MATH, RegexOptions.IgnoreCase);
 
         Regex regexNumber = new Regex(REG_NUMBER, RegexOptions.IgnoreCase);
         Regex regexString = new Regex(REG_STRING, RegexOptions.IgnoreCase);
@@ -164,6 +166,10 @@ namespace GraphicalProgrammingLanguage
 
                 while (currentLine != "endwhile")
                 {
+                    if (regexVariable.IsMatch(currentLine))
+                    {
+                        currentLine = SubstitueVariables(currentLine);
+                    }
                     Command c = GetCommand(currentLine);
                     c.order = order;
                     c.main = TakeSnapshotOfMain(c);
@@ -181,12 +187,62 @@ namespace GraphicalProgrammingLanguage
             }
             else
             {
-                Dictionary<string, string> commandVariables = cp.GetVariablesFromInput(thisLine);
+                Dictionary<string, string> commandVariables = cp.SetVariablesFromInput(thisLine);
                 var command = cf.GetCommand(main, thisLine);
                 command.Set(commandVariables);
             }
 
             return i;
+        }
+
+        private string SubstitueVariables(string input)
+        {
+            var inputStripped = input.Replace("var", "").Trim();
+            string[] split = input.Split("=");
+
+            string delimter = null;
+
+            if (split[1].Contains("+"))
+                delimter = "+";
+            if (split[1].Contains("-"))
+                delimter = "-";
+            if (split[1].Contains("*"))
+                delimter = "*";
+            if (split[1].Contains("/"))
+                delimter = "/";
+
+            if (split[1].Contains(delimter))
+            {
+                string[] fSplit = split[1].Split(delimter);
+                if (this.variables.ContainsKey(fSplit[0]))
+                {
+                    fSplit[0] = this.variables.GetValueOrDefault(fSplit[0]);
+                }
+                if (this.variables.ContainsKey(fSplit[1]))
+                {
+                    fSplit[1] = this.variables.GetValueOrDefault(fSplit[1]);
+                }
+
+                var result = 0;
+
+                if (split[1].Contains("+"))
+                    result = int.Parse(fSplit[1]) + int.Parse(fSplit[1]);
+                if (split[1].Contains("-"))
+                    result = int.Parse(fSplit[1]) - int.Parse(fSplit[1]);
+                if (split[1].Contains("*"))
+                    result = int.Parse(fSplit[1]) * int.Parse(fSplit[1]);
+                if (split[1].Contains("/"))
+                    result = int.Parse(fSplit[1]) / int.Parse(fSplit[1]);
+
+                input = input.Replace(split[1], result.ToString());
+            }
+            else if (this.variables.ContainsKey(split[1]))
+            {
+                var replace = this.variables.GetValueOrDefault(split[0]);
+                input = input.Replace(split[1], replace);
+            }
+            
+            return input;
         }
 
         private static void ExecuteCommands(List<Command> commands)
@@ -369,6 +425,15 @@ namespace GraphicalProgrammingLanguage
             int startIndex = 0;
             int endIndex = 0;
 
+            float ci1 = 0;
+            float ci2 = 0;
+            string cs1 = null;
+            string cs2 = null;
+            bool ci1Set = false;
+            bool ci2Set = false;
+            bool cs1Set = false;
+            bool cs2Set = false;
+
             if (regexParentheses.IsMatch(input))
             {
                 variables = new Dictionary<string, string>();
@@ -383,7 +448,7 @@ namespace GraphicalProgrammingLanguage
                     if (item.Contains("="))
                     {
                         string[] sp = item.Split("=");
-
+                        
                         if (this.variables.ContainsKey(sp[1]))
                         {
                             sp[1] = this.variables.GetValueOrDefault(sp[1]);
@@ -425,33 +490,36 @@ namespace GraphicalProgrammingLanguage
                     {
                         inlineSp[0] = this.variables.GetValueOrDefault(inlineSp[0]);
                     }
-                    if (this.variables.ContainsKey(inlineSp[1]))
+                    if (inlineSp.Length == 2)
                     {
-                        inlineSp[1] = this.variables.GetValueOrDefault(inlineSp[1]);
-                    }
-
-                    if (regexNumber.IsMatch(inlineSp[0]) && regexNumber.IsMatch(inlineSp[1]))
-                    {
-                        float x = 0;
-                        switch (delimiter)
+                        if (this.variables.ContainsKey(inlineSp[1]))
                         {
-                            case "+":
-                                x = float.Parse(inlineSp[0]) + float.Parse(inlineSp[1]);
-                                break;
-                            case "-":
-                                x = float.Parse(inlineSp[0]) - float.Parse(inlineSp[1]);
-                                break;
-                            case "*":
-                                x = float.Parse(inlineSp[0]) * float.Parse(inlineSp[1]);
-                                break;
-                            case "/":
-                                x = float.Parse(inlineSp[0]) / float.Parse(inlineSp[1]);
-                                break;
-                            default:
-                                break;
+                            inlineSp[1] = this.variables.GetValueOrDefault(inlineSp[1]);
                         }
 
-                        sp[1] = x.ToString();
+                        if (regexNumber.IsMatch(inlineSp[0]) && regexNumber.IsMatch(inlineSp[1]))
+                        {
+                            float x = 0;
+                            switch (delimiter)
+                            {
+                                case "+":
+                                    x = float.Parse(inlineSp[0]) + float.Parse(inlineSp[1]);
+                                    break;
+                                case "-":
+                                    x = float.Parse(inlineSp[0]) - float.Parse(inlineSp[1]);
+                                    break;
+                                case "*":
+                                    x = float.Parse(inlineSp[0]) * float.Parse(inlineSp[1]);
+                                    break;
+                                case "/":
+                                    x = float.Parse(inlineSp[0]) / float.Parse(inlineSp[1]);
+                                    break;
+                                default:
+                                    break;
+                            }
+
+                            sp[1] = x.ToString();
+                        }
                     }
 
                 }
