@@ -13,35 +13,28 @@ namespace GraphicalProgrammingLanguage.Factories
     {
         public Command GetCommand(MainGUI main, String commandType)
         {
-            try
-            {
-                var type = Enum.Parse(typeof(CommandTypes), commandType);
+            var type = Enum.Parse(typeof(CommandTypes), commandType);
 
-                switch(type)
-                {
-                    case CommandTypes.clear:
-                        return new Clear(main);
-                    case CommandTypes.drawshape:
-                        return new DrawShape(main);
-                    case CommandTypes.drawto:
-                        return new DrawTo(main);
-                    case CommandTypes.moveto:
-                        return new MoveTo(main);
-                    case CommandTypes.reset:
-                        return new Reset(main);
-                    case CommandTypes.setfill:
-                        return new SetFill(main);
-                    case CommandTypes.setpen:
-                        return new SetPen(main);
-                    default:
-                        ArgumentException argEx = new ArgumentException("CommandFactory error: " + commandType + " does not exist");
-                        throw argEx;
-                }
-            }
-            catch (ArgumentException argEx)
+            switch(type)
             {
-                throw argEx;
-            }
+                case CommandTypes.clear:
+                    return new Clear(main);
+                case CommandTypes.drawshape:
+                    return new DrawShape(main);
+                case CommandTypes.drawto:
+                    return new DrawTo(main);
+                case CommandTypes.moveto:
+                    return new MoveTo(main);
+                case CommandTypes.reset:
+                    return new Reset(main);
+                case CommandTypes.setfill:
+                    return new SetFill(main);
+                case CommandTypes.setpen:
+                    return new SetPen(main);
+                default:
+                    ArgumentException argEx = new ArgumentException("CommandFactory error: " + commandType + " does not exist");
+                    throw argEx;
+            } 
         }
     }
 }

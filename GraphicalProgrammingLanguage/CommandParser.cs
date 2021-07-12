@@ -55,19 +55,31 @@ namespace GraphicalProgrammingLanguage
         public void ParseCommand(string input)
         {
             input = PrepareInput(input);
-            SetCommand(input);
-            SetVariablesFromInput(input);
-
-            if (command.hasRequiredParameters())
+            try
             {
-                command.Execute();
-                UsageCounter.AddToCommandCount(command.name);
-                ClearCurrentCommand();
-                UpdateCommandUsage();
+                SetCommand(input);
             }
-            else
+            catch (ArgumentException e)
             {
-                SetCurrentCommand();
+                main.txtLog.AppendText(Logger.Log(e.Message));
+                main.txtCommandLine.Clear();
+                return;
+            }
+            if (command != null && !String.IsNullOrEmpty(input))
+            {
+                SetVariablesFromInput(input);
+
+                if (command.hasRequiredParameters())
+                {
+                    command.Execute();
+                    UsageCounter.AddToCommandCount(command.name);
+                    ClearCurrentCommand();
+                    UpdateCommandUsage();
+                }
+                else
+                {
+                    SetCurrentCommand();
+                }
             }
 
             main.txtCommandLine.Clear();
@@ -97,20 +109,27 @@ namespace GraphicalProgrammingLanguage
             int index = 0;
             string commandType;
 
-            if (regexParentheses.IsMatch(input))
+            try
             {
-                index = input.IndexOf("(");
-                commandType = input.Substring(0, index);
+                if (regexParentheses.IsMatch(input))
+                {
+                    index = input.IndexOf("(");
+                    commandType = input.Substring(0, index);
 
-                command = cf.GetCommand(main, commandType);
+                    command = cf.GetCommand(main, commandType);
+                }
+                else if (main.currentCommand != null)
+                {
+                    command = main.currentCommand;
+                }
+                else if (regexCommandOnly.IsMatch(input))
+                {
+                    command = cf.GetCommand(main, input);
+                }
             }
-            else if (main.currentCommand != null)
+            catch (ArgumentException e)
             {
-                command = main.currentCommand;
-            }
-            else if (regexCommandOnly.IsMatch(input))
-            {
-                command = cf.GetCommand(main, input);
+                throw e;
             }
         }
 
