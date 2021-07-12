@@ -52,8 +52,6 @@ namespace GraphicalProgrammingLanguage
         /// command line.
         /// </summary>
         /// <param name="input">Intended to be the input recieved from the GUI object txtCommand</param>
-        public void ParseCommand(string input)
-        // Methods
         public void ExecuteCommand(string input)
         {
             input = PrepareInput(input);
